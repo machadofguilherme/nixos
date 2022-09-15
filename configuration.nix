@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -136,6 +136,27 @@
   atomix
 ]);
   
+  nix = {
+     package = pkgs.nixFlakes;
+     extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
+       "experimental-features = nix-command flakes";
+  };
+
+  # Fontes.
+  fonts.fonts = with pkgs; [
+   noto-fonts
+   noto-fonts-cjk
+   noto-fonts-emoji
+   liberation_ttf
+   fira-code
+   fira-code-symbols
+   ubuntu_font_family
+   hanazono
+   roboto
+   open-sans
+   corefonts
+  ];
+
   # Cópia de configuration.nix.
   system.copySystemConfiguration = true;
 
