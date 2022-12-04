@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -10,157 +10,172 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;  
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Allow unfree
+  nixpkgs.config.allowUnfree = true;
 
-  # Rede.
+  # Optimise Store
+  nix.settings.auto-optimise-store = true;
+  
+  # ZSH
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+  environment.binsh = "${pkgs.zsh}/bin/zsh";
+
+  # Oh My ZSH
+  programs.zsh = {
+   autosuggestions.enable = true;
+   autosuggestions.async = true;
+   enableCompletion = true;
+   enableGlobalCompInit = true;
+   syntaxHighlighting.enable = true;
+   ohMyZsh = {
+    enable = true;
+    plugins = [ "git" "thefuck" ];
+    theme = "wezm";
+   };
+  };
+  
+  # Allow Flatpak
+  services.flatpak.enable = true;
+
+  # Auto upgrade.
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
+  
+  # Only wheel
+  security.sudo.execWheelOnly = true;
+
+  # Docker
+  virtualisation.docker.enable = true;
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 3;
+  
+  # Network
   networking.hostName = "NixOS";
   networking.networkmanager.enable = true;
 
-  # Fuso-horário.
+  # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
-  # Idioma.
+  # Select internationalisation properties.
   i18n.defaultLocale = "pt_BR.UTF-8";
-  console = {
-     font = "Lat2-Terminus16";
-     keyMap = "br-abnt2";
-     # useXkbConfig = true;
-  };
 
-  # X11.
-  services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
-      gnome.enable = true;
-    };
-    displayManager = {
-      gdm.enable = true;
-    };
-  };
-
-  # Flatpak.
-  services.flatpak.enable = true;
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # ZSH.
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  users.users.machado.shell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];  
-
-  # Teclado(X11).
-  services.xserver.layout = "br";
-  #services.xserver.xkbVariant = "abnt2";
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.desktopManager.xterm.enable = false;
+  hardware.opengl.driSupport32Bit = true;
   
-  # Impressora.
-  services.printing.enable = false;
-
-  # Áudio.
-  sound.enable = false;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
+  # Enable Plasma.
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5.excludePackages = with pkgs.libsForQt5; [
+   elisa
+   oxygen
+   khelpcenter
+   print-manager
+  ];
+  
+  # Graphic Acceleration
+  hardware.opengl = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-};
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
 
-  # Touchpad.
+  # GNOME
+  # environment.gnome.excludePackages = (with pkgs; [
+  #  gnome-photos
+  #  gnome-tour
+  # ]) ++ (with pkgs.gnome; [
+  # gnome-music
+  # gnome-terminal
+  # gedit # text editor
+  # epiphany # web browser
+  # geary # email reader
+  # gnome-characters
+  # totem # video player
+  # tali # poker game
+  # iagno # go game
+  # hitori # sudoku game
+  # atomix # puzzle game
+  # gnome-calendar
+  # gnome-contacts
+  # gnome-clocks
+  # epiphany
+  # simple-scan
+  # gnome-logs
+  # gnome-font-viewer
+  # baobab
+  # pkgs.gnome-connections
+  # gnome-software
+  # ]);
+
+  # Configure keymap in X11
+  services.xserver.layout = "br";
+
+  # Enable sound.
+  # sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+   enable = true;
+   pulse.enable = true;
+  };
+
+  # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  # Usuário.
-   users.users.machado = {
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.machado = {
      isNormalUser = true;
-     extraGroups = [ "wheel" ];
+     extraGroups = [ "wheel" "audio" "video" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
      packages = with pkgs; [
-       firefox-devedition-bin
-       git
-       nodejs
-    ];
+      # 
+     ];
    };
-   security.sudo.wheelNeedsPassword = false;
 
-  # Lista pacotes instalados no perfil do sistema. Para pesquisar, rode:
+  # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   	zoom-us
-	vscode
-        slack
-        flatpak
-        zsh
-        zsh-history-substring-search
-        zsh-autosuggestions
-	zsh-syntax-highlighting
-	zsh-powerlevel10k
-	meslo-lgs-nf
-	stremio
+   konsole  
   ];
-
-  nixpkgs.config.allowUnfree = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-     enable = true;
-   };
-  
-  # Pacotes GNOME desnecessários.
-  environment.gnome.excludePackages = (with pkgs; [
-  gnome-photos
-  gnome-tour
-]) ++ (with pkgs.gnome; [
-  gnome-music
-  gnome-calendar
-  gnome-clocks
-  gnome-contacts
-  gnome-logs
-  gnome-music
-  gnome-terminal
-  simple-scan
-  pkgs.gnome-photos
-  gnome-weather
-  gnome-software
-  gnome-terminal
-  gedit
-  epiphany
-  geary
-  gnome-characters
-  totem
-  tali
-  iagno
-  hitori
-  atomix
-]);
-  
-  nix = {
-     package = pkgs.nixFlakes;
-     extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
-       "experimental-features = nix-command flakes";
-  };
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
-  # Fontes.
-  fonts.fonts = with pkgs; [
-   noto-fonts
-   noto-fonts-cjk
-   noto-fonts-emoji
-   liberation_ttf
-   fira-code
-   fira-code-symbols
-   ubuntu_font_family
-   hanazono
-   roboto
-   open-sans
-   corefonts
-  ];
+  # List services that you want to enable:
 
-  # Cópia de configuration.nix.
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix
   system.copySystemConfiguration = true;
 
-  # Define stateVersion.
-  system.stateVersion = "22.05";
+  # Kernel parameters
+  # boot.kernelParams = [ "quiet" ];
+
+  # Linux kernel
+  boot.kernelPackages = pkgs.linuxPackages_testing;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
+
