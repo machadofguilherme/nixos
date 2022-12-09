@@ -29,17 +29,14 @@
    enableCompletion = true;
    enableGlobalCompInit = true;
    syntaxHighlighting.enable = true;
-   ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "thefuck" ];
-    theme = "wezm";
-   };
   };
   
   # Allow Flatpak
   services.flatpak.enable = true;
 
   # Auto upgrade.
+  nix.gc.automatic = true;
+  nix.gc.dates = "15:00";
   system.autoUpgrade.enable = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
   
@@ -66,19 +63,14 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "intel" ];
-  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.videoDrivers = [ "modesetting" ];
   hardware.opengl.driSupport32Bit = true;
   
-  # Enable Plasma.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.desktopManager.plasma5.excludePackages = with pkgs.libsForQt5; [
-   elisa
-   oxygen
-   khelpcenter
-   print-manager
-  ];
+  # Enable GNOME.
+  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.core-utilities.enable = false;
   
   # Graphic Acceleration
   hardware.opengl = {
@@ -90,34 +82,6 @@
       libvdpau-va-gl
     ];
   };
-
-  # GNOME
-  # environment.gnome.excludePackages = (with pkgs; [
-  #  gnome-photos
-  #  gnome-tour
-  # ]) ++ (with pkgs.gnome; [
-  # gnome-music
-  # gnome-terminal
-  # gedit # text editor
-  # epiphany # web browser
-  # geary # email reader
-  # gnome-characters
-  # totem # video player
-  # tali # poker game
-  # iagno # go game
-  # hitori # sudoku game
-  # atomix # puzzle game
-  # gnome-calendar
-  # gnome-contacts
-  # gnome-clocks
-  # epiphany
-  # simple-scan
-  # gnome-logs
-  # gnome-font-viewer
-  # baobab
-  # pkgs.gnome-connections
-  # gnome-software
-  # ]);
 
   # Configure keymap in X11
   services.xserver.layout = "br";
@@ -132,6 +96,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
+  services.xserver.libinput.touchpad.tapping = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.machado = {
@@ -145,26 +110,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   konsole  
+   zsh-powerlevel10k
+   meslo-lgs-nf
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix
   system.copySystemConfiguration = true;
-
-  # Kernel parameters
-  # boot.kernelParams = [ "quiet" ];
 
   # Linux kernel
   boot.kernelPackages = pkgs.linuxPackages_testing;

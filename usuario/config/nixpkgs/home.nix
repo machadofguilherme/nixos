@@ -9,16 +9,17 @@
   home.username = "machado";
   home.homeDirectory = "/home/machado";
   
-  # Bash
-  #programs.bash = {
-  #  enable = true;
-  #  bashrcExtra = ''
-  #    . ~/.oldbashrc
-  #  '';
-  #};
-
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
+  
+  # ZSH
+  programs.zsh.plugins = [
+   {
+    name = "powerlevel10k";
+    src = pkgs.zsh-powerlevel10k;
+    file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+   }
+  ];
 
   # Packages to install
   home.packages = [
@@ -39,8 +40,21 @@
     pkgs.nodejs-16_x
     pkgs.steam
     pkgs.killall
-    pkgs.pavucontrol
     pkgs.beekeeper-studio
+    pkgs.gnome-console
+    pkgs.gnome-text-editor
+    pkgs.gnome.gnome-tweaks
+    pkgs.gnomeExtensions.appindicator
+    pkgs.gnomeExtensions.blur-my-shell
+    pkgs.gnomeExtensions.tweaks-in-system-menu
+    pkgs.ocs-url
+    pkgs.gnome.nautilus
+    pkgs.bibata-cursors
+    pkgs.bibata-extra-cursors
+    pkgs.bibata-cursors-translucent
+    pkgs.tela-icon-theme
+    pkgs.gnome.cheese
+    pkgs.gnome.gnome-screenshot
   ];
   
   # Other configs
