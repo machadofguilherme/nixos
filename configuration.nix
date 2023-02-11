@@ -10,108 +10,102 @@
       ./hardware-configuration.nix
     ];
 
-  # Allow unfree
+  # Permite não-livre
   nixpkgs.config.allowUnfree = true;
 
-  # Optimise Store
+  # Otimiza Store
   nix.settings.auto-optimise-store = true;
   
-  # ZSH
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
-  environment.binsh = "${pkgs.zsh}/bin/zsh";
+  # Fish
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
+  environment.shells = with pkgs; [ fish ];
+  environment.binsh = "${pkgs.fish}/bin/fish";
 
-  # Oh My ZSH
-  programs.zsh = {
-   autosuggestions.enable = true;
-   autosuggestions.async = true;
-   enableCompletion = true;
-   enableGlobalCompInit = true;
-   syntaxHighlighting.enable = true;
-  };
-  
-  # Allow Flatpak
+  # Permite Flatpak
   services.flatpak.enable = true;
 
   # Auto upgrade.
   nix.gc.automatic = true;
   nix.gc.dates = "15:00";
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
   
-  # Only wheel
+  # Apenas wheel
   security.sudo.execWheelOnly = true;
 
   # Docker
   virtualisation.docker.enable = true;
 
-  # Use the systemd-boot EFI boot loader.
+  # SystemD-Boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 3;
   
-  # Network
+  # Internet
   networking.hostName = "NixOS";
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Fuso-horário
   time.timeZone = "America/Sao_Paulo";
 
-  # Select internationalisation properties.
+  # Internacionalização
   i18n.defaultLocale = "pt_BR.UTF-8";
 
-  # Enable the X11 windowing system.
+  # X11
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.excludePackages = [ pkgs.xterm ];
   hardware.opengl.driSupport32Bit = true;
   
-  # Enable GNOME.
-  services.xserver.desktopManager.xterm.enable = false;
+  # Permite GNOME
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.core-utilities.enable = false;
-  
-  # Graphic Acceleration
+
+  # Aceleração Gráfica
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      intel-media-driver
+      vaapiIntel
       vaapiVdpau
       libvdpau-va-gl
     ];
   };
 
-  # Configure keymap in X11
+  # Mapa de teclado
   services.xserver.layout = "br";
 
-  # Enable sound.
-  # sound.enable = true;
+  # Som
   hardware.pulseaudio.enable = false;
   services.pipewire = {
    enable = true;
    pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
+  # Habilita touchpad
   services.xserver.libinput.enable = true;
   services.xserver.libinput.touchpad.tapping = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Conta de usuário
   users.users.machado = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "audio" "video" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "audio" "video" "docker" "networkmanager" ];
      packages = with pkgs; [
-      # 
+       #
      ];
    };
 
-  # List packages installed in system profile. To search, run:
+  # Pacotes
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   zsh-powerlevel10k
-   meslo-lgs-nf
+    google-chrome-beta
+    roboto
+    roboto-mono
+    ubuntu_font_family
+    meslo-lgs-nf
+    mysql-workbench
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -119,7 +113,7 @@
   # accidentally delete configuration.nix
   system.copySystemConfiguration = true;
 
-  # Linux kernel
+  # Linux
   boot.kernelPackages = pkgs.linuxPackages_testing;
 
   # This value determines the NixOS release from which the default
