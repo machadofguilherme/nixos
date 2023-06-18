@@ -18,7 +18,7 @@
       fsType = "xfs";
     };
 
-  fileSystems."/boot" =
+  fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/ABE6-381E";
       fsType = "vfat";
     };
@@ -28,7 +28,7 @@
       fsType = "xfs";
     };
 
-  swapDevices = [ { device = "/swap"; } ];
+  swapDevices = [ { device = "/swapfile"; } ];
 
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

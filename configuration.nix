@@ -16,14 +16,24 @@
   # Otimiza Store
   nix.settings.auto-optimise-store = true;
   
-  # Fish
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
-  environment.shells = with pkgs; [ fish ];
-  environment.binsh = "${pkgs.fish}/bin/fish";
+  # Zsh
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+  environment.binsh = "${pkgs.zsh}/bin/zsh";
+  programs.zsh.shellAliases = {
+      docker-createdb = "docker run -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=root -e MYSQL_PASSWORD=password -v ~/Documentos/databse:/var/lib/mysql -p 3306:3306 --name books_api mysql:8.0.31-debian";
+      nix-config = "sudo micro /etc/nixos/configuration.nix";
+      nix-rebuild = "sudo nixos-rebuild switch";
+      home-nix-config = "micro $HOME/.config/nixpkgs/home.nix";
+      home-nix-rebuild = "home-manager -j 4 --cores 4 switch";
+      nix-update = "sudo nix-channel --update && nix-rebuild";
+      nix-clean = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nixos-rebuild boot && sudo nix-store --optimise";
+   };
 
   # Permite Flatpak
   services.flatpak.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
 
   # Auto upgrade.
   nix.gc.automatic = true;
@@ -37,10 +47,21 @@
   # Docker
   virtualisation.docker.enable = true;
 
-  # SystemD-Boot
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 3;
+  # GRUB
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+    };
+    grub = {
+      efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+      device = "nodev";
+      version = 2;
+      enable = true;
+    };
+    timeout = 3;
+  };
   
   # Internet
   networking.hostName = "NixOS";
@@ -58,10 +79,14 @@
   services.xserver.excludePackages = [ pkgs.xterm ];
   hardware.opengl.driSupport32Bit = true;
   
+  # Permite Plasma
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
   # Permite GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.core-utilities.enable = false;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  # services.gnome.core-utilities.enable = false;
 
   # Aceleração Gráfica
   hardware.opengl = {
@@ -77,7 +102,7 @@
   # Mapa de teclado
   services.xserver.layout = "br";
 
-  # Som
+  # Áudio
   hardware.pulseaudio.enable = false;
   services.pipewire = {
    enable = true;
@@ -93,19 +118,38 @@
      isNormalUser = true;
      extraGroups = [ "wheel" "audio" "video" "docker" "networkmanager" ];
      packages = with pkgs; [
-       #
+      vscode
+      nodejs_20
+      mysql-workbench
+      zoom-us
+      caprine-bin
+      docker
+      docker-compose
+      flatpak
+      slack
+      git
+      steam
+      killall
+      runescape
+      discord-development
      ];
    };
 
   # Pacotes
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    google-chrome-beta
+    vivaldi
+    vivaldi-ffmpeg-codecs
+    papirus-icon-theme
+    tela-icon-theme
+    bibata-cursors
+    bibata-cursors-translucent
+    nordzy-icon-theme
     roboto
     roboto-mono
     ubuntu_font_family
     meslo-lgs-nf
-    mysql-workbench
+    micro
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -122,7 +166,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
+  # system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "unstable";
 }
-
