@@ -21,6 +21,7 @@
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
   environment.binsh = "${pkgs.zsh}/bin/zsh";
+  programs.zsh.enableAutosuggestions = true;
   programs.zsh.shellAliases = {
       docker-createdb = "docker run -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=root -e MYSQL_PASSWORD=password -v ~/Documentos/databse:/var/lib/mysql -p 3306:3306 --name books_api mysql:8.0.31-debian";
       nix-config = "sudo micro /etc/nixos/configuration.nix";
@@ -30,6 +31,23 @@
       nix-update = "sudo nix-channel --update && nix-rebuild";
       nix-clean = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nixos-rebuild boot && sudo nix-store --optimise";
    };
+   programs.zsh.initExtraBeforeCompInit = ''
+      # p10k instant prompt
+      local P10K_INSTANT_PROMPT="${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
+    '';
+   programs.zsh.plugins = with pkgs; [
+      {
+        file = "powerlevel10k.zsh-theme";
+        name = "powerlevel10k";
+        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
+      }
+      {
+        file = "p10k.zsh";
+        name = "powerlevel10k-config";
+        src = $HOME; # Some directory containing your p10k.zsh file
+      }
+    ];
 
   # Permite Flatpak
   services.flatpak.enable = true;
@@ -150,6 +168,8 @@
     ubuntu_font_family
     meslo-lgs-nf
     micro
+    zsh
+    zsh-powerlevel10k
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
