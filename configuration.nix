@@ -10,6 +10,12 @@
       ./hardware-configuration.nix
     ];
 
+  # Permite pacote inseguro 'openssl'
+  nixpkgs.config.permittedInsecurePackages = [
+   "openssl-1.1.1u"
+  ];
+  
+              
   # Permite não-livre
   nixpkgs.config.allowUnfree = true;
 
@@ -21,37 +27,10 @@
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
   environment.binsh = "${pkgs.zsh}/bin/zsh";
-  programs.zsh.enableAutosuggestions = true;
-  programs.zsh.shellAliases = {
-      docker-createdb = "docker run -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=root -e MYSQL_PASSWORD=password -v ~/Documentos/databse:/var/lib/mysql -p 3306:3306 --name books_api mysql:8.0.31-debian";
-      nix-config = "sudo micro /etc/nixos/configuration.nix";
-      nix-rebuild = "sudo nixos-rebuild switch";
-      home-nix-config = "micro $HOME/.config/nixpkgs/home.nix";
-      home-nix-rebuild = "home-manager -j 4 --cores 4 switch";
-      nix-update = "sudo nix-channel --update && nix-rebuild";
-      nix-clean = "sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nixos-rebuild boot && sudo nix-store --optimise";
-   };
-   programs.zsh.initExtraBeforeCompInit = ''
-      # p10k instant prompt
-      local P10K_INSTANT_PROMPT="${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-    '';
-   programs.zsh.plugins = with pkgs; [
-      {
-        file = "powerlevel10k.zsh-theme";
-        name = "powerlevel10k";
-        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
-      }
-      {
-        file = "p10k.zsh";
-        name = "powerlevel10k-config";
-        src = $HOME; # Some directory containing your p10k.zsh file
-      }
-    ];
-
+  programs.zsh.autosuggestions.enable = true;
+   
   # Permite Flatpak
   services.flatpak.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
 
   # Auto upgrade.
   nix.gc.automatic = true;
@@ -69,13 +48,12 @@
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+      efiSysMountPoint = "/boot"; # ← use the same mount point here.
     };
     grub = {
       efiSupport = true;
       #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
       device = "nodev";
-      version = 2;
       enable = true;
     };
     timeout = 3;
@@ -97,14 +75,11 @@
   services.xserver.excludePackages = [ pkgs.xterm ];
   hardware.opengl.driSupport32Bit = true;
   
-  # Permite Plasma
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
-  # Permite GNOME
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  # services.gnome.core-utilities.enable = false;
+  # Permite Pantheon
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.greeters.pantheon.enable = true;
+  services.xserver.desktopManager.pantheon.enable = true;
+  programs.pantheon-tweaks.enable = true;
 
   # Aceleração Gráfica
   hardware.opengl = {
@@ -138,7 +113,6 @@
      packages = with pkgs; [
       vscode
       nodejs_20
-      mysql-workbench
       zoom-us
       caprine-bin
       docker
@@ -150,6 +124,8 @@
       killall
       runescape
       discord-development
+      beekeeper-studio
+      nodePackages.prisma
      ];
    };
 
@@ -186,6 +162,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  # system.stateVersion = "23.05"; # Did you read the comment?
-  system.stateVersion = "unstable";
+  system.stateVersion = "23.05"; # Did you read the comment?
 }
