@@ -12,14 +12,14 @@
 
   # Permite pacote inseguro 'openssl'
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1v"
-  ];
+   "openssl-1.1.1u"
+  ];  
               
   # Permite não-livre
   nixpkgs.config.allowUnfree = true;
 
   # Cores
-  nix.settings.cores = 4;
+  nix.settings.cores = 2;
 
   # Otimiza Store
   nix.settings.auto-optimise-store = true;
@@ -36,8 +36,12 @@
   
   # Permite Flatpak
   services.flatpak.enable = true;
-  
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+
   # Auto upgrade.
+  nix.gc.automatic = true;
+  nix.gc.dates = "15:00";
   system.autoUpgrade.enable = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
   
@@ -78,17 +82,17 @@
   services.xserver.excludePackages = [ pkgs.xterm ];
   hardware.opengl.driSupport32Bit = true;
   
-  # Permite GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.gnome-browser-connector.enable = true;
-  services.gnome.gnome-initial-setup.enable = true;
-  services.gnome.core-os-services.enable = true;
-  services.gnome.core-utilities.enable = true;
-  services.gnome.core-shell.enable = true;
-  programs.file-roller.enable = true;
-  programs.evince.enable = true;
+  # Permite Plasma
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.defaultSession = "plasmawayland";
 
+  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+    elisa
+    khelpcenter
+    print-manager
+  ];
+  
   # Aceleração Gráfica
   hardware.opengl = {
     enable = true;
@@ -105,8 +109,11 @@
 
   # Áudio
   hardware.pulseaudio.enable = true;
-  nixpkgs.config.pulseaudio = true;
-  
+  services.pipewire = {
+   enable = false;
+   pulse.enable = false;
+  };
+
   # Habilita touchpad
   services.xserver.libinput.enable = true;
   services.xserver.libinput.touchpad.tapping = true;
@@ -140,25 +147,27 @@
       obs-studio
       gimp-with-plugins
       onlyoffice-bin
-      nodePackages_latest.gitmoji-cli
-      gnome.cheese
      ];
    };
 
   # Pacotes
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    firefox
-    (opera.override { proprietaryCodecs = true; })
+    vivaldi
     vivaldi-ffmpeg-codecs
+    papirus-icon-theme
+    tela-icon-theme
+    bibata-cursors
+    bibata-cursors-translucent
+    nordzy-icon-theme
     roboto
     roboto-mono
     ubuntu_font_family
-    meslo-lgs-nf
     micro
-    gnomeExtensions.appindicator
+    zsh
+    zsh-powerlevel10k
   ];
-  
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix

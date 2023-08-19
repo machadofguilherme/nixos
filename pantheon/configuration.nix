@@ -12,20 +12,15 @@
 
   # Permite pacote inseguro 'openssl'
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1v"
+   "openssl-1.1.1u"
   ];
+  
               
   # Permite não-livre
   nixpkgs.config.allowUnfree = true;
 
-  # Cores
-  nix.settings.cores = 4;
-
   # Otimiza Store
   nix.settings.auto-optimise-store = true;
-
-  # Atualiza microcode Intel
-  hardware.cpu.intel.updateMicrocode = true;
   
   # Zsh
   programs.zsh.enable = true;
@@ -33,18 +28,19 @@
   environment.shells = with pkgs; [ zsh ];
   environment.binsh = "${pkgs.zsh}/bin/zsh";
   programs.zsh.autosuggestions.enable = true;
-  
+   
   # Permite Flatpak
   services.flatpak.enable = true;
-  
+
   # Auto upgrade.
+  nix.gc.automatic = true;
+  nix.gc.dates = "15:00";
   system.autoUpgrade.enable = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
   
-  # Sudo
+  # Apenas wheel
   security.sudo.execWheelOnly = true;
-  security.sudo.wheelNeedsPassword = false;
-  
+
   # Docker
   virtualisation.docker.enable = true;
 
@@ -52,10 +48,11 @@
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = "/boot"; # ← use the same mount point here.
     };
     grub = {
       efiSupport = true;
+      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
       device = "nodev";
       enable = true;
     };
@@ -78,16 +75,11 @@
   services.xserver.excludePackages = [ pkgs.xterm ];
   hardware.opengl.driSupport32Bit = true;
   
-  # Permite GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.gnome-browser-connector.enable = true;
-  services.gnome.gnome-initial-setup.enable = true;
-  services.gnome.core-os-services.enable = true;
-  services.gnome.core-utilities.enable = true;
-  services.gnome.core-shell.enable = true;
-  programs.file-roller.enable = true;
-  programs.evince.enable = true;
+  # Permite Pantheon
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.greeters.pantheon.enable = true;
+  services.xserver.desktopManager.pantheon.enable = true;
+  programs.pantheon-tweaks.enable = true;
 
   # Aceleração Gráfica
   hardware.opengl = {
@@ -104,9 +96,12 @@
   services.xserver.layout = "br";
 
   # Áudio
-  hardware.pulseaudio.enable = true;
-  nixpkgs.config.pulseaudio = true;
-  
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+   enable = true;
+   pulse.enable = true;
+  };
+
   # Habilita touchpad
   services.xserver.libinput.enable = true;
   services.xserver.libinput.touchpad.tapping = true;
@@ -125,40 +120,34 @@
       flatpak
       slack
       git
-      gh
       steam
       killall
       runescape
       discord-development
       beekeeper-studio
       nodePackages.prisma
-      stremio
-      insomnia
-      unzip
-      spotify
-      kalker
-      obs-studio
-      gimp-with-plugins
-      onlyoffice-bin
-      nodePackages_latest.gitmoji-cli
-      gnome.cheese
      ];
    };
 
   # Pacotes
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    firefox
-    (opera.override { proprietaryCodecs = true; })
+    vivaldi
     vivaldi-ffmpeg-codecs
+    papirus-icon-theme
+    tela-icon-theme
+    bibata-cursors
+    bibata-cursors-translucent
+    nordzy-icon-theme
     roboto
     roboto-mono
     ubuntu_font_family
     meslo-lgs-nf
     micro
-    gnomeExtensions.appindicator
+    zsh
+    zsh-powerlevel10k
   ];
-  
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix
