@@ -166,6 +166,11 @@
     vivaldi
     vivaldi-ffmpeg-codecs
     micro
+    papirus-icon-theme
+    tela-icon-theme
+    bibata-cursors
+    bibata-cursors-translucent
+    nordzy-icon-theme
   ];
 
   # Fontes.
