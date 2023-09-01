@@ -29,9 +29,9 @@ setopt PUSHD_SILENT
 
 alias docker-createdb="docker run -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_USER=root -e MYSQL_PASSWORD=password -v ~/Documentos/databse:/var/lib/mysql -p 3306:3306 --name books_api mysql:8.0.31-debian"
 alias nix-config="sudo micro /etc/nixos/configuration.nix"
-alias nix-rebuild="sudo nixos-rebuild --upgrade --fast -j 4 -k switch"
+alias nix-rebuild="sudo nixos-rebuild --upgrade --fast -j 2 -k switch"
 alias home-nix-config="micro $HOME/.config/nixpkgs/home.nix"
-alias home-nix-rebuild="home-manager -j 4 --cores 4 switch"
+alias home-nix-rebuild="home-manager -j 2 -k switch"
 # alias nix-update="sudo nix-channel --update && nix-rebuild"
 alias nix-clean="sudo nix-collect-garbage -d && sudo nix-store --gc && sudo nixos-rebuild --fast -j 4 -k boot && sudo nix-store --optimise"
 

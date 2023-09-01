@@ -19,13 +19,17 @@
   nixpkgs.config.allowUnfree = true;
 
   # Cores.
-  nix.settings.cores = 4;
+  nix.settings.cores = 2;
 
   # Otimiza Store.
   nix.settings.auto-optimise-store = true;
 
   # Atualiza microcode Intel.
   hardware.cpu.intel.updateMicrocode = true;
+
+  # Bluetooth
+  hardware.bluetooth.enable = false;
+  hardware.bluetooth.powerOnBoot = false;
   
   # Zsh.
   programs.zsh.enable = true;
@@ -41,6 +45,7 @@
    
   # Permite Flatpak.
   services.flatpak.enable = true;
+  xdg.portal.enable = true;
   
   # Auto upgrade.
   system.autoUpgrade.enable = true;
@@ -63,6 +68,11 @@
   # Docker.
   virtualisation.docker.enable = true;
 
+  # SystemD.
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
+  
   # GRUB.
   boot.loader = {
     efi = {
@@ -95,9 +105,9 @@
   
   # Permite Cinnamon.
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.lightdm.greeters.enso.enable = true;
+  services.xserver.displayManager.lightdm.greeters.slick.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
-  services.cinnamon.apps.enable = true;
+  services.cinnamon.apps.enable = false;
   
   # Aceleração Gráfica.
   hardware.opengl = {
@@ -157,6 +167,7 @@
       gimp-with-plugins
       onlyoffice-bin
       nodePackages_latest.gitmoji-cli
+      gnome.cheese
      ];
    };
 
@@ -165,12 +176,14 @@
   environment.systemPackages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
+    brave
     micro
     papirus-icon-theme
     tela-icon-theme
     bibata-cursors
     bibata-cursors-translucent
     nordzy-icon-theme
+    gnome.gnome-terminal
   ];
 
   # Fontes.
