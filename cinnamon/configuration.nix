@@ -50,7 +50,6 @@
   # Auto upgrade.
   system.autoUpgrade.enable = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
-  system.autoUpgrade.allowReboot = true;
 
   # Limpeza de "generations".
   nix = {
@@ -106,6 +105,7 @@
   # Permite Cinnamon.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.lightdm.greeters.slick.enable = true;
+  services.xserver.displayManager.lightdm.greeters.gtk.cursorTheme.name = "Bibata-Original-Classic";
   services.xserver.desktopManager.cinnamon.enable = true;
   services.cinnamon.apps.enable = false;
   
@@ -168,6 +168,7 @@
       onlyoffice-bin
       nodePackages_latest.gitmoji-cli
       gnome.cheese
+      cinnamon.xapp
      ];
    };
 
