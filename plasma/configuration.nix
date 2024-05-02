@@ -19,13 +19,13 @@
   nixpkgs.config.allowUnfree = true;
 
   # Cores
-  nix.settings.cores = 2;
+  nix.settings.cores = 16;
 
   # Otimiza Store
   nix.settings.auto-optimise-store = true;
 
-  # Atualiza microcode Intel
-  hardware.cpu.intel.updateMicrocode = true;
+  # Atualiza microcode AMD
+  hardware.cpu.amd.updateMicrocode = true;
   
   # Zsh
   programs.zsh.enable = true;
@@ -80,29 +80,32 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
+  hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
+
+  hardware.opengl.extraPackages = with pkgs; [
+   amdvlk
+  ];
+  
+  hardware.opengl.extraPackages32 = with pkgs; [
+   driversi686Linux.amdvlk
+  ];
   
   # Permite Plasma
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.wayland.compositor = "kwin";
+  services.desktopManager.plasma6.enable = true;
   services.xserver.displayManager.defaultSession = "plasmawayland";
 
-  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
-    elisa
-    khelpcenter
-    print-manager
+  environment.plasma6.excludePackages = [
+    pkgs.kdePackages.elisa
+    pkgs.kdePackages.khelpcenter
+    pkgs.kdePackages.print-manager
   ];
   
   # Aceleração Gráfica
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
+  hardware.opengl.enable = true;
 
   # Mapa de teclado
   services.xserver.layout = "br";
@@ -138,7 +141,6 @@
       runescape
       discord-development
       beekeeper-studio
-      nodePackages.prisma
       stremio
       insomnia
       unzip
@@ -175,6 +177,7 @@
 
   # Linux
   boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
