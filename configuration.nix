@@ -12,32 +12,57 @@
 
   # Permite pacote inseguro 'openssl'
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1v"
+   "openssl-1.1.1w"
   ];
-              
-  # Permite não-livre
+
+  # SSH
+  programs.ssh.startAgent = true;
+  programs.ssh.enableAskPassword = false;
+
+  # Experimental
+  nix.settings.experimental-features = [ "nix-command" ];
+            
+  # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowBroken = true;
 
   # Cores
-  nix.settings.cores = 4;
+  nix.settings.cores = 16;
 
   # Otimiza Store
   nix.settings.auto-optimise-store = true;
 
-  # Atualiza microcode Intel
-  hardware.cpu.intel.updateMicrocode = true;
+  # Atualiza microcode AMD
+  hardware.cpu.amd.updateMicrocode = true;
   
   # Zsh
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
   environment.binsh = "${pkgs.zsh}/bin/zsh";
+  programs.zsh.enableCompletion = true;
   programs.zsh.autosuggestions.enable = true;
-  
+  programs.zsh.enableLsColors = true;
+  programs.zsh.syntaxHighlighting.enable = true;
+  programs.zsh.syntaxHighlighting.highlighters = [ "main" "brackets" ];
+  programs.nix-index.enableZshIntegration = true;
+  programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+  programs.zsh.shellAliases = {
+    nix-upgrade = "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage -d";
+    nix-config = "sudo nano /etc/nixos/configuration.nix";
+    nix-rebuild = "sudo nixos-rebuild switch";
+    nix-list-profiles = "sudo nix profile list";
+    nix-list-installed = "sudo nix-env -q";
+  };
+
   # Permite Flatpak
   services.flatpak.enable = true;
-  
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+
   # Auto upgrade.
+  nix.gc.automatic = true;
+  nix.gc.dates = "15:00";
   system.autoUpgrade.enable = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
   
@@ -76,43 +101,48 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
+  hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  
-  # Permite GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.gnome-browser-connector.enable = true;
-  services.gnome.gnome-initial-setup.enable = true;
-  services.gnome.core-os-services.enable = true;
-  services.gnome.core-utilities.enable = true;
-  services.gnome.core-shell.enable = true;
-  programs.file-roller.enable = true;
-  programs.evince.enable = true;
 
+  hardware.opengl.extraPackages = with pkgs; [
+   amdvlk
+  ];
+  
+  hardware.opengl.extraPackages32 = with pkgs; [
+   driversi686Linux.amdvlk
+  ];
+  
+  # Permite Plasma
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.wayland.compositor = "kwin";
+  services.desktopManager.plasma6.enable = true;
+
+   environment.plasma6.excludePackages = [
+    pkgs.kdePackages.elisa
+    pkgs.kdePackages.khelpcenter
+    pkgs.kdePackages.print-manager
+  ];
+  
   # Aceleração Gráfica
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
+  hardware.opengl.enable = true;
 
   # Mapa de teclado
-  services.xserver.layout = "br";
+  services.xserver.xkb.layout = "br";
 
   # Áudio
   hardware.pulseaudio.enable = true;
-  nixpkgs.config.pulseaudio = true;
-  
+  services.pipewire = {
+   enable = false;
+   pulse.enable = false;
+  };
+
   # Habilita touchpad
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.touchpad.tapping = true;
+  services.libinput.enable = true;
+  services.libinput.touchpad.tapping = true;
 
   # Conta de usuário
-  users.users.machado = {
+  users.users.guilherme = {
      isNormalUser = true;
      extraGroups = [ "wheel" "audio" "video" "docker" "networkmanager" ];
      packages = with pkgs; [
@@ -128,10 +158,8 @@
       gh
       steam
       killall
-      runescape
       discord-development
       beekeeper-studio
-      nodePackages.prisma
       stremio
       insomnia
       unzip
@@ -140,32 +168,39 @@
       obs-studio
       gimp-with-plugins
       onlyoffice-bin
-      nodePackages_latest.gitmoji-cli
-      gnome.cheese
+      gitmoji-cli
+      meslo-lgs-nf
+      #kdePackages.kamoso
+      inkscape-with-extensions
      ];
    };
 
   # Pacotes
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    firefox
-    (opera.override { proprietaryCodecs = true; })
+    vivaldi
     vivaldi-ffmpeg-codecs
+    papirus-icon-theme
+    tela-icon-theme
+    bibata-cursors
+    bibata-cursors-translucent
+    nordzy-icon-theme
     roboto
     roboto-mono
     ubuntu_font_family
-    meslo-lgs-nf
     micro
-    gnomeExtensions.appindicator
+    zsh
+    zsh-powerlevel10k
   ];
-  
+
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # Linux
   boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -173,5 +208,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 }
