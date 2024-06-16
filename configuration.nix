@@ -191,6 +191,7 @@
     micro
     zsh
     zsh-powerlevel10k
+    kdePackages.plasma-browser-integration
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -199,7 +200,7 @@
   # system.copySystemConfiguration = true;
 
   # Linux
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   # This value determines the NixOS release from which the default
