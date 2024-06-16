@@ -192,6 +192,7 @@
     zsh
     zsh-powerlevel10k
     kdePackages.plasma-browser-integration
+    keychain
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
