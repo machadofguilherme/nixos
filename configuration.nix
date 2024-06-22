@@ -101,8 +101,6 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
 
   hardware.opengl.extraPackages = with pkgs; [
    amdvlk
