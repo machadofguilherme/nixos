@@ -102,11 +102,11 @@
   services.xserver.videoDrivers = [ "modesetting" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
 
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
    amdvlk
   ];
   
-  hardware.opengl.extraPackages32 = with pkgs; [
+  hardware.graphics.extraPackages32 = with pkgs; [
    driversi686Linux.amdvlk
   ];
   
@@ -123,7 +123,7 @@
   ];
   
   # Aceleração Gráfica
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # Mapa de teclado
   services.xserver.xkb.layout = "br";
