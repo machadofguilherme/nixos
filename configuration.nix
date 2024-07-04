@@ -4,6 +4,13 @@
 
 { config, pkgs, ... }:
 
+let
+  cus_vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
+    dontWrapQtApps = false;
+    dontPatchELF = true;
+    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+  });
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -56,8 +63,8 @@
   };
 
   # Permite Flatpak
-  services.flatpak.enable = true;
   xdg.portal.enable = true;
+  services.flatpak.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
 
   # Auto upgrade.
@@ -99,7 +106,7 @@
 
   # X11
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
 
   hardware.graphics.extraPackages = with pkgs; [
@@ -157,7 +164,6 @@
       steam
       killall
       discord-development
-      beekeeper-studio
       stremio
       insomnia
       unzip
@@ -168,16 +174,18 @@
       onlyoffice-bin
       gitmoji-cli
       meslo-lgs-nf
-      #kdePackages.kamoso
       inkscape-with-extensions
+      yt-dlp
      ];
    };
 
   # Pacotes
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vivaldi
+    qt6.qtwayland
+    cus_vivaldi
     vivaldi-ffmpeg-codecs
+    chromium
     papirus-icon-theme
     tela-icon-theme
     bibata-cursors
@@ -196,10 +204,10 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix
-  # system.copySystemConfiguration = true;
+  system.copySystemConfiguration = true;
 
   # Linux
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   # This value determines the NixOS release from which the default
