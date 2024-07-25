@@ -17,17 +17,17 @@ in
       ./hardware-configuration.nix
     ];
 
-  # Permite pacote inseguro 'openssl'
-  nixpkgs.config.permittedInsecurePackages = [
-   "openssl-1.1.1w"
-  ];
+  # Permite pacote inseguro 'openssl'.
+
+
+  programs.direnv.enable = true;
 
   # SSH
   programs.ssh.startAgent = true;
   programs.ssh.enableAskPassword = false;
 
   # Experimental
-  nix.settings.experimental-features = [ "nix-command" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
             
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
@@ -60,6 +60,15 @@ in
     nix-rebuild = "sudo nixos-rebuild switch";
     nix-list-profiles = "sudo nix profile list";
     nix-list-installed = "sudo nix-env -q";
+  };
+
+  # Variáveis de ambiente
+  environment.variables = {
+    PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/migration-engine";
+    PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
+    PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
+    PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/introspection-engine";
+    PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
   };
 
   # Permite Flatpak
@@ -97,6 +106,14 @@ in
   # Internet
   networking.hostName = "NixOS";
   networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "none";
+
+  # DNS
+  networking.nameservers = [
+    "1.1.1.2"
+    "8.8.8.8"
+    "8.8.4.4"
+  ];
 
   # Fuso-horário
   time.timeZone = "America/Sao_Paulo";
@@ -164,18 +181,17 @@ in
       steam
       killall
       discord-development
-      stremio
       insomnia
       unzip
-      spotify
       kalker
-      obs-studio
       gimp-with-plugins
       onlyoffice-bin
       gitmoji-cli
       meslo-lgs-nf
       inkscape-with-extensions
       yt-dlp
+      tree
+      bun
      ];
    };
 
@@ -199,6 +215,10 @@ in
     zsh-powerlevel10k
     kdePackages.plasma-browser-integration
     keychain
+    pfetch
+    openssl
+    nodePackages.prisma
+    prisma-engines
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -207,7 +227,7 @@ in
   system.copySystemConfiguration = true;
 
   # Linux
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   # This value determines the NixOS release from which the default
