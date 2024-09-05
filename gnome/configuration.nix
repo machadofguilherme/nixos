@@ -132,7 +132,7 @@ in
   ];
   
   # Permite GNOME
-  services.xserver.displayManager.gdm.enable
+  services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
   services.displayManager.defaultSession = "gnome";
   services.xserver.desktopManager.gnome.enable = true;
