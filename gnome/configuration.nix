@@ -17,9 +17,6 @@ in
       ./hardware-configuration.nix
     ];
 
-  # Permite pacote inseguro 'openssl'.
-
-
   programs.direnv.enable = true;
 
   # SSH
@@ -74,7 +71,7 @@ in
   # Permite Flatpak
   xdg.portal.enable = true;
   services.flatpak.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
 
   # Auto upgrade.
   nix.gc.automatic = true;
@@ -134,17 +131,27 @@ in
    driversi686Linux.amdvlk
   ];
   
-  # Permite Plasma
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.sddm.wayland.compositor = "kwin";
-  services.desktopManager.plasma6.enable = true;
+  # Permite GNOME
+  services.xserver.displayManager.gdm.enable
+  services.xserver.displayManager.gdm.wayland = true;
+  services.displayManager.defaultSession = "gnome";
+  services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.core-shell.enable = true;
+  services.gnome.core-utilities.enable = true;
 
-   environment.plasma6.excludePackages = [
-    pkgs.kdePackages.elisa
-    pkgs.kdePackages.khelpcenter
-    pkgs.kdePackages.print-manager
-  ];
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+  ]) ++ (with pkgs.gnome; [
+    gnome-music
+    gnome-terminal
+    geary # email reader
+    totem # video player
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+ ]);
   
   # Aceleração Gráfica
   hardware.graphics.enable = true;
@@ -181,7 +188,7 @@ in
       discord-development
       insomnia
       unzip
-      kalker
+      gnome-calc
       gimp-with-plugins
       onlyoffice-bin
       gitmoji-cli
@@ -196,16 +203,16 @@ in
   # Pacotes
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    qt6.qtwayland
     cus_vivaldi
     vivaldi-ffmpeg-codecs
     micro
     zsh
     zsh-powerlevel10k
-    kdePackages.plasma-browser-integration
     keychain
     pfetch
     openssl
+    gnome-console
+    gnome-text-editor
   ];
 
   # Fontes
