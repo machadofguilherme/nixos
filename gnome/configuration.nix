@@ -137,21 +137,23 @@ in
   services.displayManager.defaultSession = "gnome";
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.core-shell.enable = true;
-  services.gnome.core-utilities.enable = true;
 
   environment.gnome.excludePackages = (with pkgs; [
+    gnome-calendar
     gnome-photos
     gnome-tour
-  ]) ++ (with pkgs.gnome; [
     gnome-music
     gnome-terminal
-    geary # email reader
+    geary
     totem # video player
     tali # poker game
     iagno # go game
     hitori # sudoku game
     atomix # puzzle game
- ]);
+    yelp # help viewer
+    gnome-contacts
+    simple-scan
+  ]);
   
   # Aceleração Gráfica
   hardware.graphics.enable = true;
@@ -160,11 +162,8 @@ in
   services.xserver.xkb.layout = "br";
 
   # Áudio
-  hardware.pulseaudio.enable = true;
-  services.pipewire = {
-   enable = false;
-   pulse.enable = false;
-  };
+  services.pipewire.enable = true;
+  services.pipewire.pulse.enable = false;
 
   # Habilita touchpad
   services.libinput.enable = true;
@@ -188,7 +187,7 @@ in
       discord-development
       insomnia
       unzip
-      gnome-calc
+      #gnome-calculator
       gimp-with-plugins
       onlyoffice-bin
       gitmoji-cli
@@ -211,8 +210,9 @@ in
     keychain
     pfetch
     openssl
-    gnome-console
+    blackbox-terminal
     gnome-text-editor
+    loupe
   ];
 
   # Fontes
