@@ -17,9 +17,6 @@ in
       ./hardware-configuration.nix
     ];
 
-  # Permite pacote inseguro 'openssl'.
-
-
   programs.direnv.enable = true;
 
   # SSH
@@ -31,7 +28,6 @@ in
             
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
-  #nixpkgs.config.allowBroken = true;
 
   # Cores
   nix.settings.cores = 16;
@@ -61,15 +57,6 @@ in
     nix-list-profiles = "sudo nix profile list";
     nix-list-installed = "sudo nix-env -q";
   };
-
-  # Variáveis de ambiente
-  #environment.variables = {
-  #  PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/migration-engine";
-  #  PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
-  #  PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
-  #  PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/introspection-engine";
-  #  PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
-  #};
 
   # Permite Flatpak
   xdg.portal.enable = true;
@@ -153,10 +140,10 @@ in
   services.xserver.xkb.layout = "br";
 
   # Áudio
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
   services.pipewire = {
-   enable = false;
-   pulse.enable = false;
+   enable = true;
+   pulse.enable = true;
   };
 
   # Habilita touchpad
@@ -178,7 +165,6 @@ in
       git
       gh
       killall
-      discord-development
       insomnia
       unzip
       kalker
@@ -206,24 +192,21 @@ in
     keychain
     pfetch
     openssl
-  ];
 
-  # Fontes
-  fonts.packages = with pkgs; [
-   noto-fonts
-   noto-fonts-cjk
-   noto-fonts-emoji
-   liberation_ttf
-   fira-code
-   fira-code-symbols
-   mplus-outline-fonts.githubRelease
-   dina-font
-   proggyfonts
-   roboto
-   roboto-mono
-   ubuntu_font_family
-   meslo-lgs-nf
- ];
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    roboto
+    roboto-mono
+    ubuntu_font_family
+    meslo-lgs-nf
+  ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -240,5 +223,5 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }

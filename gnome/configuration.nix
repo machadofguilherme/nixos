@@ -28,7 +28,6 @@ in
             
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
-  #nixpkgs.config.allowBroken = true;
 
   # Cores
   nix.settings.cores = 16;
@@ -52,33 +51,18 @@ in
   programs.nix-index.enableZshIntegration = true;
   programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
   programs.zsh.shellAliases = {
-    nix-upgrade = "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage -d";
-    nix-config = "sudo nano /etc/nixos/configuration.nix";
-    nix-rebuild = "sudo nixos-rebuild switch";
-    nix-list-profiles = "sudo nix profile list";
-    nix-list-installed = "sudo nix-env -q";
+   nix-upgrade = "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage --delete-older-than 3d";
+   nix-rebuild = "sudo nixos-rebuild switch && sudo nix-collect-garbage --delete-older-than 3d";
+   nix-config = "sudo nano /etc/nixos/configuration.nix";
+   nix-list-profiles = "sudo nix profile list";
+   nix-list-installed = "sudo nix-env -q";
   };
-
-  # Variáveis de ambiente
-  #environment.variables = {
-  #  PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/migration-engine";
-  #  PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
-  #  PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
-  #  PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/introspection-engine";
-  #  PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
-  #};
 
   # Permite Flatpak
   xdg.portal.enable = true;
   services.flatpak.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
 
-  # Auto upgrade.
-  nix.gc.automatic = true;
-  nix.gc.dates = "15:00";
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
-  
   # Sudo
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
@@ -163,7 +147,7 @@ in
 
   # Áudio
   services.pipewire.enable = true;
-  services.pipewire.pulse.enable = false;
+  services.pipewire.pulse.enable = true;
 
   # Habilita touchpad
   services.libinput.enable = true;
@@ -184,10 +168,9 @@ in
       git
       gh
       killall
-      discord-development
       insomnia
       unzip
-      #gnome-calculator
+      gnome-calculator
       gimp-with-plugins
       onlyoffice-bin
       gitmoji-cli
@@ -213,29 +196,28 @@ in
     blackbox-terminal
     gnome-text-editor
     loupe
-  ];
+    yt-dlp
+    speechd
 
-  # Fontes
-  fonts.packages = with pkgs; [
-   noto-fonts
-   noto-fonts-cjk
-   noto-fonts-emoji
-   liberation_ttf
-   fira-code
-   fira-code-symbols
-   mplus-outline-fonts.githubRelease
-   dina-font
-   proggyfonts
-   roboto
-   roboto-mono
-   ubuntu_font_family
-   meslo-lgs-nf
- ];
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    roboto
+    roboto-mono
+    ubuntu_font_family
+    meslo-lgs-nf
+  ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # Linux
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -247,5 +229,5 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
