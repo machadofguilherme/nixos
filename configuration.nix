@@ -103,7 +103,7 @@ in
   # Internacionalização
   i18n.defaultLocale = "pt_BR.UTF-8";
 
-  # X11
+  # Servidor gráfico
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
@@ -143,6 +143,7 @@ in
   services.libinput.touchpad.tapping = true;
 
   # Conta de usuário
+  users.users.guilherme.name = "Guilherme Machado";
   users.users.guilherme.isNormalUser = true;
   users.users.guilherme.extraGroups = [ 
     "wheel" 
