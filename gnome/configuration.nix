@@ -71,18 +71,12 @@ in
   virtualisation.docker.enable = true;
 
   # GRUB
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      efiSupport = true;
-      device = "nodev";
-      enable = true;
-    };
-    timeout = 3;
-  };
+ boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.enable = true;
+  boot.loader.timeout = 3;
   
   # Internet
   networking.hostName = "NixOS";
@@ -116,11 +110,11 @@ in
   ];
   
   # Permite GNOME
+  services.gnome.core-shell.enable = true;
+  services.displayManager.defaultSession = "gnome";
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
-  services.displayManager.defaultSession = "gnome";
   services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.core-shell.enable = true;
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-calendar
@@ -154,10 +148,16 @@ in
   services.libinput.touchpad.tapping = true;
 
   # Conta de usuário
-  users.users.guilherme = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "audio" "video" "docker" "networkmanager" ];
-     packages = with pkgs; [
+  users.users.guilherme.isNormalUser = true;
+  users.users.guilherme.extraGroups = [ 
+    "wheel" 
+    "audio" 
+    "video" 
+    "docker" 
+    "networkmanager" 
+  ];
+   
+   users.users.guilherme.packages = with pkgs; [
       vscode
       nodejs_20
       zoom-us
@@ -175,15 +175,11 @@ in
       onlyoffice-bin
       gitmoji-cli
       inkscape-with-extensions
-      yt-dlp
       tree
       bun
       skypeforlinux
-     ];
-   };
+   ];
 
-  # Pacotes
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     cus_vivaldi
     vivaldi-ffmpeg-codecs

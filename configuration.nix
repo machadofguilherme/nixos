@@ -51,11 +51,11 @@ in
   programs.nix-index.enableZshIntegration = true;
   programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
   programs.zsh.shellAliases = {
-    nix-upgrade = "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage -d";
-    nix-config = "sudo nano /etc/nixos/configuration.nix";
-    nix-rebuild = "sudo nixos-rebuild switch";
-    nix-list-profiles = "sudo nix profile list";
-    nix-list-installed = "sudo nix-env -q";
+   nix-upgrade = "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage --delete-older-than 3d";
+   nix-rebuild = "sudo nixos-rebuild switch && sudo nix-collect-garbage --delete-older-than 3d";
+   nix-config = "sudo nano /etc/nixos/configuration.nix";
+   nix-list-profiles = "sudo nix profile list";
+   nix-list-installed = "sudo nix-env -q";
   };
 
   # Permite Flatpak
@@ -77,18 +77,13 @@ in
   virtualisation.docker.enable = true;
 
   # GRUB
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      efiSupport = true;
-      device = "nodev";
-      enable = true;
-    };
-    timeout = 3;
-  };
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.enable = true;
+  boot.loader.timeout = 3;
+  
   
   # Internet
   networking.hostName = "NixOS";
@@ -123,11 +118,11 @@ in
   
   # Permite Plasma
   services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.wayland.compositor = "kwin";
-  services.desktopManager.plasma6.enable = true;
 
-   environment.plasma6.excludePackages = [
+  environment.plasma6.excludePackages = [
     pkgs.kdePackages.elisa
     pkgs.kdePackages.khelpcenter
     pkgs.kdePackages.print-manager
@@ -140,21 +135,24 @@ in
   services.xserver.xkb.layout = "br";
 
   # Áudio
-  hardware.pulseaudio.enable = false;
-  services.pipewire = {
-   enable = true;
-   pulse.enable = true;
-  };
+  services.pipewire.enable = true;
+  services.pipewire.pulse.enable = true;
 
   # Habilita touchpad
   services.libinput.enable = true;
   services.libinput.touchpad.tapping = true;
 
   # Conta de usuário
-  users.users.guilherme = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "audio" "video" "docker" "networkmanager" ];
-     packages = with pkgs; [
+  users.users.guilherme.isNormalUser = true;
+  users.users.guilherme.extraGroups = [ 
+    "wheel" 
+    "audio" 
+    "video" 
+    "docker" 
+    "networkmanager" 
+   ];
+   
+   users.users.guilherme.packages = with pkgs; [
       vscode
       nodejs_20
       zoom-us
@@ -167,20 +165,16 @@ in
       killall
       insomnia
       unzip
-      kalker
+      gnome-calculator
       gimp-with-plugins
       onlyoffice-bin
       gitmoji-cli
       inkscape-with-extensions
-      yt-dlp
       tree
       bun
       skypeforlinux
-     ];
-   };
+    ];
 
-  # Pacotes
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     qt6.qtwayland
     cus_vivaldi
