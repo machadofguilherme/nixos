@@ -5,6 +5,7 @@
 { config, pkgs, ... }:
 
 let
+  # Vivaldi customizado
   cus_vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
     dontWrapQtApps = false;
     dontPatchELF = true;
@@ -17,14 +18,18 @@ in
       ./hardware-configuration.nix
     ];
 
+  # Permite direnv
   programs.direnv.enable = true;
 
   # SSH
   programs.ssh.startAgent = true;
   programs.ssh.enableAskPassword = false;
 
+  # Fish
+  programs.fish.enable = true;
+
   # Experimental
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command"  ];
             
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
@@ -38,37 +43,11 @@ in
   # Atualiza microcode AMD
   hardware.cpu.amd.updateMicrocode = true;
   
-  # Zsh
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
-  environment.binsh = "${pkgs.zsh}/bin/zsh";
-  programs.zsh.enableCompletion = true;
-  programs.zsh.autosuggestions.enable = true;
-  programs.zsh.enableLsColors = true;
-  programs.zsh.syntaxHighlighting.enable = true;
-  programs.zsh.syntaxHighlighting.highlighters = [ "main" "brackets" ];
-  programs.nix-index.enableZshIntegration = true;
-  programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-  programs.zsh.shellAliases = {
-   nix-upgrade = "sudo nixos-rebuild switch --upgrade && sudo nix-collect-garbage --delete-older-than 3d";
-   nix-rebuild = "sudo nixos-rebuild switch && sudo nix-collect-garbage --delete-older-than 3d";
-   nix-config = "sudo nano /etc/nixos/configuration.nix";
-   nix-list-profiles = "sudo nix profile list";
-   nix-list-installed = "sudo nix-env -q";
-  };
-
   # Permite Flatpak
   xdg.portal.enable = true;
   services.flatpak.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
 
-  # Auto upgrade.
-  nix.gc.automatic = true;
-  nix.gc.dates = "15:00";
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixpkgs-unstable";
-  
   # Sudo
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
@@ -83,7 +62,6 @@ in
   boot.loader.grub.device = "nodev";
   boot.loader.grub.enable = true;
   boot.loader.timeout = 3;
-  
   
   # Internet
   networking.hostName = "NixOS";
@@ -107,7 +85,8 @@ in
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
-
+  
+  # Driver
   hardware.graphics.extraPackages = with pkgs; [
    amdvlk
   ];
@@ -121,14 +100,16 @@ in
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.wayland.compositor = "kwin";
-
-  environment.plasma6.excludePackages = [
-    pkgs.kdePackages.elisa
-    pkgs.kdePackages.khelpcenter
-    pkgs.kdePackages.print-manager
-  ];
   
-  # Aceleração Gráfica
+  # Exclui pacotes do Plasma
+  environment.plasma6.excludePackages = with pkgs; [
+    khelpcenter
+    discover
+    elisa
+    kate
+  ];
+
+  # Aceleração gráfica
   hardware.graphics.enable = true;
 
   # Mapa de teclado
@@ -138,12 +119,14 @@ in
   services.pipewire.enable = true;
   services.pipewire.pulse.enable = true;
 
+  # Impressora
+  services.printing.enable = false;
+  
   # Habilita touchpad
   services.libinput.enable = true;
   services.libinput.touchpad.tapping = true;
 
   # Conta de usuário
-  users.users.guilherme.name = "Guilherme Machado";
   users.users.guilherme.isNormalUser = true;
   users.users.guilherme.extraGroups = [ 
     "wheel" 
@@ -152,61 +135,34 @@ in
     "docker" 
     "networkmanager" 
    ];
-   
-   users.users.guilherme.packages = with pkgs; [
-      vscode
-      nodejs_20
-      zoom-us
-      caprine-bin
-      docker
-      docker-compose
-      flatpak
-      git
-      gh
-      killall
-      insomnia
-      unzip
-      gnome-calculator
-      gimp-with-plugins
-      onlyoffice-bin
-      gitmoji-cli
-      inkscape-with-extensions
-      tree
-      bun
-      skypeforlinux
-    ];
 
+  # Aplicações
   environment.systemPackages = with pkgs; [
+    kdePackages.plasma-browser-integration
+    vivaldi-ffmpeg-codecs
     qt6.qtwayland
     cus_vivaldi
-    vivaldi-ffmpeg-codecs
-    micro
-    zsh
-    zsh-powerlevel10k
-    kdePackages.plasma-browser-integration
     keychain
-    pfetch
     openssl
+  ];
 
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
+  # Fontes
+  fonts.packages = with pkgs; [
     roboto
+    dina-font
+    noto-fonts
     roboto-mono
+    proggyfonts
+    noto-fonts-emoji
     ubuntu_font_family
-    meslo-lgs-nf
+    noto-fonts-cjk-sans
+    mplus-outline-fonts.githubRelease
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix
-  # system.copySystemConfiguration = true;
+  system.copySystemConfiguration = true;
 
   # Linux
   boot.kernelPackages = pkgs.linuxPackages_latest;
