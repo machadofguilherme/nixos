@@ -4,6 +4,14 @@
 
 { config, pkgs, ... }:
 
+let
+  # Vivaldi customizado
+  cus_vivaldi = pkgs.vivaldi.overrideAttrs (oldAttrs: {
+    dontWrapQtApps = false;
+    dontPatchELF = true;
+    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+  });
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -21,7 +29,7 @@
   programs.fish.enable = true;
 
   # Experimental
-  nix.settings.experimental-features = [ "nix-command" ];
+  nix.settings.experimental-features = [ "nix-command"  ];
             
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
@@ -34,11 +42,11 @@
 
   # Atualiza microcode AMD
   hardware.cpu.amd.updateMicrocode = true;
-
+  
   # Permite Flatpak
   xdg.portal.enable = true;
   services.flatpak.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-kde ];
 
   # Sudo
   security.sudo.execWheelOnly = true;
@@ -77,42 +85,31 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.excludePackages = [ pkgs.xterm ];
-
+  
   # Driver
   hardware.graphics.extraPackages = with pkgs; [
    amdvlk
   ];
-
+  
   hardware.graphics.extraPackages32 = with pkgs; [
    driversi686Linux.amdvlk
   ];
   
-  # Permite GNOME
-  services.gnome.core-shell.enable = true;
-  services.displayManager.defaultSession = "gnome";
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Exclui pacotes do GNOME
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-terminal
-    gnome-contacts
-    gnome-calendar
-    gnome-photos
-    simple-scan
-    gnome-music
-    gnome-tour
-    hitori
-    atomix
-    geary
-    totem
-    iagno
-    tali
-    yelp
-  ]);
+  # Permite Plasma
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.wayland.compositor = "kwin";
   
-  # Aceleração Gráfica
+  # Exclui pacotes do Plasma
+  environment.plasma6.excludePackages = with pkgs; [
+    khelpcenter
+    discover
+    elisa
+    kate
+  ];
+
+  # Aceleração gráfica
   hardware.graphics.enable = true;
 
   # Mapa de teclado
@@ -124,7 +121,7 @@
 
   # Impressora
   services.printing.enable = false;
-
+  
   # Habilita touchpad
   services.libinput.enable = true;
   services.libinput.touchpad.tapping = true;
@@ -137,17 +134,16 @@
     "video" 
     "docker" 
     "networkmanager" 
-  ];
+   ];
 
   # Aplicações
   environment.systemPackages = with pkgs; [
+    kdePackages.plasma-browser-integration
     vivaldi-ffmpeg-codecs
-    blackbox-terminal
-    gnome-text-editor
+    qt6.qtwayland
+    cus_vivaldi
     keychain
-    vivaldi
     openssl
-    loupe
   ];
 
   # Fontes
