@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   # Experimental
-  nix.settings.experimental-features = [ "nix-command" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
