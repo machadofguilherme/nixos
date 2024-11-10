@@ -2,7 +2,7 @@
 
 {
   home.username = "guilherme";
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   home.homeDirectory = "/home/guilherme";
 
   # Ativação de Programas Essenciais
@@ -49,7 +49,6 @@
 
   # Pacotes de Desenvolvimento e Ferramentas Gerais
   home.packages = with pkgs; [
-    nodejs
     pfetch
     yt-dlp
     vscode
@@ -63,6 +62,11 @@
     inkscape-with-extensions
     tree
     bun
+    gnome-tweaks
+    spotify
+    stremio
+    discord-development
+    caprine
     fira-code
     meslo-lgs-nf
     fira-code-symbols
