@@ -1,7 +1,8 @@
 { config, pkgs, ... }: {
   imports = [
-    ./devtools.nix
+    ./menu.nix
     ./media.nix
+    ./devtools.nix
     ./utilities.nix
   ];
 }
