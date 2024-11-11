@@ -34,6 +34,7 @@
         cfg-exclude-gnome   = "sudo nano /etc/nixos/modules/desktop/exclude-gnome.nix";
 
         # Aliases para os módulos de configuração Home Manager
+        hm-flake            = "nano ${config.home.homeDirectory}/.config/home-manager/flake.nix";
         hm-git-user         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/user.nix";
         hm-git-extra        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/extra.nix";
         hm-media            = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/media.nix";
