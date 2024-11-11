@@ -3,10 +3,10 @@
   programs = {
     fish = {
       shellAliases = {
-        home-rebuild        = "home-manager switch";
         nix-list-installed  = "sudo nix-env -q";
-        nix-rebuild         = "sudo nixos-rebuild switch";
+        home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
+        nix-rebuild         = "sudo nixos-rebuild switch";
         nix-upgrade         = "sudo nixos-rebuild switch --upgrade";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
         nix-clean           = "sudo nix-collect-garbage --delete-older-than 7d";
@@ -21,7 +21,7 @@
         cfg-lang            = "sudo nano /etc/nixos/modules/lang/default.nix";
         cfg-boot            = "sudo nano /etc/nixos/modules/boot/default.nix";
         cfg-fonts           = "sudo nano /etc/nixos/modules/system/fonts.nix";
-        cfg-gnome           = "sudo nano /etc/nixos/modules/desktop/gnome.nix";
+        cfg-plasma          = "sudo nano /etc/nixos/modules/desktop/plasma.nix";
         cfg-shell           = "sudo nano /etc/nixos/modules/services/shell.nix";
         cfg-print           = "sudo nano /etc/nixos/modules/services/print.nix";
         cfg-audio           = "sudo nano /etc/nixos/modules/services/audio.nix";
@@ -31,7 +31,7 @@
         cfg-drivers         = "sudo nano /etc/nixos/modules/desktop/drivers.nix";
         cfg-virtual         = "sudo nano /etc/nixos/modules/services/virtual.nix";
         cfg-touchpad        = "sudo nano /etc/nixos/modules/services/touchpad.nix";
-        cfg-exclude-gnome   = "sudo nano /etc/nixos/modules/desktop/exclude-gnome.nix";
+        cfg-exclude-plasma  = "sudo nano /etc/nixos/modules/desktop/exclude-plasma.nix";
 
         # Aliases para os módulos de configuração Home Manager
         hm-git-user         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/user.nix";
