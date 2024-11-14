@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, pkgsStable, ... }: {
   home.packages = with pkgs; [
     tree
     unzip
@@ -6,9 +6,10 @@
     yt-dlp
     caprine
     killall
-    # Apps KDE se necessários.
     onlyoffice-bin
     gimp-with-plugins
+    kdePackages.kcalc
     inkscape-with-extensions
+    pkgsStable.kdePackages.kamoso
   ];
 }
