@@ -1,4 +1,4 @@
-{ config, pkgs, pkgsStable, ... }: {
+{ config, pkgs, ... }: {
   home.packages = with pkgs; [
     tree
     unzip
@@ -10,6 +10,5 @@
     gimp-with-plugins
     kdePackages.kcalc
     inkscape-with-extensions
-    pkgsStable.kdePackages.kamoso
   ];
 }
