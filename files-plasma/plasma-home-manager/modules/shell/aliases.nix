@@ -37,6 +37,7 @@
         hm-flake            = "nano ${config.home.homeDirectory}/.config/home-manager/flake.nix";
         hm-git-user         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/user.nix";
         hm-git-extra        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/extra.nix";
+        hm-menu             = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/menu.nix";
         hm-media            = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/media.nix";
         hm-fish             = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/fish.nix";
         hm-git              = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/default.nix";
