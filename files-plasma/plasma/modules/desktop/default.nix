@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
   imports = [
-    ./gnome.nix
+    ./plasma.nix
     ./server.nix
     ./drivers.nix
-		./exclude-gnome.nix
+		./exclude-plasma.nix
 	];
 }
