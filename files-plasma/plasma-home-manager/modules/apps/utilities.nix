@@ -4,6 +4,7 @@
     unzip
     pfetch
     yt-dlp
+    cowsay
     caprine
     killall
     onlyoffice-bin
