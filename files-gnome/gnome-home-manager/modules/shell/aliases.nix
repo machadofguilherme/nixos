@@ -50,6 +50,7 @@
         hm-utilities        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/utilities.nix";
         hm-oh-my-posh       = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/oh-my-posh.nix";
         hm-variables        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/system/variables.nix";
+        hm-upgrade          = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager && home-manager switch";
       };
     };
   };
