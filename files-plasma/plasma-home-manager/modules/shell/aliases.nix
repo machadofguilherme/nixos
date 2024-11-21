@@ -43,6 +43,7 @@
         cfg-exclude-plasma  = "sudo nano /etc/nixos/modules/desktop/exclude-plasma.nix";
 
         # Aliases para os módulos de configuração Home Manager
+        hm-clean            = "home-manager expire-generations -d";
         hm-flake            = "nano ${config.home.homeDirectory}/.config/home-manager/flake.nix";
         hm-git-user         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/user.nix";
         hm-git-extra        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/extra.nix";
