@@ -32,7 +32,6 @@
         cfg-audio           = "sudo nano /etc/nixos/modules/services/audio.nix";
         cfg-system          = "sudo nano /etc/nixos/modules/system/default.nix";
         cfg-display         = "sudo nano /etc/nixos/modules/desktop/server.nix";
-        cfg-net             = "sudo nano /etc/nixos/modules/network/default.nix";
         cfg-packages        = "sudo nano /etc/nixos/modules/system/packages.nix";
         cfg-desktop         = "sudo nano /etc/nixos/modules/desktop/default.nix";
         cfg-drivers         = "sudo nano /etc/nixos/modules/desktop/drivers.nix";
@@ -40,6 +39,7 @@
         cfg-services        = "sudo nano /etc/nixos/modules/services/default.nix";
         cfg-security        = "sudo nano /etc/nixos/modules/security/default.nix";
         cfg-touchpad        = "sudo nano /etc/nixos/modules/services/touchpad.nix";
+        cfg-network             = "sudo nano /etc/nixos/modules/network/default.nix";
         cfg-exclude-gnome   = "sudo nano /etc/nixos/modules/desktop/exclude-gnome.nix";
 
         # Aliases para os módulos de configuração Home Manager
