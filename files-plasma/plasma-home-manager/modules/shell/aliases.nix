@@ -9,7 +9,7 @@
         nix-flake           = "sudo nano /etc/nixos/flake.nix";
         home-clean          = "home-manager expire-generations -d";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
-        nix-clean           = "sudo nix-collect-garbage --delete-older-than 7d";
+        nix-clean           = "sudo nix-collect-garbage --delete-older-than 3d";
         nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-config         = "nano ${config.home.homeDirectory}/.config/home-manager/home.nix";
         nix-upgrade         = "sudo nix flake update --flake /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
