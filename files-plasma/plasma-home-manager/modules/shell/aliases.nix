@@ -7,7 +7,7 @@
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
         nix-flake           = "sudo nano /etc/nixos/flake.nix";
-        home-clean            = "home-manager expire-generations -d";
+        home-clean          = "home-manager expire-generations -d";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
         nix-clean           = "sudo nix-collect-garbage --delete-older-than 7d";
         nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
@@ -35,6 +35,7 @@
         cfg-audio           = "sudo nano /etc/nixos/modules/services/audio.nix";
         cfg-system          = "sudo nano /etc/nixos/modules/system/default.nix";
         cfg-display         = "sudo nano /etc/nixos/modules/desktop/server.nix";
+        cfg-network         = "sudo nano /etc/nixos/modules/network/default.nix";
         cfg-packages        = "sudo nano /etc/nixos/modules/system/packages.nix";
         cfg-desktop         = "sudo nano /etc/nixos/modules/desktop/default.nix";
         cfg-drivers         = "sudo nano /etc/nixos/modules/desktop/drivers.nix";
@@ -42,7 +43,6 @@
         cfg-services        = "sudo nano /etc/nixos/modules/services/default.nix";
         cfg-security        = "sudo nano /etc/nixos/modules/security/default.nix";
         cfg-touchpad        = "sudo nano /etc/nixos/modules/services/touchpad.nix";
-        cfg-network             = "sudo nano /etc/nixos/modules/network/default.nix";
         cfg-exclude-plasma  = "sudo nano /etc/nixos/modules/desktop/exclude-plasma.nix";
 
         # Aliases para os módulos de configuração Home Manager
