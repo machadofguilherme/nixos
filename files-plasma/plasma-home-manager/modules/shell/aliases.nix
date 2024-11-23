@@ -6,18 +6,21 @@
         nix-list-installed  = "sudo nix-env -q";
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
-        nix-rebuild         = "sudo nixos-rebuild switch";
-        nix-upgrade         = "sudo nixos-rebuild switch --upgrade";
+        nix-flake           = "sudo nano /etc/nixos/flake.nix";
+        home-clean            = "home-manager expire-generations -d";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
         nix-clean           = "sudo nix-collect-garbage --delete-older-than 7d";
+        nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-config         = "nano ${config.home.homeDirectory}/.config/home-manager/home.nix";
+        nix-upgrade         = "sudo nix flake update /etc/nixos && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
+        hm-upgrade          = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager && home-manager switch";
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";
         cfg-nano            = "sudo nano /etc/nixos/modules/misc/config.nix";
         cfg-net             = "sudo nano /etc/nixos/modules/network/net.nix";
         cfg-user            = "sudo nano /etc/nixos/modules/system/user.nix";
-        cfg-dns               = "sudo nano /etc/nixos/modules/network/dns.nix";
+        cfg-dns             = "sudo nano /etc/nixos/modules/network/dns.nix";
         cfg-locale          = "sudo nano /etc/nixos/modules/lang/locale.nix";
         cfg-misc            = "sudo nano /etc/nixos/modules/misc/default.nix";
         cfg-lang            = "sudo nano /etc/nixos/modules/lang/default.nix";
@@ -43,7 +46,6 @@
         cfg-exclude-plasma  = "sudo nano /etc/nixos/modules/desktop/exclude-plasma.nix";
 
         # Aliases para os módulos de configuração Home Manager
-        hm-clean            = "home-manager expire-generations -d";
         hm-flake            = "nano ${config.home.homeDirectory}/.config/home-manager/flake.nix";
         hm-git-user         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/user.nix";
         hm-git-extra        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/extra.nix";
@@ -60,7 +62,6 @@
         hm-utilities        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/utilities.nix";
         hm-oh-my-posh       = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/oh-my-posh.nix";
         hm-variables        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/system/variables.nix";
-        hm-upgrade          = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager && home-manager switch";
       };
     };
   };

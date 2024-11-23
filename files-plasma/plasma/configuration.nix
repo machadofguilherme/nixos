@@ -2,8 +2,7 @@
 
 {
   # Sistema
-  system.stateVersion = "24.11";
-  system.copySystemConfiguration = true;
+  system.stateVersion = "25.05";
   
   # Importações
   imports = [
@@ -20,5 +19,5 @@
 
   # Linux
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
 }
