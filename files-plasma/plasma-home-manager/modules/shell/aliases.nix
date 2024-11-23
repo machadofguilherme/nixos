@@ -13,7 +13,7 @@
         nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-config         = "nano ${config.home.homeDirectory}/.config/home-manager/home.nix";
         nix-upgrade         = "sudo nix flake update /etc/nixos && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
-        hm-upgrade          = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager && home-manager switch";
+        homem-upgrade       = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager && home-manager switch";
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";
