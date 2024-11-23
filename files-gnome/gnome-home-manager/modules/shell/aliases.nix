@@ -6,11 +6,15 @@
         nix-list-installed  = "sudo nix-env -q";
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
-        nix-rebuild         = "sudo nixos-rebuild switch";
+        nix-flake           = "sudo nano /etc/nixos/flake.nix";
+        home-clean          = "home-manager expire-generations -d";
         nix-upgrade         = "sudo nixos-rebuild switch --upgrade";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
         nix-clean           = "sudo nix-collect-garbage --delete-older-than 7d";
+        nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-config         = "nano ${config.home.homeDirectory}/.config/home-manager/home.nix";
+        nix-upgrade         = "sudo nix flake update /etc/nixos && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
+        home-upgrade        = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager && home-manager switch";
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";
@@ -26,7 +30,7 @@
         cfg-sudo            = "sudo nano /etc/nixos/modules/security/sudo.nix";
         cfg-timezone        = "sudo nano /etc/nixos/modules/lang/timezone.nix";
         cfg-gnome           = "sudo nano /etc/nixos/modules/desktop/gnome.nix";
-        cfg-misc              = "sudo nano /etc/nixos/modules/misc/default.nix";
+        cfg-misc            = "sudo nano /etc/nixos/modules/misc/default.nix";
         cfg-shell           = "sudo nano /etc/nixos/modules/services/shell.nix";
         cfg-print           = "sudo nano /etc/nixos/modules/services/print.nix";
         cfg-audio           = "sudo nano /etc/nixos/modules/services/audio.nix";
@@ -39,11 +43,10 @@
         cfg-services        = "sudo nano /etc/nixos/modules/services/default.nix";
         cfg-security        = "sudo nano /etc/nixos/modules/security/default.nix";
         cfg-touchpad        = "sudo nano /etc/nixos/modules/services/touchpad.nix";
-        cfg-network             = "sudo nano /etc/nixos/modules/network/default.nix";
+        cfg-network         = "sudo nano /etc/nixos/modules/network/default.nix";
         cfg-exclude-gnome   = "sudo nano /etc/nixos/modules/desktop/exclude-gnome.nix";
 
         # Aliases para os módulos de configuração Home Manager
-        hm-clean            = "home-manager expire-generations -d";
         hm-flake            = "nano ${config.home.homeDirectory}/.config/home-manager/flake.nix";
         hm-git-user         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/user.nix";
         hm-git-extra        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/git/extra.nix";
@@ -60,7 +63,6 @@
         hm-utilities        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/utilities.nix";
         hm-oh-my-posh       = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/oh-my-posh.nix";
         hm-variables        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/system/variables.nix";
-        hm-upgrade          = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager && home-manager switch";
       };
     };
   };
