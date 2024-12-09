@@ -2,7 +2,7 @@
   description = "Home Manager";
 
   inputs = {
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -18,14 +18,12 @@
       homeConfigurations."guilherme" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        modules = [
-          ./home.nix
-          {
-            home.packages = [
-              zen-browser.packages.${system}.default
-            ];
-          }
-        ];
+        modules = [ ./home.nix ];
+
+        extraSpecialArgs = {
+          zen-browser = zen-browser;
+          system = system;
+        };
       };
     };
 }

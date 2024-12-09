@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, zen-browser, system, ... }: {
   home.packages = with pkgs; [
     tree
     unzip
@@ -11,5 +11,6 @@
     gimp-with-plugins
     kdePackages.kcalc
     inkscape-with-extensions
+    zen-browser.packages.${system}.specific
   ];
 }
