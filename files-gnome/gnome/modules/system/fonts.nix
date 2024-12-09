@@ -12,7 +12,7 @@
     proggyfonts
     noto-fonts-emoji
     ubuntu_font_family
-    fira-code-nerdfont
     noto-fonts-cjk-sans
+    nerd-fonts.fira-code
   ];
 }
