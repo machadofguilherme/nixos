@@ -1,12 +1,11 @@
 { config, pkgs, ... }: {
   # Aplicações
   environment.systemPackages = with pkgs; [
-    vivaldi-ffmpeg-codecs
-    blackbox-terminal
+    (config._module.args.zen-browser.packages.${config._module.args.system}.specific)
     gnome-text-editor
     keychain
-    vivaldi
     openssl
+    ptyxis
     loupe
   ];
 }
