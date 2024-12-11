@@ -11,5 +11,6 @@
     gimp-with-plugins
     kdePackages.kcalc
     inkscape-with-extensions
+    kdePackages.isoimagewriter
   ];
 }
