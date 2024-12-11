@@ -6,6 +6,7 @@
     yt-dlp
     caprine
     killall
+    popsicle
     gnome-tweaks
     onlyoffice-bin
     gimp-with-plugins
