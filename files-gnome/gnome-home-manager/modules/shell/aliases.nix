@@ -8,7 +8,6 @@
         nix-list-profiles   = "sudo nix profile list";
         nix-flake           = "sudo nano /etc/nixos/flake.nix";
         home-clean          = "home-manager expire-generations -d";
-        nix-upgrade         = "sudo nixos-rebuild switch --upgrade";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
         nix-clean           = "sudo nix-collect-garbage --delete-older-than 3d";
         nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
@@ -59,6 +58,7 @@
         hm-devtools         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/devtools.nix";
         hm-shell            = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/default.nix";
         hm-aliases          = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/aliases.nix";
+        hm-theme            = "nano ${config.home.homeDirectory}/.config/home-manager/modules/theme/default.nix";
         hm-system           = "nano ${config.home.homeDirectory}/.config/home-manager/modules/system/default.nix";
         hm-utilities        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/utilities.nix";
         hm-oh-my-posh       = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/oh-my-posh.nix";
