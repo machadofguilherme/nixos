@@ -10,6 +10,7 @@
   imports = [
     ./modules/git
     ./modules/apps
+    ./modules/theme
     ./modules/shell
     ./modules/system
   ];
