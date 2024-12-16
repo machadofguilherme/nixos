@@ -17,6 +17,7 @@
 
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   # Home Manager
   programs.home-manager.enable = true;
