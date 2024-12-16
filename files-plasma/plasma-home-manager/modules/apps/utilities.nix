@@ -10,6 +10,7 @@
     onlyoffice-bin
     gimp-with-plugins
     kdePackages.kcalc
+    #kdePackages.kamoso
     inkscape-with-extensions
     kdePackages.isoimagewriter
   ];
