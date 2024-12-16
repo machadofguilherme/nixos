@@ -4,6 +4,5 @@
     khelpcenter
     discover
     elisa
-    kate
   ];
 }
