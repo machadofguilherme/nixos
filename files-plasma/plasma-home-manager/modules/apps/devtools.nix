@@ -3,7 +3,7 @@
     gh
     bun
     vscode
-    insomnia
+    postman
     gitmoji-cli
   ];
 }
