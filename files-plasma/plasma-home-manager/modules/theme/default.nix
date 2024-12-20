@@ -2,9 +2,11 @@
   programs.plasma = {
     enable = true;
     workspace = {
-      colorScheme = "Nordic-Darker";
-      theme       = "Nordic-darker";
+      theme       = "breeze-dark";
+      colorScheme = "BreezeDark";
       iconTheme   = "Colloid-Green-Dark";
+      windowDecorations.theme = "Klassy";
+      windowDecorations.library = "org.kde.klassy";
     };
   };
 }
