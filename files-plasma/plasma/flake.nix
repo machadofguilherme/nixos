@@ -13,10 +13,9 @@
       nixosConfigurations = {
         hostname = nixpkgs.lib.nixosSystem {
           system = system;
-
+          
           modules = [
             ./configuration.nix
-
             {
               config._module.args = {
                 zen-browser = zen-browser;
