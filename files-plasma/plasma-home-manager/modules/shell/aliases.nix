@@ -6,6 +6,8 @@
         nix-list-installed  = "sudo nix-env -q";
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
+        nix-system-clean    = "nix-clean && home-clean";
+        nix-system-upgrade  = "nix-upgrade && home-upgrade";
         nix-flake           = "sudo nano /etc/nixos/flake.nix";
         home-clean          = "home-manager expire-generations -d";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
@@ -13,7 +15,7 @@
         nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-config         = "nano ${config.home.homeDirectory}/.config/home-manager/home.nix";
         nix-upgrade         = "sudo nix flake update --flake /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
-        homem-upgrade       = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager/ && home-manager switch";
+        home-upgrade       = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager/ && home-manager switch";
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";
