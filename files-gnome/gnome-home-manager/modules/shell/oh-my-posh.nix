@@ -4,7 +4,7 @@
     oh-my-posh = {
       enable = true;
       enableBashIntegration = true;
-      useTheme = "blue-owl";
+      useTheme = "jblab_2021";
     };
   };
 }
