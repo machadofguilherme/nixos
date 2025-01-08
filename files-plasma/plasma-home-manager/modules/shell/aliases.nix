@@ -60,6 +60,7 @@
         hm-devtools         = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/devtools.nix";
         hm-shell            = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/default.nix";
         hm-aliases          = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/aliases.nix";
+        hm-theme            = "nano ${config.home.homeDirectory}/.config/home-manager/modules/theme/default.nix";
         hm-system           = "nano ${config.home.homeDirectory}/.config/home-manager/modules/system/default.nix";
         hm-utilities        = "nano ${config.home.homeDirectory}/.config/home-manager/modules/apps/utilities.nix";
         hm-oh-my-posh       = "nano ${config.home.homeDirectory}/.config/home-manager/modules/shell/oh-my-posh.nix";
