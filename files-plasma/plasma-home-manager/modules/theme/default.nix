@@ -3,8 +3,7 @@
     enable = true;
     workspace = {
       theme       = "breeze-dark";
-      colorScheme = "BreezeDark";
-      iconTheme   = "Colloid-Green-Dark";
+      colorScheme = "BreezeDarkote";
       windowDecorations.theme = "Klassy";
       windowDecorations.library = "org.kde.klassy";
     };

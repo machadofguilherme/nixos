@@ -4,6 +4,8 @@
     bun
     vscode
     postman
+    mongosh
     gitmoji-cli
+    code-cursor
   ];
 }

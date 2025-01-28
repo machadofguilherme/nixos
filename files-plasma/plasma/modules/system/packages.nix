@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, zen-browser, system, ... }:
 {
   # Aplicações
   environment.systemPackages = with pkgs; [
-    (config._module.args.zen-browser.packages.${config._module.args.system})
+    zen-browser.packages."${system}".twilight
     kdePackages.plasma-browser-integration
     kdePackages.qtstyleplugin-kvantum
     kdePackages.flatpak-kcm
