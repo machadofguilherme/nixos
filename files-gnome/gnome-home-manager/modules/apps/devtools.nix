@@ -3,7 +3,9 @@
     gh
     bun
     vscode
-    insomnia
+    postman
+    mongosh
     gitmoji-cli
+    code-cursor
   ];
 }

@@ -16,13 +16,12 @@
           
           modules = [
             ./configuration.nix
-            {
-              config._module.args = {
-                zen-browser = zen-browser;
-                system = system;
-              };
-            }
           ];
+
+          specialArgs = {
+            zen-browser = zen-browser;
+            system = system;
+          };
         };
       };
     };

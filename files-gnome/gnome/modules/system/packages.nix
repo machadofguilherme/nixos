@@ -1,7 +1,7 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, zen-browser, system, ... }: {
   # Aplicações
   environment.systemPackages = with pkgs; [
-    (config._module.args.zen-browser.packages.${config._module.args.system})
+    zen-browser.packages."${system}".twilight
     gnome-text-editor
     keychain
     openssl
