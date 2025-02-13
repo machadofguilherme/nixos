@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   # Experimental
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -10,4 +10,12 @@
 
   # Otimiza Store
   nix.settings.auto-optimise-store = true;
+
+  # Permite pacotes Steam
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-unwrapped"
+    "steam-original"
+    "steam-run"
+  ];
 }

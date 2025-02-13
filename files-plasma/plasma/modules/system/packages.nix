@@ -1,5 +1,13 @@
 { config, pkgs, zen-browser, system, ... }:
 {
+  # Permite Steam
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
+
   # Aplicações
   environment.systemPackages = with pkgs; [
     zen-browser.packages."${system}".twilight
@@ -10,6 +18,6 @@
     kdePackages.sddm-kcm
     qt6.qtwayland
     keychain
-    openssl
+    unrar
   ];
 }

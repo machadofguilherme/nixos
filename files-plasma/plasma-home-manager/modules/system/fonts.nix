@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     fira-code
     meslo-lgs-nf
+    jetbrains-mono
     fira-code-symbols
   ];
 
