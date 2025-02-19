@@ -5,4 +5,7 @@
     set tabstospaces
     set tabsize 2
   '';
+
+  # GameMode
+  programs.gamemode.enable = true;
 }

@@ -7,6 +7,7 @@
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
         nix-system-upgrade  = "nix-upgrade && home-upgrade";
+        nix-system-rebuild  = "nix-rebuild && home-rebuild";
         nix-flake           = "sudo nano /etc/nixos/flake.nix";
         home-clean          = "home-manager expire-generations -d";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
@@ -20,7 +21,7 @@
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";
-        cfg-nano            = "sudo nano /etc/nixos/modules/misc/config.nix";
+        cfg-misc-config     = "sudo nano /etc/nixos/modules/misc/config.nix";
         cfg-net             = "sudo nano /etc/nixos/modules/network/net.nix";
         cfg-user            = "sudo nano /etc/nixos/modules/system/user.nix";
         cfg-dns             = "sudo nano /etc/nixos/modules/network/dns.nix";

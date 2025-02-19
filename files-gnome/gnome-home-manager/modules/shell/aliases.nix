@@ -6,6 +6,8 @@
         nix-list-installed  = "sudo nix-env -q";
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
+        nix-system-upgrade  = "nix-upgrade && home-upgrade";
+        nix-system-rebuild  = "nix-rebuild && home-rebuild";
         nix-flake           = "sudo nano /etc/nixos/flake.nix";
         home-clean          = "home-manager expire-generations -d";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
