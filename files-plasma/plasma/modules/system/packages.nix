@@ -12,6 +12,7 @@
   environment.systemPackages = with pkgs; [
     zen-browser.packages."${system}".twilight
     kdePackages.plasma-browser-integration
+    kdePackages.xdg-desktop-portal-kde
     kdePackages.qtstyleplugin-kvantum
     kdePackages.flatpak-kcm
     kdePackages.kcmutils
