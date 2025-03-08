@@ -6,6 +6,5 @@
     postman
     mongosh
     gitmoji-cli
-    code-cursor
   ];
 }
