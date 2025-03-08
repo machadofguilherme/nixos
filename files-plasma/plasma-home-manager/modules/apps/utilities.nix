@@ -13,7 +13,6 @@ in
     killall
     onlyoffice-bin
     kdePackages.kcalc
-    inkscape-with-extensions
     kdePackages.isoimagewriter
     nurPkgs.shadowrz.klassy-qt6
   ];
