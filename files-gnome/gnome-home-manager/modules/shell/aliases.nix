@@ -21,6 +21,7 @@
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";
+        cfg-misc-config     = "sudo nano /etc/nixos/modules/misc/config.nix";
         cfg-nano            = "sudo nano /etc/nixos/modules/misc/config.nix";
         cfg-net             = "sudo nano /etc/nixos/modules/network/net.nix";
         cfg-user            = "sudo nano /etc/nixos/modules/system/user.nix";
