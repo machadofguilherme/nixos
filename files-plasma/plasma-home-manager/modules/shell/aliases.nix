@@ -6,7 +6,6 @@
         nix-list-installed  = "sudo nix-env -q";
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
-        nix-clean           = "sudo nix-collect-garbage -d";
         nix-system-upgrade  = "nix-upgrade && home-upgrade";
         nix-system-rebuild  = "nix-rebuild && home-rebuild";
         nix-wipe            = "sudo nix profile wipe-history";
@@ -14,12 +13,13 @@
         home-clean          = "home-manager expire-generations -d";
         hm-clean-old        = "home-manager remove-generations old";
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
-        nix-orphans         = "nix-store --gc && sudo nix-store --optimize";
+        nix-orphans         = "nix store gc && sudo nix store optimize";
         nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-config         = "nano ${config.home.homeDirectory}/.config/home-manager/home.nix";
         nix-system-clean    = "nix-clean && home-clean && nix-orphans && nix-wipe && hm-clean-old";
         nix-upgrade         = "sudo nix flake update --flake /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-upgrade        = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager/ && home-manager switch";
+        nix-clean           = "sudo nix-collect-garbage --delete-older-than 2d --cores 16 && nix-collect-garbage --delete-older-than 2d --cores 16";
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";

@@ -13,11 +13,11 @@
         nix-config          = "sudo nano /etc/nixos/configuration.nix";
         nix-system-clean    = "nix-clean && home-clean && nix-orphans";
         nix-orphans         = "nix-store --gc && sudo nix-store --optimize";
-        nix-clean           = "sudo nix-collect-garbage --delete-older-than 3d";
         nix-rebuild         = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-config         = "nano ${config.home.homeDirectory}/.config/home-manager/home.nix";
         nix-upgrade         = "sudo nix flake update --flake /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-upgrade        = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager/ && home-manager switch";
+        nix-clean           = "sudo nix-collect-garbage --delete-older-than 2d --cores 16 && nix-collect-garbage --delete-older-than 2d --cores 16";
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";
