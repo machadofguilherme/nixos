@@ -8,8 +8,14 @@
   # Cores
   nix.settings.cores = 16;
 
-  # Otimiza Store
+  # Limpeza e Otimização da Store
+  nix.optimise.automatic = true;
   nix.settings.auto-optimise-store = true;
+
+  # Permite nh.
+  programs.nh.enable = true;
+  programs.nh.clean.enable = true;
+  programs.nh.clean.extraArgs = "--keep-since 1d --keep 2";
 
   # Permite pacotes Steam
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

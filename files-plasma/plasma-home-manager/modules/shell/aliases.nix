@@ -4,6 +4,7 @@
     fish = {
       shellAliases = {
         nix-list-installed  = "sudo nix-env -q";
+        nix-clean           = "sudo nh clean all";
         home-rebuild        = "home-manager switch";
         nix-list-profiles   = "sudo nix profile list";
         nix-system-upgrade  = "nix-upgrade && home-upgrade";
@@ -19,7 +20,7 @@
         nix-system-clean    = "nix-clean && home-clean && nix-orphans && nix-wipe && hm-clean-old";
         nix-upgrade         = "sudo nix flake update --flake /etc/nixos/ && sudo nixos-rebuild switch --flake /etc/nixos#hostname";
         home-upgrade        = "nix flake update --flake ${config.home.homeDirectory}/.config/home-manager/ && home-manager switch";
-        nix-clean           = "sudo nix-collect-garbage --delete-older-than 2d --cores 16 && nix-collect-garbage --delete-older-than 2d --cores 16";
+        #nix-clean           = "sudo nix-collect-garbage --delete-older-than 2d --cores 16 && nix-collect-garbage --delete-older-than 2d --cores 16";
 
         # Aliases para os módulos de configuração
         cfg-dev             = "sudo nano /etc/nixos/modules/misc/dev.nix";

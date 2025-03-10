@@ -20,5 +20,6 @@
     qt6.qtwayland
     keychain
     unrar
+    nh
   ];
 }
