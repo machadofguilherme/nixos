@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     gh
     bun
+    ngrok
     vscode
     postman
     mongosh
