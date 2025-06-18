@@ -8,7 +8,7 @@
       # ╰────────────────────────────╯
       nix-update-flake = "sudo nix flake update --flake /etc/nixos";
       nix-rebuild        = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
-      nix-system-upgrade = "nix-update-flake && nixos-rebuild";
+      nix-system-upgrade = "nix-update-flake && nix-rebuild";
 
       # ╭────────────────────────────╮
       # │ 🛠️  CONFIGS PRINCIPAIS       │
