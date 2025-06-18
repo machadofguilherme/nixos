@@ -10,7 +10,7 @@
 
   # Aplicações
   environment.systemPackages = with pkgs; [
-    zen-browser.packages."${system}".default
+    zen-browser.packages."${system}".twilight
     kdePackages.plasma-browser-integration
     kdePackages.xdg-desktop-portal-kde
     kdePackages.qtstyleplugin-kvantum
