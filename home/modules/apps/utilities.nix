@@ -9,6 +9,7 @@
     cowsay
     caprine
     killall
+    protonvpn-gui
     onlyoffice-bin
     kdePackages.kcalc
     kdePackages.isoimagewriter

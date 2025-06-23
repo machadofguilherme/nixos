@@ -77,6 +77,8 @@
       hm-aliases    = "sudo nano /etc/nixos/home/modules/shell/aliases.nix";
       hm-fish       = "sudo nano /etc/nixos/home/modules/shell/fish.nix";
       hm-oh-my-posh = "sudo nano /etc/nixos/home/modules/shell/oh-my-posh.nix";
+      docker-up     = "docker compose up -d";
+      docker-down   = "docker compose down";
 
       # ╭────────────────────────────╮
       # │ 🧾  HM: GIT                  │
