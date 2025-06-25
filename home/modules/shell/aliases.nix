@@ -107,6 +107,12 @@
       hm-system    = "sudo nano /etc/nixos/home/modules/system/default.nix";
       hm-fonts     = "sudo nano /etc/nixos/home/modules/system/fonts.nix";
       hm-variables = "sudo nano /etc/nixos/home/modules/system/variables.nix";
+
+      # ╭────────────────────────────╮
+      # │ 📁  GIT TREE /etc/nixos     │
+      # ╰────────────────────────────╯
+      ns = "cd /etc/nixos && git status";
+      np = "cd /etc/nixos && git add -A && gitmoji -c && git push";
     };
   };
 }
