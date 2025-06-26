@@ -11,6 +11,16 @@
       nix-system-upgrade = "nix-update-flake && nix-rebuild";
 
       # ╭────────────────────────────╮
+      # │ 🧹 LIMPEZA DO SISTEMA       │
+      # ╰────────────────────────────╯
+      nh-clean          = "nh clean --keep-since 1d --keep 2";
+      nh-clean-fast     = "nh clean --keep 2";
+      nh-clean-aggressive = "nh clean --keep-since 7d --keep 0";
+      nix-collect-garbage = "sudo nix-collect-garbage -d";
+      nix-store-verify  = "nix-store --verify --repair";
+      nix-clean-full    = "sudo nix-collect-garbage -d && nix-store --verify --repair && sudo nix-collect-garbage -d";
+
+      # ╭────────────────────────────╮
       # │ 🛠️  CONFIGS PRINCIPAIS       │
       # ╰────────────────────────────╯
       cfg-system  = "sudo nano /etc/nixos/configuration.nix";
