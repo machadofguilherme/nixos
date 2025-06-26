@@ -16,7 +16,7 @@
       angrr-clean       = "nix run github:linyinfeng/angrr -- run --period 2d";
       angrr-clean-all   = "sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false";
       nix-gc            = "sudo nix-collect-garbage --delete-older-than 2d";
-      nix-heuristic-gc  = "nix-heuristic-gc 20GiB";
+      nix-heuristic-gc  = "nix-heuristic-gc 20000000000";
 
       nix-full-clean = ''
         sudo nix-collect-garbage --delete-older-than 2d && \
@@ -24,7 +24,7 @@
         nix-store --optimize && \
         nix run github:linyinfeng/angrr -- run --period 2d && \
         sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false && \
-        nix-heuristic-gc 20GiB
+        nix-heuristic-gc 20000000000
       '';
 
       # ╭────────────────────────────╮
