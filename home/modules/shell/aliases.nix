@@ -18,15 +18,6 @@
       nix-gc            = "sudo nix-collect-garbage --delete-older-than 2d";
       nix-hgc  = "nix-heuristic-gc 20000000000";
 
-      nix-full-clean = ''
-        sudo nix-collect-garbage --delete-older-than 2d && \
-        nix-store --gc && \
-        nix-store --optimize && \
-        nix run github:linyinfeng/angrr -- run --period 2d && \
-        sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false && \
-        nix-hgc
-      '';
-
       # ╭────────────────────────────╮
       # │ 🛠️  CONFIGS PRINCIPAIS       │
       # ╰────────────────────────────╯
