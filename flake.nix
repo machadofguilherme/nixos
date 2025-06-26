@@ -1,8 +1,8 @@
-
 {
   description = "Flake NixOS + Home Manager + Plasma Manager + NUR";
 
   inputs = {
+    angrr.url = "github:linyinfeng/angrr";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
@@ -23,37 +23,42 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, plasma-manager, nur, zen-browser, ... }:
-    let
-      system = "x86_64-linux";
-    in {
-      nixosConfigurations = {
-        hostname = nixpkgs.lib.nixosSystem {
-          inherit system;
+  outputs = { self, nixpkgs, home-manager, plasma-manager, nur, zen-browser, angrr, ... }:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
+  in {
+    nixosConfigurations = {
+      hostname = nixpkgs.lib.nixosSystem {
+        inherit system;
 
-          modules = [
-            ./configuration.nix
-            nur.modules.nixos.default
-            nur.legacyPackages."${system}".repos.iopq.modules.xraya
+        modules = [
+          ./configuration.nix
+          nur.modules.nixos.default
+          nur.legacyPackages."${system}".repos.iopq.modules.xraya
 
-            home-manager.nixosModules.home-manager
+          home-manager.nixosModules.home-manager
 
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-              home-manager.users.guilherme = import ./home/home.nix;
+            home-manager.users.guilherme = import ./home/home.nix;
 
-              home-manager.sharedModules = [
-                plasma-manager.homeManagerModules.plasma-manager
-              ];
-            }
-          ];
+            home-manager.sharedModules = [
+              plasma-manager.homeManagerModules.plasma-manager
+            ];
 
-          specialArgs = {
-            inherit system zen-browser plasma-manager nur;
-          };
+            home-manager.extraSpecialArgs = {
+              angrr = angrr.packages.${system}.default;
+            };
+          }
+        ];
+
+        specialArgs = {
+          inherit system zen-browser plasma-manager nur;
         };
       };
     };
+  };
 }

@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, angrr, ... }:
 
 {
   home.packages = with pkgs; [
     tree
+    angrr
     unzip
     pfetch
     yt-dlp

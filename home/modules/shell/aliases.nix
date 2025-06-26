@@ -13,8 +13,8 @@
       # ╭─────────────────────────────────────────╮
       # │ 🧹 Limpeza inteligente da Nix Store     │
       # ╰─────────────────────────────────────────╯
-      angrr-clean       = "nix run github:linyinfeng/angrr -- run --period 2d";
-      angrr-clean-all   = "sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false";
+      angrr-clean       = "angrr run --period 2d";
+      angrr-clean-all   = "sudo angrr run --period 2d --owned-only=false";
       nix-gc            = "sudo nix-collect-garbage --delete-older-than 2d";
       nix-hgc  = "nix-heuristic-gc 20000000000";
 

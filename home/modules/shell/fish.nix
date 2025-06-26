@@ -12,8 +12,8 @@
         sudo nix-collect-garbage --delete-older-than 2d
         nix-store --gc
         nix-store --optimize
-        nix run github:linyinfeng/angrr -- run --period 2d
-        sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false
+        angrr run --period 2d
+        sudo angrr run --period 2d --owned-only=false
         nix-heuristic-gc 20000000000
         echo "✅ Limpeza concluída com sucesso!"
       end
