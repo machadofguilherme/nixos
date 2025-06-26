@@ -13,10 +13,19 @@
       # ╭─────────────────────────────────────────╮
       # │ 🧹 Limpeza inteligente da Nix Store     │
       # ╰─────────────────────────────────────────╯
-      angrr-clean      = "nix run github:linyinfeng/angrr -- run --period 2d";
-      angrr-clean-all  = "sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false";
-      nix-gc           = "sudo nix-collect-garbage -d";
-      nix-heuristic-gc = "nix-heuristic-gc";
+      angrr-clean       = "nix run github:linyinfeng/angrr -- run --period 2d";
+      angrr-clean-all   = "sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false";
+      nix-gc            = "sudo nix-collect-garbage --delete-older-than 2d";
+      nix-heuristic-gc  = "nix-heuristic-gc 20GiB";
+
+      nix-full-clean = ''
+        sudo nix-collect-garbage --delete-older-than 2d && \
+        nix-store --gc && \
+        nix-store --optimize && \
+        nix run github:linyinfeng/angrr -- run --period 2d && \
+        sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false && \
+        nix-heuristic-gc 20GiB
+      '';
 
       # ╭────────────────────────────╮
       # │ 🛠️  CONFIGS PRINCIPAIS       │
