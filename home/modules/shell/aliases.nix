@@ -10,15 +10,13 @@
       nix-rebuild        = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
       nix-system-upgrade = "nix-update-flake && nix-rebuild";
 
-      # ╭────────────────────────────╮
-      # │ 🧹 LIMPEZA DO SISTEMA       │
-      # ╰────────────────────────────╯
-      nh-clean          = "nh clean --keep-since 1d --keep 2";
-      nh-clean-fast     = "nh clean --keep 2";
-      nh-clean-aggressive = "nh clean --keep-since 7d --keep 0";
-      nix-collect-garbage = "sudo nix-collect-garbage -d";
-      nix-store-verify  = "nix-store --verify --repair";
-      nix-clean-full    = "sudo nix-collect-garbage -d && nix-store --verify --repair && sudo nix-collect-garbage -d";
+      # ╭─────────────────────────────────────────╮
+      # │ 🧹 Limpeza inteligente da Nix Store     │
+      # ╰─────────────────────────────────────────╯
+      angrr-clean      = "nix run github:linyinfeng/angrr -- run --period 2d";
+      angrr-clean-all  = "sudo nix run github:linyinfeng/angrr -- run --period 2d --owned-only=false";
+      nix-gc           = "sudo nix-collect-garbage -d";
+      nix-heuristic-gc = "nix-heuristic-gc";
 
       # ╭────────────────────────────╮
       # │ 🛠️  CONFIGS PRINCIPAIS       │

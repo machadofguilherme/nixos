@@ -17,9 +17,9 @@
     kdePackages.flatpak-kcm
     kdePackages.kcmutils
     kdePackages.sddm-kcm
+    nix-heuristic-gc
     qt6.qtwayland
     keychain
     unrar
-    nh
   ];
 }
