@@ -10,6 +10,7 @@
     cowsay
     caprine
     killall
+    hydralauncher
     protonvpn-gui
     onlyoffice-bin
     kdePackages.kcalc
