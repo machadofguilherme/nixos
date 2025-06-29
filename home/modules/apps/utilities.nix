@@ -14,6 +14,7 @@
     protonvpn-gui
     onlyoffice-bin
     kdePackages.kcalc
+    wineWowPackages.stable
     kdePackages.isoimagewriter
     nur.repos.shadowrz.klassy-qt6
   ];
