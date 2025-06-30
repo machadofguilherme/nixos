@@ -6,6 +6,7 @@
     angrr
     unzip
     pfetch
+    typora
     yt-dlp
     cowsay
     caprine
