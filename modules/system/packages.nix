@@ -15,11 +15,13 @@
     kdePackages.xdg-desktop-portal-kde
     kdePackages.qtstyleplugin-kvantum
     kdePackages.flatpak-kcm
+    vivaldi-ffmpeg-codecs
     kdePackages.kcmutils
     kdePackages.sddm-kcm
     nix-heuristic-gc
     qt6.qtwayland
     keychain
+    vivaldi
     unrar
   ];
 }
