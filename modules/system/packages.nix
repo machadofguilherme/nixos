@@ -8,6 +8,11 @@
     ];
   };
 
+  # Permite qtwebengine inseguro
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebengine-5.15.19"
+  ];
+
   # Aplicações
   environment.systemPackages = with pkgs; [
     zen-browser.packages."${system}".twilight
