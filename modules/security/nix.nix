@@ -1,6 +1,15 @@
 { config, pkgs, lib, ... }: {
   # Experimental
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ 
+    "nix-command" 
+    "flakes" 
+  ];
+
+  # Usuários Confiáveis
+  nix.settings.trusted-users = [ 
+    "root" 
+    "guilherme"
+  ];
 
   # Permissões Especiais
   nixpkgs.config.allowUnfree = true;
