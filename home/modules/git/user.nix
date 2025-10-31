@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   programs.git = {
    enable = true;
-   userName = "Guilherme Machado";
-   userEmail = "machadofguilherme@proton.me";
+   settings.user.name = "Guilherme Machado";
+   settings.user.email = "machadofguilherme@proton.me";
   };
 }
