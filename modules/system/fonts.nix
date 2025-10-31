@@ -10,7 +10,7 @@
     noto-fonts
     roboto-mono
     proggyfonts
-    ubuntu_font_family
+    ubuntu-classic
     noto-fonts-cjk-sans
     nerd-fonts.fira-code
     noto-fonts-color-emoji
