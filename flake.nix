@@ -46,7 +46,7 @@
             home-manager.users.guilherme = import ./home/home.nix;
 
             home-manager.sharedModules = [
-              plasma-manager.homeManagerModules.plasma-manager
+              plasma-manager.homeModules.plasma-manager
             ];
 
             home-manager.extraSpecialArgs = {

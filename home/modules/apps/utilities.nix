@@ -13,9 +13,9 @@
     killall
     hydralauncher
     protonvpn-gui
-    onlyoffice-bin
     kdePackages.kcalc
     wineWowPackages.stable
+    onlyoffice-desktopeditors
     kdePackages.isoimagewriter
     nur.repos.shadowrz.klassy-qt6
   ];
