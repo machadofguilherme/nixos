@@ -9,4 +9,11 @@
   # Fish
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
+
+  # Variáveis
+  environment.variables = {
+    ENABLE_VKBASALT = "1";
+    VK_INSTANCE_LAYERS = "VK_LAYER_VKBASALT_post_processing";
+    VKBASALT_LOG_LEVEL = "debug";
+  };
 }

@@ -25,7 +25,9 @@
     kdePackages.sddm-kcm
     nix-heuristic-gc
     qt6.qtwayland
+    vulkan-tools
     keychain
+    vkbasalt
     vivaldi
     unrar
   ];
