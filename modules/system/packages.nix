@@ -27,7 +27,6 @@
     qt6.qtwayland
     vulkan-tools
     keychain
-    vkbasalt
     vivaldi
     unrar
   ];
