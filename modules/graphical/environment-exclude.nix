@@ -8,5 +8,6 @@
      gnome-software
      simple-scan
      totem
+     geary
   ];
 }
