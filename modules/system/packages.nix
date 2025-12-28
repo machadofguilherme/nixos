@@ -1,7 +1,8 @@
 { config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     gnome-tweaks
-    gnomeExtensions.appindicator
+    papers
+    showtime
     keychain
     vivaldi
     vivaldi-ffmpeg-codecs
