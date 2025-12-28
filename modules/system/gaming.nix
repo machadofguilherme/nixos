@@ -8,7 +8,7 @@
   };
   
   # Launcher para Genshin Impact
-  home.packages = [
-    inputs.twintail.packages.${pkgs.system}.default
+  environment.systemPackages = [
+    inputs.twintail.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

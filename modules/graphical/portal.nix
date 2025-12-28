@@ -6,10 +6,11 @@ in
 {
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
 
     extraPortals =
       if portalBackend == "kde" then
-        [ pkgs.xdg-desktop-portal-kde ]
+        [ pkgs.kdePackages.xdg-desktop-portal-kde ]
       else
         [ ];
 

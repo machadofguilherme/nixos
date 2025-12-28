@@ -26,7 +26,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, plasma-manager, twintail, ... }:
+  outputs = { self, nixpkgs, home-manager, nur, plasma-manager, twintail, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -53,14 +53,14 @@
             home-manager.users.guilherme = {
               imports = [
                 ./home/home.nix
-                plasma-manager.homeManagerModules.plasma-manager
+                plasma-manager.homeModules.plasma-manager
               ];
             };
           }
         ];
 
         specialArgs = {
-           inherit system nur plasma-manager twintail;
+           inherit system nur plasma-manager twintail inputs;
         };
        };
      };

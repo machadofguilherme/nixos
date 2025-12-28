@@ -107,6 +107,7 @@
       # │ 🎨  HOME MANAGER: Plasma       │
       # ╰────────────────────────────╯
       hm-plasma     = "nano /etc/nixos/home/modules/system/plasma.nix";
+      hm-gtk     = "nano /etc/nixos/home/modules/system/gtk.nix";
 
       # ╭────────────────────────────╮
       # │ 🧱  HOME MANAGER: SYSTEM      │
