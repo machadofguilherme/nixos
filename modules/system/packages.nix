@@ -8,7 +8,7 @@
     vivaldi-ffmpeg-codecs
     unrar
     nix-heuristic-gc
-    cloudflare-warp
+    #cloudflare-warp
     vulkan-tools
   ];
 }
