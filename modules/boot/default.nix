@@ -1,5 +1,7 @@
 { config, pkgs, ... }: {
   boot.loader = {
+    timeout = 3;
+
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
@@ -9,7 +11,6 @@
       enable = true;
       efiSupport = true;
       device = "nodev";
-      timeout = 3;
     };
   };
 

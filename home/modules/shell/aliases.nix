@@ -75,6 +75,11 @@
       cfg-gamemode  = "nano /etc/nixos/modules/services/gamemode.nix";
 
       # ╭────────────────────────────╮
+      # │ 🟢  MÓDULOS: BOOT           │
+      # ╰────────────────────────────╯
+      cfg-boot = "nano /etc/nixos/modules/boot/default.nix";
+
+      # ╭────────────────────────────╮
       # │ 🐚  HOME MANAGER: SHELL       │
       # ╰────────────────────────────╯
       hm-shell      = "nano /etc/nixos/home/modules/shell/default.nix";
