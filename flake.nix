@@ -1,23 +1,32 @@
 {
-  description = "Flake NixOS + Home Manager + NUR";
+  description = "Flake NixOS + Home Manager + NUR + Plasma Manager";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    twintail = {
+      url = "path:./flakes/twintail";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, aagl, ... }:
+  outputs = { self, nixpkgs, home-manager, nur, plasma-manager, twintail, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -27,34 +36,33 @@
         hostname = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          modules = [
-            ./configuration.nix
+        modules = [
+          ./configuration.nix
 
-            # NUR
-            nur.modules.nixos.default
+          # NUR
+          nur.modules.nixos.default
 
-            # AAGL
-            {
-              imports = [ aagl.nixosModules.default ];
-              nix.settings = aagl.nixConfig;
-            }
+          # Home Manager
+          home-manager.nixosModules.home-manager
 
-            # Home Manager
-            home-manager.nixosModules.home-manager
+          # Usuário
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-            # Seu usuário
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+            home-manager.users.guilherme = {
+              imports = [
+                ./home/home.nix
+                plasma-manager.homeManagerModules.plasma-manager
+              ];
+            };
+          }
+        ];
 
-              home-manager.users.guilherme = import ./home/home.nix;
-            }
-          ];
-
-          specialArgs = {
-            inherit system nur aagl;
-          };
+        specialArgs = {
+           inherit system nur plasma-manager twintail;
         };
-      };
-    };
+       };
+     };
+  };
 }

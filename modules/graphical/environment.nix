@@ -1,5 +1,9 @@
 { config, pkgs, ... }: {
-  # Permite GNOME
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  # Permite Plasma
+  services.desktopManager.plasma6.enable = true;
+
+  services.displayManager.sddm ={
+    enable = true;
+    wayland.enable = true;
+  };
 }

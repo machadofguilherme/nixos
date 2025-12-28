@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 
 let
-  portalBackend = "gnome";
+  portalBackend = "kde";
 in
 {
   xdg.portal = {
     enable = true;
 
     extraPortals =
-      if portalBackend == "gnome" then
-        [ pkgs.xdg-desktop-portal-gnome ]
+      if portalBackend == "kde" then
+        [ pkgs.xdg-desktop-portal-kde ]
       else
         [ ];
 

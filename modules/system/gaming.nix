@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
   # Steam
   programs.steam = {
     enable = true;
@@ -6,7 +6,9 @@
       proton-ge-bin
     ];
   };
-
-  # Launcher Genshin Impact
-  programs.anime-game-launcher.enable = true;
+  
+  # Launcher para Genshin Impact
+  home.packages = [
+    inputs.twintail.packages.${pkgs.system}.default
+  ];
 }

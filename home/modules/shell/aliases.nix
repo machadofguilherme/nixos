@@ -104,9 +104,9 @@
       hm-utilities = "nano /etc/nixos/home/modules/apps/utilities.nix";
 
       # ╭────────────────────────────╮
-      # │ 🎨  HOME MANAGER: GNOME       │
+      # │ 🎨  HOME MANAGER: Plasma       │
       # ╰────────────────────────────╯
-      hm-gnome     = "nano /etc/nixos/home/modules/system/gnome.nix";
+      hm-plasma     = "nano /etc/nixos/home/modules/system/plasma.nix";
 
       # ╭────────────────────────────╮
       # │ 🧱  HOME MANAGER: SYSTEM      │
