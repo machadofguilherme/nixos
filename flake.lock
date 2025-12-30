@@ -106,25 +106,8 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "plasma-manager": "plasma-manager",
-        "twintail": "twintail"
+        "plasma-manager": "plasma-manager"
       }
-    },
-    "twintail": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "./flakes/twintail",
-        "type": "path"
-      },
-      "original": {
-        "path": "./flakes/twintail",
-        "type": "path"
-      },
-      "parent": []
     }
   },
   "root": "root",

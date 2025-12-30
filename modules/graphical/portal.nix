@@ -17,5 +17,7 @@ in
     config.common.default = [ portalBackend ];
   };
 
+  fonts.fontDir.enable = true;
+
   services.flatpak.enable = true;
 }

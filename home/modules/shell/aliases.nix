@@ -22,6 +22,7 @@
       # ╰────────────────────────────╯
       cfg-system  = "nano /etc/nixos/configuration.nix";
       cfg-flake   = "nano /etc/nixos/flake.nix";
+      hm-home     = "nano /etc/nixos/home/home.nix";
 
       # ╭────────────────────────────╮
       # │ 🧩  MÓDULOS: SYSTEM         │

@@ -19,14 +19,9 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    twintail = {
-      url = "path:./flakes/twintail";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, plasma-manager, twintail, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, plasma-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -49,6 +44,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
 
             home-manager.users.guilherme = {
               imports = [
@@ -60,7 +56,7 @@
         ];
 
         specialArgs = {
-           inherit system nur plasma-manager twintail inputs;
+           inherit system nur plasma-manager inputs;
         };
        };
      };
