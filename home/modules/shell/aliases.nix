@@ -101,7 +101,6 @@
       hm-apps      = "nano /etc/nixos/home/modules/apps/default.nix";
       hm-menu      = "nano /etc/nixos/home/modules/apps/menu.nix";
       hm-media     = "nano /etc/nixos/home/modules/apps/media.nix";
-      hm-twintail  = "nano /etc/nixos/home/modules/apps/twintail.nix";
       hm-devtools  = "nano /etc/nixos/home/modules/apps/devtools.nix";
       hm-utilities = "nano /etc/nixos/home/modules/apps/utilities.nix";
 
