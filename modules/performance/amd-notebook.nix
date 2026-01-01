@@ -18,4 +18,4 @@
   # OOM
   services.earlyoom.enable = true;
   systemd.oomd.enable = true;
-};
+}
