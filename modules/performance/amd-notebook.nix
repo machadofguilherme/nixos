@@ -3,13 +3,20 @@
 {
   # CPU e iGPU
   services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery-profile = "powersave";      
-    ac-profile = "balanced";             
-    tune-thermal = true;                 
-    governor-battery = "powersave";
-    governor-ac = "powersave";           
-    max-frequency-ac = "65%";        
+  services.auto-cpufreq = {
+    enable = true;
+
+    settings = {
+      ac = {
+        governor = "schedutil";
+        turbo = "auto";
+      };
+
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+    };
   };
 
   # Evita conflito com outros daemons
