@@ -9,6 +9,7 @@
   ];
 
   services.auto-cpufreq.enable = true;
+  services.power-profiles-daemon.enable = false;
 
   zramSwap = {
     enable = true;
@@ -32,8 +33,6 @@
     freeMemThreshold = 5;
     freeSwapThreshold = 5;
   };
-
-  services.systemd-oomd.enable = false;
 
   services.irqbalance.enable = true;
 }
