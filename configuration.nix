@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   # Sistema
@@ -7,6 +7,7 @@
   # Importações
   imports = [
     ./hardware-configuration.nix
+    ./modules/performance
     ./modules/graphical
     ./modules/security
     ./modules/services
@@ -15,8 +16,4 @@
     ./modules/boot
     ./modules/lang
   ];
-
-  # Linux
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 }

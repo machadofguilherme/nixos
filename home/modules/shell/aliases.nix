@@ -3,7 +3,7 @@
     shellAliases = {
 
       # ╭────────────────────────────╮
-      # │ 🔄  ATUALIZAÇÃO DO SISTEMA  │
+      # │ 🔄  ATUALIZAÇÃO DO SISTEMA │
       # ╰────────────────────────────╯
       nix-update-flake = "sudo nix flake update --flake /etc/nixos";
       nix-rebuild        = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
@@ -18,14 +18,14 @@
       nix-hgc           = "nix-heuristic-gc 20000000000";
 
       # ╭────────────────────────────╮
-      # │ 🛠️  CONFIGS PRINCIPAIS       │
+      # │ 🛠️  CONFIGS PRINCIPAIS      │ 
       # ╰────────────────────────────╯
       cfg-system  = "nano /etc/nixos/configuration.nix";
       cfg-flake   = "nano /etc/nixos/flake.nix";
       hm-home     = "nano /etc/nixos/home/home.nix";
 
       # ╭────────────────────────────╮
-      # │ 🧩  MÓDULOS: SYSTEM         │
+      # │ 🧩  MÓDULOS: SYSTEM        │
       # ╰────────────────────────────╯
       cfg-system-mod = "nano /etc/nixos/modules/system/default.nix";
       cfg-packages   = "nano /etc/nixos/modules/system/packages.nix";
@@ -35,21 +35,21 @@
       cfg-gaming      = "nano /etc/nixos/modules/system/gaming.nix";
 
       # ╭────────────────────────────╮
-      # │ 🌐  MÓDULOS: NETWORK         │
+      # │ 🌐  MÓDULOS: NETWORK       │
       # ╰────────────────────────────╯
       cfg-network-mod = "nano /etc/nixos/modules/network/default.nix";
       cfg-net         = "nano /etc/nixos/modules/network/net.nix";
       cfg-dns         = "nano /etc/nixos/modules/network/dns.nix";
 
       # ╭────────────────────────────╮
-      # │ 🌍  MÓDULOS: LANG           │
+      # │ 🌍  MÓDULOS: LANG          │
       # ╰────────────────────────────╯
       cfg-lang     = "nano /etc/nixos/modules/lang/default.nix";
       cfg-locale   = "nano /etc/nixos/modules/lang/locale.nix";
       cfg-timezone = "nano /etc/nixos/modules/lang/timezone.nix";
 
       # ╭────────────────────────────╮
-      # │ 🔐  MÓDULOS: SECURITY       │
+      # │ 🔐  MÓDULOS: SECURITY      │
       # ╰────────────────────────────╯
       cfg-security = "nano /etc/nixos/modules/security/default.nix";
       cfg-nix      = "nano /etc/nixos/modules/security/nix.nix";
@@ -57,7 +57,7 @@
       cfg-unfree   = "nano /etc/nixos/modules/security/unfree.nix";
 
       # ╭────────────────────────────╮
-      # │ 🖥️  MÓDULOS: GRAPHICAL       │
+      # │ 🖥️  MÓDULOS: GRAPHICAL      │
       # ╰────────────────────────────╯
       cfg-graphical = "nano /etc/nixos/modules/graphical/default.nix";
       cfg-base      = "nano /etc/nixos/modules/graphical/base.nix";
@@ -67,7 +67,13 @@
       cfg-portal    = "nano /etc/nixos/modules/graphical/portal.nix";
 
       # ╭────────────────────────────╮
-      # │ ⚙️  MÓDULOS: SERVICES        │
+      # │ 🧩  MÓDULOS: PERFORMANCE   │
+      # ╰────────────────────────────╯
+      cfg-performance     = "nano /etc/nixos/modules/performance/default.nix";
+      cfg-amd-notebook    = "nano /etc/nixos/modules/performance/amd-notebook.nix";
+
+      # ╭────────────────────────────╮
+      # │ ⚙️  MÓDULOS: SERVICES       │
       # ╰────────────────────────────╯
       cfg-services  = "nano /etc/nixos/modules/services/default.nix";
       cfg-audio     = "nano /etc/nixos/modules/services/audio.nix";
@@ -78,12 +84,14 @@
       cfg-warp  = "nano /etc/nixos/modules/services/warp.nix";
 
       # ╭────────────────────────────╮
-      # │ 🟢  MÓDULOS: BOOT           │
+      # │ 🟢  MÓDULOS: BOOT          │
       # ╰────────────────────────────╯
       cfg-boot = "nano /etc/nixos/modules/boot/default.nix";
+      cfg-grub = "nano /etc/nixos/modules/boot/grub.nix";
+      cfg-kernel = "nano /etc/nixos/modules/boot/kernel.nix";
 
       # ╭────────────────────────────╮
-      # │ 🐚  HOME MANAGER: SHELL       │
+      # │ 🐚  HOME MANAGER: SHELL    │
       # ╰────────────────────────────╯
       hm-shell      = "nano /etc/nixos/home/modules/shell/default.nix";
       hm-aliases    = "nano /etc/nixos/home/modules/shell/aliases.nix";
@@ -91,12 +99,12 @@
       hm-oh-my-posh = "nano /etc/nixos/home/modules/shell/oh-my-posh.nix";
 
       # ╭────────────────────────────╮
-      # │ 🧾  HOME MANAGER: GIT         │
+      # │ 🧾  HOME MANAGER: GIT      │
       # ╰────────────────────────────╯
       hm-git       = "nano /etc/nixos/home/modules/git/default.nix";
 
       # ╭────────────────────────────╮
-      # │ 🧰  HOME MANAGER: APPS        │
+      # │ 🧰  HOME MANAGER: APPS     │
       # ╰────────────────────────────╯
       hm-apps      = "nano /etc/nixos/home/modules/apps/default.nix";
       hm-menu      = "nano /etc/nixos/home/modules/apps/menu.nix";
@@ -105,26 +113,26 @@
       hm-utilities = "nano /etc/nixos/home/modules/apps/utilities.nix";
 
       # ╭────────────────────────────╮
-      # │ 🎨  HOME MANAGER: Plasma       │
+      # │ 🎨  HOME MANAGER: Plasma   │
       # ╰────────────────────────────╯
       hm-plasma     = "nano /etc/nixos/home/modules/system/plasma.nix";
       hm-gtk     = "nano /etc/nixos/home/modules/system/gtk.nix";
 
       # ╭────────────────────────────╮
-      # │ 🧱  HOME MANAGER: SYSTEM      │
+      # │ 🧱  HOME MANAGER: SYSTEM   │
       # ╰────────────────────────────╯
       hm-system    = "nano /etc/nixos/home/modules/system/default.nix";
       hm-fonts     = "nano /etc/nixos/home/modules/system/fonts.nix";
       hm-variables = "nano /etc/nixos/home/modules/system/variables.nix";
 
       # ╭────────────────────────────╮
-      # │ 📁  GIT TREE /etc/nixos      │
+      # │ 📁  GIT TREE /etc/nixos    │
       # ╰────────────────────────────╯
       ns = "cd /etc/nixos && git status";
       np = "cd /etc/nixos && git add -A && gitmoji -c && git push";
 
       # ╭────────────────────────────╮
-      # │ 🐳  Docker                    │
+      # │ 🐳  Docker                 │
       # ╰────────────────────────────╯
       docker-up   = "docker compose up -d";
       docker-down = "docker compose down";

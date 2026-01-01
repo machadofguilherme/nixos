@@ -1,6 +1,5 @@
 { config, pkgs, ... }: {
   imports = [
-    ./grub.nix
-    ./kernel.nix
+    ./amd-notebook.nix
   ];
 }
