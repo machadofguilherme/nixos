@@ -2,7 +2,6 @@
 
 {
   # CPU e iGPU
-  services.auto-cpufreq.enable = true;
   services.auto-cpufreq = {
     enable = true;
 
