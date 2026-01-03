@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     jq
     tree
+    btop
     unzip
     pfetch
     yt-dlp
