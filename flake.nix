@@ -48,23 +48,29 @@
 
           # Usuário
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
 
-            home-manager.users.guilherme = {
-              imports = [
-                ./home/home.nix
-                plasma-manager.homeModules.plasma-manager
-              ];
+              extraSpecialArgs = {
+                inherit geckium;
+              };
+
+              users.guilherme = {
+                imports = [
+                  ./home/home.nix
+                  plasma-manager.homeModules.plasma-manager
+                ];
+              };
             };
-          }
-        ];
+        }
+      ];
 
-        specialArgs = {
-           inherit system nur plasma-manager inputs geckium;
-        };
-       };
-     };
+      specialArgs = {
+        inherit system nur plasma-manager inputs geckium;
+      };
+    };
+   };
   };
 }
