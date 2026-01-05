@@ -27,12 +27,12 @@
       # ╭────────────────────────────╮
       # │ 🧩  MÓDULOS: SYSTEM        │
       # ╰────────────────────────────╯
-      cfg-system-mod = "nano /etc/nixos/modules/system/default.nix";
-      cfg-packages   = "nano /etc/nixos/modules/system/packages.nix";
-      cfg-fonts      = "nano /etc/nixos/modules/system/fonts.nix";
-      cfg-user       = "nano /etc/nixos/modules/system/user.nix";
-      cfg-shell      = "nano /etc/nixos/modules/system/shell.nix";
-      cfg-gaming      = "nano /etc/nixos/modules/system/gaming.nix";
+      cfg-system-mod         = "nano /etc/nixos/modules/system/default.nix";
+      cfg-packages           = "nano /etc/nixos/modules/system/packages.nix";
+      cfg-fonts              = "nano /etc/nixos/modules/system/fonts.nix";
+      cfg-user               = "nano /etc/nixos/modules/system/user.nix";
+      cfg-shell              = "nano /etc/nixos/modules/system/shell.nix";
+      cfg-gaming             = "nano /etc/nixos/modules/system/gaming.nix";
 
       # ╭────────────────────────────╮
       # │ 🌐  MÓDULOS: NETWORK       │

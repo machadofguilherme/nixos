@@ -1,9 +1,17 @@
-{ pkgs, lib, geckium, ... }:
+{ pkgs, lib, ... }:
 
 # Geckium
 # Para atualizar:
 # nix-prefetch-url --unpack https://github.com/angelbruni/Geckium/archive/refs/heads/main.tar.gz
 
+let
+  fxcss = pkgs.fetchFromGitHub {
+    owner = "Aris-t2";
+    repo = "CustomCSSforFx";
+    rev = "master";
+    sha256 = "sha256-VV3beoM9wovs6/qnR2om5uYaC5mHKha8uQBqFOr3w7c=";
+  };
+in
 {
   programs.firefox = {
     enable = true;
@@ -55,7 +63,10 @@
     };
   };
 
-  # 🎨 CSS do Geckium (perfil)
   home.file.".mozilla/firefox/guilherme/chrome".source =
-    "${geckium}/Profile Folder/chrome";
+    "${fxcss}/chrome";
+
+  home.file.".mozilla/firefox/guilherme/chrome/userChrome.css".text = ''
+    @import "./userChrome.css";
+  '';
 }
