@@ -9,7 +9,7 @@ let
     owner = "angelbruni";
     repo = "Geckium";
     rev = "main";
-    sha256 = "sha256-09431f9hmgli5sibhwhzqgl7613yrldm6nfyrs78gs9azff1bd9k";
+    sha256 = "sha256-M7UVnPsq6YeOzt5ZUxvNfgRz6MMfcriiLpG+CpMLgyQ=";
   };
 
   jsonFormatter = pkgs.fetchurl {
@@ -24,7 +24,7 @@ in
     profiles.guilherme = {
       isDefault = true;
 
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         jsonFormatter
         duckduckgo-privacy-essentials
