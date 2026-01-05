@@ -16,6 +16,10 @@ in
   programs.firefox = {
     enable = true;
 
+    languagePacks = [
+      "pt-BR"
+    ];
+
     profiles.guilherme = {
       isDefault = true;
 
@@ -47,6 +51,9 @@ in
         "browser.search.defaultenginename" = "DuckDuckGo";
         "browser.search.order.1" = "DuckDuckGo";
         "browser.urlbar.placeholderName" = "DuckDuckGo";
+
+        # Português brasileiro
+        "intl.locale.requested" = "pt-BR";
       };
     };
   };
