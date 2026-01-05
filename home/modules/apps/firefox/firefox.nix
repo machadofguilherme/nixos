@@ -11,6 +11,11 @@ let
     rev = "main";
     sha256 = "sha256-09431f9hmgli5sibhwhzqgl7613yrldm6nfyrs78gs9azff1bd9k";
   };
+
+  jsonFormatterXpi = pkgs.fetchFile {
+    name = "json_formatter";
+    file = ./addons/json_formatter.xpi;
+  };
 in
 {
   programs.firefox = {
@@ -20,8 +25,8 @@ in
       isDefault = true;
 
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        jsonview
         ublock-origin
+        jsonFormatterXpi
         duckduckgo-privacy-essentials
       ];
 
