@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, geckium, ... }: {
   environment.etc."firefox/config.js".source =
     "${geckium}/Firefox Folder/config.js";
 

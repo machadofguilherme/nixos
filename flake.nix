@@ -25,6 +25,12 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      geckium = pkgs.fetchFromGitHub {
+        owner = "angelbruni";
+        repo = "Geckium";
+        rev = "main";
+        sha256 = "sha256-M7UVnPsq6YeOzt5ZUxvNfgRz6MMfcriiLpG+CpMLgyQ=";
+      };
     in
     {
       nixosConfigurations = {
@@ -56,7 +62,7 @@
         ];
 
         specialArgs = {
-           inherit system nur plasma-manager inputs;
+           inherit system nur plasma-manager inputs geckium;
         };
        };
      };

@@ -1,17 +1,9 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, geckium, ... }:
 
 # Geckium
 # Para atualizar:
 # nix-prefetch-url --unpack https://github.com/angelbruni/Geckium/archive/refs/heads/main.tar.gz
 
-let
-  geckium = pkgs.fetchFromGitHub {
-    owner = "angelbruni";
-    repo = "Geckium";
-    rev = "main";
-    sha256 = "sha256-M7UVnPsq6YeOzt5ZUxvNfgRz6MMfcriiLpG+CpMLgyQ=";
-  };
-in
 {
   programs.firefox = {
     enable = true;
