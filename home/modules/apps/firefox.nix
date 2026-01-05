@@ -20,9 +20,9 @@ in
       isDefault = true;
 
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        jsonview
         ublock-origin
         duckduckgo-privacy-essentials
-        json-formatter
       ];
 
       settings = {
