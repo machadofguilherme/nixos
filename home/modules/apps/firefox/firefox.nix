@@ -11,11 +11,6 @@ let
     rev = "main";
     sha256 = "sha256-M7UVnPsq6YeOzt5ZUxvNfgRz6MMfcriiLpG+CpMLgyQ=";
   };
-
-  jsonFormatter = pkgs.fetchurl {
-    url = "file://${toString ./addons/json_formatter.xpi}";
-    sha256 = "sha256-GenVkxQGt1GjCoP/9wi1FIAOdhenjPYtMMK86t5BMUQ=";
-  };
 in
 {
   programs.firefox = {
@@ -26,7 +21,6 @@ in
 
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
-        jsonFormatter
         duckduckgo-privacy-essentials
       ];
 
