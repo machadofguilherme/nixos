@@ -38,6 +38,11 @@ in
         "toolkit.telemetry.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
 
+        # Geckium core
+        "geckium.enabled" = true;
+        "geckium.theme" = "chrome";
+        "geckium.style" = "modern";
+
         # 🧭 UX mais Chrome-like
         "browser.tabs.tabmanager.enabled" = false;
         "browser.compactmode.show" = true;
@@ -58,16 +63,7 @@ in
     };
   };
 
-  # 📦 Arquivos do Geckium
-  home.file.".mozilla/firefox/guilherme/chrome/geckium".source = geckium;
-
-  # 🎨 userChrome.css
-  home.file.".mozilla/firefox/guilherme/chrome/userChrome.css".text = ''
-    @import "geckium/chrome/userChrome.css";
-  '';
-
-  # 🌐 userContent.css (opcional)
-  home.file.".mozilla/firefox/guilherme/chrome/userContent.css".text = ''
-    @import "geckium/chrome/userContent.css";
-  '';
+  # 🎨 CSS do Geckium (perfil)
+  home.file.".mozilla/firefox/guilherme/chrome".source =
+    "${geckium}/Profile Folder/chrome";
 }

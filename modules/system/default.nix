@@ -7,5 +7,6 @@
     ./gaming.nix
     ./keyboard.nix
     ./packages.nix
+    ./environment.nix
 	];
 }
