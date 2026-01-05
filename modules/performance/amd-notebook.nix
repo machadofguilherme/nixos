@@ -8,7 +8,8 @@
     settings = {
       ac = {
         governor = "schedutil";
-        turbo = "auto";
+        turbo = "never";        
+        # turbo = "auto";
       };
 
       battery = {

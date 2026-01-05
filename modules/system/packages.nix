@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     keychain
+    firefox
     vivaldi
     vivaldi-ffmpeg-codecs
     unrar
