@@ -1,8 +1,8 @@
 { pkgs, lib, ... }:
 
-# Geckium
+# Aris-t2
 # Para atualizar:
-# nix-prefetch-url --unpack https://github.com/angelbruni/Geckium/archive/refs/heads/main.tar.gz
+# nix-prefetch-url --unpack https://github.com/Aris-t2/CustomCSSforFx/archive/refs/heads/main.tar.gz
 
 let
   fxcss = pkgs.fetchFromGitHub {
@@ -65,8 +65,4 @@ in
 
   home.file.".mozilla/firefox/guilherme/chrome".source =
     "${fxcss}/chrome";
-
-  home.file.".mozilla/firefox/guilherme/chrome/userChrome.css".text = ''
-    @import "./userChrome.css";
-  '';
 }
