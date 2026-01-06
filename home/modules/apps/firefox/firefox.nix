@@ -1,26 +1,17 @@
 { pkgs, lib, ... }:
 
-# Aris-t2
-# Para atualizar:
-# nix-prefetch-url --unpack https://github.com/Aris-t2/CustomCSSforFx/archive/refs/heads/main.tar.gz
+# Para obter o rev do repositório
+# git ls-remote https://github.com/user/repo
 
-let
-  fxcss = pkgs.fetchFromGitHub {
-    owner = "Aris-t2";
-    repo = "CustomCSSforFx";
-    rev = "master";
-    sha256 = "sha256-VV3beoM9wovs6/qnR2om5uYaC5mHKha8uQBqFOr3w7c=";
-  };
-in
 {
   programs.firefox = {
     enable = true;
 
-    languagePacks = [
-      "pt-BR"
-    ];
+    languagePacks = [ "pt-BR" ];
 
     profiles.guilherme = {
+      id = 0;
+      name = "guilherme";
       isDefault = true;
 
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -28,41 +19,34 @@ in
         duckduckgo-privacy-essentials
       ];
 
+      # Configurações essenciais para o Geckium
       settings = {
-        # 🧬 Permite CSS customizado
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
-        # 🔐 Privacidade essencial (sem quebrar sites)
+        "browser.tabs.drawInTitlebar" = true; 
+        "browser.uidensity" = 1;
+        "layers.acceleration.force-enabled" = true; # Melhora a renderização do tema
         "privacy.globalprivacycontrol.enabled" = true;
         "privacy.donottrackheader.enabled" = true;
         "toolkit.telemetry.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
-
-        # Geckium core
-        "geckium.enabled" = true;
-        "geckium.theme" = "chrome";
-        "geckium.style" = "modern";
-
-        # 🧭 UX mais Chrome-like
-        "browser.tabs.tabmanager.enabled" = false;
-        "browser.compactmode.show" = true;
-        "browser.uidensity" = 1;
-
-        # 🧼 Limpa ruído visual
+        "svg.context-properties.content.enabled" = true;
+        
+        # Suas preferências existentes
+        "intl.locale.requested" = "pt-BR";
+        "browser.search.defaultenginename" = "DuckDuckGo";
         "browser.newtabpage.enabled" = false;
         "browser.startup.homepage" = "https://duckduckgo.com";
-        
-        # Buscador padrão
-        "browser.search.defaultenginename" = "DuckDuckGo";
         "browser.search.order.1" = "DuckDuckGo";
         "browser.urlbar.placeholderName" = "DuckDuckGo";
-
-        # Português brasileiro
-        "intl.locale.requested" = "pt-BR";
       };
     };
   };
 
-  home.file.".mozilla/firefox/guilherme/chrome".source =
-    "${fxcss}/chrome";
+   home.file.".mozilla/firefox/guilherme/chrome" = {
+    source = "${builtins.fetchGit {
+      url = "https://github.com/Godiesc/firefox-one";
+      rev = "0f12f6658eb3c99581f4ddc517dcb0872a1ee60e";
+    }}/chrome";
+    recursive = true;
+  };
 }

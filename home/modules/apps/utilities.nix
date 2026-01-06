@@ -11,5 +11,6 @@
     cowsay
     ffmpeg
     killall
+    kdePackages.kcalc
   ];
 }
