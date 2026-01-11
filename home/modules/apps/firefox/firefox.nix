@@ -9,6 +9,14 @@
 
     languagePacks = [ "pt-BR" ];
 
+    nativeMessagingHosts.packages = with pkgs; [ 
+      kdePackages.plasma-browser-integration
+    ];
+
+    preferences = {
+      "widget.use-xdg-desktop-portal.file-picker" = 1;
+    };
+
     profiles.guilherme = {
       id = 0;
       name = "guilherme";
@@ -18,7 +26,7 @@
         ublock-origin
         duckduckgo-privacy-essentials
       ];
-
+      
       # Configurações essenciais para o Geckium
       settings = {
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
