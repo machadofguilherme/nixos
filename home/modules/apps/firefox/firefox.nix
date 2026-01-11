@@ -9,7 +9,7 @@
 
     languagePacks = [ "pt-BR" ];
 
-    nativeMessagingHosts.packages = with pkgs; [ 
+    nativeMessagingHosts = with pkgs; [ 
       kdePackages.plasma-browser-integration
     ];
 
