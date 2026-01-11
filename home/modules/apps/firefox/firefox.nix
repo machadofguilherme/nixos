@@ -13,10 +13,6 @@
       kdePackages.plasma-browser-integration
     ];
 
-    preferences = {
-      "widget.use-xdg-desktop-portal.file-picker" = 1;
-    };
-
     profiles.guilherme = {
       id = 0;
       name = "guilherme";
