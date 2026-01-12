@@ -1,0 +1,59 @@
+{
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 500,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "boundary",
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.validate": true,
+
+  "prisma.formatOnSave": true,
+
+  "git.enableSmartCommit": true,
+
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "material-icon-theme",
+
+  "settingsSync.enabled": false,
+  "update.mode": "none",
+
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+
+  "telemetry.telemetryLevel": "off",
+  "locale": "pt-BR"
+}

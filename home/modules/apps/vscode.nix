@@ -7,11 +7,12 @@ in
   programs.vscode = {
     enable = true;
 
+    # evita o VSCode tentar escrever/extensões dinamicamente
     mutableExtensionsDir = false;
 
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        # Aparência
+        # Idioma
         ms-ceintl.vscode-language-pack-pt-br
 
         # Nix
@@ -40,7 +41,7 @@ in
       ]
       ++ [
         (marketplace {
-           mktplcRef = {
+          mktplcRef = {
             name = "es7-react-js-snippets";
             publisher = "dsznajder";
             version = "4.4.3";
@@ -50,76 +51,6 @@ in
       ];
     };
   };
-
-  home.file.".config/Code/User/settings.json".text = ''
-    {
-      "files.autoSave": "afterDelay",
-      "files.autoSaveDelay": 1000,
-      "files.trimTrailingWhitespace": true,
-      "files.insertFinalNewline": true,
-
-      "editor.tabSize": 2,
-      "editor.insertSpaces": true,
-      "editor.formatOnSave": true,
-      "editor.formatOnPaste": true,
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-      },
-
-      "editor.wordWrap": "on",
-      "editor.minimap.enabled": false,
-      "editor.renderWhitespace": "boundary",
-
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-
-      "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "[javascriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-      "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-      },
-
-      "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-      ],
-
-      "tailwindCSS.emmetCompletions": true,
-      "tailwindCSS.validate": true,
-
-      "prisma.formatOnSave": true,
-
-      "git.enableSmartCommit": true,
-
-      "workbench.startupEditor": "none",
-      "workbench.iconTheme": "material-icon-theme",
-      "workbench.settings.enableNaturalLanguageSearch": false,
-      "workbench.settings.editor": "json",
-      "workbench.settings.openDefaultSettings": false,
-      "workbench.settings.useSplitJSON": false,
-
-      "configurationSync.enable": false,
-      "settingsSync.enabled": false,
-
-      "update.mode": "none",
-      "window.restoreWindows": "none",
-
-      "extensions.autoUpdate": false,
-      "extensions.autoCheckUpdates": false,
-
-      "telemetry.telemetryLevel": "off"
-
-      "locale": "pt-BR",
-    }
-  '';
 
   home.file.".config/Code/User/settings.json".source =
     lib.mkForce (
