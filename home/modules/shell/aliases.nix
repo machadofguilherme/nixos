@@ -109,6 +109,7 @@
       hm-apps      = "nano /etc/nixos/home/modules/apps/default.nix";
       hm-menu      = "nano /etc/nixos/home/modules/apps/menu.nix";
       hm-media     = "nano /etc/nixos/home/modules/apps/media.nix";
+      hm-vscode    = "nano /etc/nixos/home/modules/apps/vscode.nix";
       hm-firefox   = "nano /etc/nixos/home/modules/apps/firefox/firefox.nix";
       hm-devtools  = "nano /etc/nixos/home/modules/apps/devtools.nix";
       hm-utilities = "nano /etc/nixos/home/modules/apps/utilities.nix";
