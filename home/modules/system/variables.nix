@@ -1,5 +1,4 @@
 { config, pkgs, ... }: {
-  # Variáveis de Sessão (Editor padrão)
   home.sessionVariables = {
     EDITOR = "nano";
     XCURSOR_THEME = "breeze_cursors";
@@ -13,5 +12,6 @@
     MESA_GLSL_VERSION_OVERRIDE = "460";
     DXVK_ASYNC = "1";
     __GL_SHADER_DISK_CACHE = "1";
+    VSCODE_LOCALE = "pt-BR";
   };
 }

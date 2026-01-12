@@ -6,7 +6,7 @@
       # │ 🔄  ATUALIZAÇÃO DO SISTEMA │
       # ╰────────────────────────────╯
       nix-update-flake = "sudo nix flake update --flake /etc/nixos";
-      nix-rebuild        = "sudo nixos-rebuild switch --flake /etc/nixos#hostname";
+      nix-rebuild        = "sudo nixos-rebuild switch --impure --flake /etc/nixos#hostname";
       nix-system-upgrade = "nix-update-flake && nix-rebuild";
 
       # ╭─────────────────────────────────────────╮

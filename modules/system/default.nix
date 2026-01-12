@@ -2,6 +2,7 @@
   imports = [
     ./cli.nix
     ./user.nix
+    ./zram.nix
     ./fonts.nix
     ./shell.nix
     ./gaming.nix
