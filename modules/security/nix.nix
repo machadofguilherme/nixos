@@ -1,32 +1,36 @@
-{ config, pkgs, lib, ... }: {
-  # Experimental
-  nix.settings.experimental-features = [ 
-    "nix-command" 
-    "flakes" 
-  ];
+{ config, pkgs, lib, ... }:
 
-  # Licenciamento de Software
-  nixpkgs.config.allowUnfree = false;
+{
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
-  # Usuários Confiáveis
-  nix.settings.trusted-users = [ 
-    "root" 
-    "guilherme"
-  ];
+    trusted-users = [
+      "root"
+      "guilherme"
+    ];
 
-  # Cores
-  nix.settings.cores = 16;
+    cores = 12;
+    max-jobs = "auto";
 
-  # Limpeza e Otimização do Sistema
+    sandbox = true;
+    builders-use-substitutes = true;
+
+    keep-outputs = false;
+    keep-derivations = false;
+
+    auto-optimise-store = true;
+  };
+
   nix.optimise.automatic = true;
-  nix.settings.auto-optimise-store = true;
+
   services.angrr = {
     enable = true;
     settings = {
       global = {
-        retention = {
-         maxAge = "2d";
-        };
+        retention.maxAge = "2d";
         rules = {
           ownedOnly = false;
           removeRoot = false;
