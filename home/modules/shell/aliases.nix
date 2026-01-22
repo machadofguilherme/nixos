@@ -116,12 +116,9 @@
       hm-utilities     = "nano /etc/nixos/home/modules/apps/utilities.nix";
 
       # ╭────────────────────────────╮
-      # │ 🎨  HOME MANAGER: Tema   │
+      # │ 🎨  HOME MANAGER: Aparência│
       # ╰────────────────────────────╯
-      hm-gnome      = "nano /etc/nixos/home/modules/system/gnome.nix";
-      hm-gtk        = "nano /etc/nixos/home/modules/system/gtk.nix";
-      hm-theme      = "nano /etc/nixos/home/modules/theme/default.nix";
-      hm-mactahoe   = "nano /etc/nixos/home/modules/theme/mactahoe.nix";      
+      hm-gnome = "nano /etc/nixos/home/modules/system/gnome.nix";
 
       # ╭────────────────────────────╮
       # │ 🧱  HOME MANAGER: SYSTEM   │

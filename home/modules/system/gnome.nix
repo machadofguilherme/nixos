@@ -1,11 +1,16 @@
 { pkgs, ... }: {
   dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "cloudflare-warp-toggle@pavel.finkelshteyn.gmail.com"
+        "just-perfection-desktop@just-perfection"
+      ];
+    };
+
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       accent-color = "red";
-      gtk-theme = "MacTahoe-Dark";
-      icon-theme = "Tela-circle";
-      cursor-theme = "Bibata-Modern-Classic";
     };
   };
 
