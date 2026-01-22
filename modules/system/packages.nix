@@ -11,7 +11,6 @@
     unrar
     nix-heuristic-gc
     vulkan-tools
-    kdePackages.kde-gtk-config
-    kdePackages.qqc2-desktop-style
+    gamescope
   ];
 }

@@ -1,32 +1,35 @@
 { pkgs, ... }:
 
-{
+let
+  mactahoe = pkgs.callPackage ../themes/mactahoe.nix {};
+in {
   gtk = {
     enable = true;
 
     theme = {
-      name = "Breeze-Dark";
-      package = pkgs.kdePackages.breeze-gtk;
+      name = "MacTahoe-Dark";
+      package = mactahoe;
     };
 
     iconTheme = {
-      name = "breeze-dark";
-      package = pkgs.kdePackages.breeze-icons;
+      name = "Tela-circle";
+      package = pkgs.tela-icon-theme;
     };
 
     cursorTheme = {
-      name = "Breeze";
-      package = pkgs.kdePackages.breeze;
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
     };
   };
-  
+
   home.file.".local/share/flatpak/overrides/global".text = ''
     [Context]
     filesystems=/nix/store:ro;xdg-config/gtk-3.0:ro;xdg-config/gtk-4.0:ro;
-    
+
     [Environment]
-    GTK_THEME=Breeze-Dark
-    ICON_THEME=breeze-dark
-    XCURSOR_THEME=Breeze
+    GTK_THEME=MacTahoe-Dark
+    ICON_THEME=Tela-circle
+    XCURSOR_THEME=Bibata-Modern-Classic
   '';
 }

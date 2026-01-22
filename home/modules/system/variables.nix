@@ -1,10 +1,10 @@
 { config, pkgs, ... }: {
   home.sessionVariables = {
     EDITOR = "nano";
-    XCURSOR_THEME = "breeze_cursors";
+    # XCURSOR_THEME = "breeze_cursors";
     MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
-    QT_QPA_PLATFORM = "wayland";
+    # QT_QPA_PLATFORM = "wayland";
     AMD_VULKAN_ICD = "RADV";
     RADV_PERFTEST = "aco";
     MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";

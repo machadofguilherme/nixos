@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  portalBackend = "kde";
+  portalBackend = "gnome";
 in
 {
   xdg.portal = {
@@ -12,7 +12,7 @@ in
       if portalBackend == "kde" then
         [ pkgs.kdePackages.xdg-desktop-portal-kde ]
       else
-        [ ];
+        [ pkgs.xdg-desktop-portal-gnome ];
 
     config.common.default = [ portalBackend ];
   };

@@ -2,10 +2,10 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-    };
-
-    "org/gnome/desktop/interface" = {
       accent-color = "red";
+      gtk-theme = "MacTahoe-Dark";
+      icon-theme = "Tela-circle";
+      cursor-theme = "Bibata-Modern-Classic";
     };
   };
 
@@ -13,7 +13,5 @@
     gnomeExtensions.appindicator
     gnomeExtensions.cloudflare-warp-toggle
     gnomeExtensions.just-perfection
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.gsconnect
   ];
 }

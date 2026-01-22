@@ -35,6 +35,7 @@ in
         tamasfe.even-better-toml
         yzhang.markdown-all-in-one
         naumovs.color-highlight
+        esbenp.prettier-vscode
 
         # Ícones
         pkief.material-icon-theme

@@ -1,10 +1,10 @@
 { config, pkgs, ... }: {
-  # Permite Plasma
-  services.desktopManager.plasma6.enable = true;
+  # Permite GNOME
+  services.desktopManager.gnome.enable = true;
 
-  services.displayManager.sddm ={
-    enable = true;
-    wayland.enable = true;
-    settings.General.DisplayServer = "wayland";
+  services.displayManager = {
+    gdm.enable = true;
+    gdm.wayland = true;
+    defaultSession = "gnome";
   };
 }

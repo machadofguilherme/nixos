@@ -116,10 +116,11 @@
       hm-utilities     = "nano /etc/nixos/home/modules/apps/utilities.nix";
 
       # ╭────────────────────────────╮
-      # │ 🎨  HOME MANAGER: Plasma   │
+      # │ 🎨  HOME MANAGER: Tema   │
       # ╰────────────────────────────╯
-      hm-plasma     = "nano /etc/nixos/home/modules/system/plasma.nix";
+      hm-gnome   = "nano /etc/nixos/home/modules/system/gnome.nix";
       hm-gtk     = "nano /etc/nixos/home/modules/system/gtk.nix";
+      hm-theme   = "nano /etc/nixos/home/modules/theme/mactahoe.nix";
 
       # ╭────────────────────────────╮
       # │ 🧱  HOME MANAGER: SYSTEM   │
