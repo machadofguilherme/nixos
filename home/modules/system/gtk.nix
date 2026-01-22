@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  mactahoe = pkgs.callPackage ../themes/mactahoe.nix {};
+  mactahoe = pkgs.callPackage  ../../pkgs/mactahoe.nix {};
 in {
   gtk = {
     enable = true;

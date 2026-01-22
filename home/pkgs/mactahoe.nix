@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, lib, ... }:
 
 pkgs.stdenvNoCC.mkDerivation {
   pname = "mactahoe-gtk-theme";
