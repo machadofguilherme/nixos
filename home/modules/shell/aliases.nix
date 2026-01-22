@@ -118,9 +118,10 @@
       # ╭────────────────────────────╮
       # │ 🎨  HOME MANAGER: Tema   │
       # ╰────────────────────────────╯
-      hm-gnome   = "nano /etc/nixos/home/modules/system/gnome.nix";
-      hm-gtk     = "nano /etc/nixos/home/modules/system/gtk.nix";
-      hm-theme   = "nano /etc/nixos/home/modules/theme/mactahoe.nix";
+      hm-gnome      = "nano /etc/nixos/home/modules/system/gnome.nix";
+      hm-gtk        = "nano /etc/nixos/home/modules/system/gtk.nix";
+      hm-theme      = "nano /etc/nixos/home/modules/theme/default.nix";
+      hm-mactahoe   = "nano /etc/nixos/home/modules/theme/mactahoe.nix";      
 
       # ╭────────────────────────────╮
       # │ 🧱  HOME MANAGER: SYSTEM   │

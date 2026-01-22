@@ -10,6 +10,7 @@
     ./modules/apps
     ./modules/shell
     ./modules/system
+    ./modules/theme
   ];
 
   home.activation = {
