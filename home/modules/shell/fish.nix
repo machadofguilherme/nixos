@@ -10,7 +10,7 @@
       ${pkgs.pfetch}/bin/pfetch
 
       # ╭────────────────────────────╮
-      # │ 🧹 Limpeza completa da Nix  │
+      # │ 🧹 Limpeza completa da Nix │
       # ╰────────────────────────────╯
       function nix-full-clean
         echo "🧹 Iniciando limpeza completa da Nix Store..."
@@ -21,6 +21,52 @@
         angrr run
         nix-heuristic-gc 20000000000
         echo "✅ Limpeza concluída com sucesso!"
+      end
+
+      # ╭────────────────────────────╮
+      # │ 🎮 Ativando o Modo Genshin │
+      # ╰────────────────────────────╯
+      function genshin-on
+        echo "🎮 Ativando Modo Genshin..."
+        
+        echo "⏸️  Pausando auto-cpufreq"
+        sudo systemctl stop auto-cpufreq.service
+
+        echo "⚙️  Ajustando CPU para performance"
+        sudo cpupower frequency-set -g performance
+
+        if test -e /sys/devices/system/cpu/cpufreq/boost
+          echo 1 | sudo tee /sys/devices/system/cpu/cpufreq/boost > /dev/null
+        end
+
+        echo "🧠 Desativando OOM agressivo"
+        sudo systemctl stop earlyoom.service
+        sudo systemctl stop systemd-oomd.service
+
+        echo "🟢 Sistema pronto. Abra o An Anime Game Launcher e jogue."
+      end
+
+      # ╭────────────────────────────────╮
+      # │ 🎮 Desativando o Modo Genshin  │
+      # ╰────────────────────────────────╯
+      function genshin-off
+        echo "🧘 Desativando Modo Genshin..."
+
+        echo "▶️  Retomando auto-cpufreq"
+        sudo systemctl start auto-cpufreq.service
+
+        echo "⚙️  Restaurando governor"
+        sudo cpupower frequency-set -g schedutil
+
+        if test -e /sys/devices/system/cpu/cpufreq/boost
+          echo 0 | sudo tee /sys/devices/system/cpu/cpufreq/boost > /dev/null
+        end
+
+        echo "🧠 Reativando OOM"
+        sudo systemctl start systemd-oomd.service
+        sudo systemctl start earlyoom.service
+
+        echo "🔵 Sistema restaurado ao normal."
       end
 
       # ╭────────────────────────────╮

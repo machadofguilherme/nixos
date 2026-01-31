@@ -1,8 +1,9 @@
 { pkgs, ... }: {
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   boot.kernelParams = [
     "ipv6.disable=1"
+    "acpi_ec_timeout=500"
   ];
 
   boot.initrd.kernelModules = [
