@@ -52,16 +52,6 @@
       function genshin-off
         echo "🧘 Desativando Modo Genshin..."
 
-        echo "▶️  Retomando auto-cpufreq"
-        sudo systemctl start auto-cpufreq.service
-
-        echo "⚙️  Restaurando governor"
-        sudo cpupower frequency-set -g schedutil
-
-        if test -e /sys/devices/system/cpu/cpufreq/boost
-          echo 0 | sudo tee /sys/devices/system/cpu/cpufreq/boost > /dev/null
-        end
-
         echo "🧠 Reativando OOM"
         sudo systemctl start systemd-oomd.service
         sudo systemctl start earlyoom.service
