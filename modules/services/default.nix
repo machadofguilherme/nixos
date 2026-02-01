@@ -5,6 +5,5 @@
     ./print.nix
     ./docker.nix
     ./touchpad.nix
-    ./gamemode.nix
   ];
 }

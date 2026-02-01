@@ -9,10 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
 
     nur = {
@@ -21,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, plasma-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, aagl, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -41,7 +40,10 @@
           home-manager.nixosModules.home-manager
 
           # Usuário
-          {
+          {        
+            imports = [ aagl.nixosModules.default ];
+            nix.settings = aagl.nixConfig;
+
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -50,7 +52,6 @@
               users.guilherme = {
                 imports = [
                   ./home/home.nix
-                  plasma-manager.homeModules.plasma-manager
                 ];
               };
             };
@@ -58,7 +59,7 @@
       ];
 
       specialArgs = {
-        inherit system nur plasma-manager inputs;
+        inherit system nur aagl inputs;
       };
     };
    };
