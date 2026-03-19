@@ -68,8 +68,6 @@
                 "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
                 "ezkea.cachix.org-1:ioBm7n/6S2se7W7Ewi9jTCH8/p+MfdZfMhF0eF/A47I="
               ];
-
-              #accept-flake-config = false;
             };
 
             imports = [ aagl.nixosModules.default ];
