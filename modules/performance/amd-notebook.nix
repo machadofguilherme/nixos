@@ -49,28 +49,43 @@
   systemd.services.gpu-power-normal = {
     description = "Set GPU to balanced/auto mode";
     wantedBy = [ "multi-user.target" ];
-    after = [ "sysinit.target" ];
+    after = [ "multi-user.target" ];
 
     serviceConfig = {
       Type = "oneshot";
     };
 
     script = ''
-      echo "balanced" > /sys/class/drm/card0/device/power_dpm_state
-      echo "auto" > /sys/class/drm/card0/device/power_dpm_force_performance_level
+      GPU_PATH="/sys/class/drm/card1/device"
+
+      if [ -d "$GPU_PATH" ]; then
+        if [ -f "$GPU_PATH/power_dpm_force_performance_level" ]; then
+          echo "auto" > "$GPU_PATH/power_dpm_force_performance_level" || true
+        fi
+
+        if [ -f "$GPU_PATH/power_dpm_state" ]; then
+          echo "balanced" > "$GPU_PATH/power_dpm_state" || true
+        fi
+      fi
     '';
   };
 
   # GPU Jogos
   systemd.services.gpu-power-gaming = {
     description = "Set GPU to high performance mode";
-  
+
     serviceConfig = {
       Type = "oneshot";
     };
 
     script = ''
-      echo "high" > /sys/class/drm/card0/device/power_dpm_force_performance_level
+      GPU_PATH="/sys/class/drm/card1/device"
+
+      if [ -d "$GPU_PATH" ]; then
+        if [ -f "$GPU_PATH/power_dpm_force_performance_level" ]; then
+          echo "high" > "$GPU_PATH/power_dpm_force_performance_level" || true
+        fi
+      fi
     '';
   };
 }
