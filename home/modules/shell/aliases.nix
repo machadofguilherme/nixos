@@ -138,6 +138,12 @@
       # ╰────────────────────────────╯
       docker-up   = "docker compose up -d";
       docker-down = "docker compose down";
+
+      # ╭────────────────────────────╮
+      # │ 🎮  GPU                    │
+      # ╰────────────────────────────╯
+      gpu-game    = "sudo systemctl start gpu-power-gaming";
+      gpu-normal  = "sudo systemctl start gpu-power-normal";
     };
   };
 }

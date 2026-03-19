@@ -7,7 +7,7 @@
 
     settings = {
       ac = {
-        governor = "schedutil";
+        governor = "powersave";
         turbo = "auto";
       };
 
@@ -42,6 +42,35 @@
           echo "3000000" > "$cpu_freq"
         fi
       done
+    '';
+  };
+
+  # GPU Normal
+  systemd.services.gpu-power-normal = {
+    description = "Set GPU to balanced/auto mode";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "sysinit.target" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+    };
+
+    script = ''
+      echo "balanced" > /sys/class/drm/card0/device/power_dpm_state
+      echo "auto" > /sys/class/drm/card0/device/power_dpm_force_performance_level
+    '';
+  };
+
+  # GPU Jogos
+  systemd.services.gpu-power-gaming = {
+    description = "Set GPU to high performance mode";
+  
+    serviceConfig = {
+      Type = "oneshot";
+    };
+
+    script = ''
+      echo "high" > /sys/class/drm/card0/device/power_dpm_force_performance_level
     '';
   };
 }
