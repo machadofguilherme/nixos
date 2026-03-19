@@ -1,6 +1,5 @@
 { config, pkgs, zen-browser, system, ... }: {
   programs.anime-game-launcher.enable = true;
-  # programs.anime-games-launcher.enable = true;
 
   environment.systemPackages = with pkgs; [
     unrar

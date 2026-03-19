@@ -11,5 +11,6 @@
     cowsay
     ffmpeg
     killall
+    lm_sensors
   ];
 }
