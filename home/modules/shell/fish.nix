@@ -16,8 +16,8 @@
          echo "🧹 Iniciando limpeza profunda (Sistema e Usuário)..."
     
          # Remove gerações antigas (Sistema e Usuário)
-         sudo nix-collect-garbage --delete-older-than 2d
-         nix-collect-garbage --delete-older-than 2d
+         sudo nix-collect-garbage -d
+         nix-collect-garbage -d
     
          # Remove links mortos e otimiza a store (Hardlinking)
          echo "🔗 Otimizando links da Nix Store..."
