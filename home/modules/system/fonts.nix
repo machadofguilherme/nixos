@@ -4,6 +4,8 @@
     meslo-lgs-nf
     jetbrains-mono
     fira-code-symbols
+    freetype
+    fontconfig
   ];
 
   # Configuração das fontes padrão para emoji e monospace

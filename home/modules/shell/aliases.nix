@@ -55,6 +55,7 @@
       cfg-nix      = "nano /etc/nixos/modules/security/nix.nix";
       cfg-sudo     = "nano /etc/nixos/modules/security/sudo.nix";
       cfg-unfree   = "nano /etc/nixos/modules/security/unfree.nix";
+      cfg-ulimit   = "nano /etc/nixos/modules/security/ulimit.nix";
 
       # ╭────────────────────────────╮
       # │ 🖥️  MÓDULOS: GRAPHICAL      │
