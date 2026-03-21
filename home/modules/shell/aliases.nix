@@ -81,7 +81,6 @@
       cfg-print     = "nano /etc/nixos/modules/services/print.nix";
       cfg-touchpad  = "nano /etc/nixos/modules/services/touchpad.nix";
       cfg-docker    = "nano /etc/nixos/modules/services/docker.nix";
-      cfg-gamemode  = "nano /etc/nixos/modules/services/gamemode.nix";
       cfg-warp  = "nano /etc/nixos/modules/services/warp.nix";
 
       # ╭────────────────────────────╮
