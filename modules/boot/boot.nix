@@ -1,8 +1,16 @@
 { config, pkgs, ... }: {
   boot.initrd = {
-   systemd.enable = true;
-   includeDefaultModules = false;
-   availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+    systemd.enable = true;
+    includeDefaultModules = false;
+
+    availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "usb_storage"
+      "sd_mod"
+      "i8042"
+      "atkbd"
+    ];
   };
 
   boot.loader = {
@@ -10,19 +18,19 @@
 
     systemd-boot = {
       enable = true;
-      configurationLimit = 5; 
+      configurationLimit = 3; 
     };
 
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
-
-    grub.enable = false;
   };
 
   boot.consoleLogLevel = 0;
-  boot.kernelParams = [ "quiet" "udev.log_level=3" "clearcpuid=514" ];
+  boot.kernelParams = [ "quiet" "udev.log_level=3" ];
+
+  # boot.kernelParams = [ "quiet" "udev.log_level=3" "clearcpuid=514" ];
 
   systemd.services.NetworkManager-wait-online.enable = false;
 

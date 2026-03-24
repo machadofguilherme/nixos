@@ -8,6 +8,7 @@
     maven
     ngrok
     vscode
+    rustup
     postman
     mongosh
     openjdk21

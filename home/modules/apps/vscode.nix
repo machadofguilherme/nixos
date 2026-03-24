@@ -25,6 +25,9 @@ in
         formulahendry.auto-rename-tag
         mikestead.dotenv
 
+        # Rust
+        rust-lang.rust-analyzer
+
         # Backend / DB
         prisma.prisma
         mongodb.mongodb-vscode
