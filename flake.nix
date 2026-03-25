@@ -2,7 +2,8 @@
   description = "Flake NixOS + Home Manager + NUR";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/e16110f94595321a3fa1cd2776bfed236d28eee4";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
@@ -24,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }@inputs:
+  outputs = { self, nixpkgs,  home-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -48,6 +49,7 @@
                ];
              }
 
+          # Configuração do sistema
           ./configuration.nix
 
           # NUR
@@ -57,17 +59,29 @@
           home-manager.nixosModules.home-manager
 
           # Usuário
-          { 
+            { 
             nix.settings = {
-              substituters = [ 
-                "https://attic.xuyh0120.win/lantian"
+              substituters = [
+                "https://cache.nixos.org"
+                "https://cosmic.cachix.org"
                 "https://ezkea.cachix.org"
+                "https://attic.xuyh0120.win/lantian"
+              ];
+
+              trusted-substituters = [
+                "https://cosmic.cachix.org"
+                "https://ezkea.cachix.org"
+                "https://attic.xuyh0120.win/lantian"
+              ];
+
+              trusted-public-keys = [
+                "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+                "cosmic.cachix.org-1:DmuuE97W8R6o749YxUf1OOf96R7T1Y/hZ+F8XzEa+eE="
+                "ezkea.cachix.org-1:ioBm3RLqbWgsS9m6L8x1N8xZpB0X6R8W7ZkkxV8B68o="
+                "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
               ];
   
-              trusted-public-keys = [ 
-                "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-                "ezkea.cachix.org-1:ioBm7n/6S2se7W7Ewi9jTCH8/p+MfdZfMhF0eF/A47I="
-              ];
+              trusted-users = [ "root" "guilherme" ];
             };
 
             imports = [ aagl.nixosModules.default ];

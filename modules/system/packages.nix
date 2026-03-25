@@ -3,6 +3,7 @@
 
   environment.systemPackages = with pkgs; [
     unrar
+    cachix
     keychain
     gamescope
     bubblewrap

@@ -5,9 +5,9 @@
       # ╭────────────────────────────╮
       # │ 🔄  ATUALIZAÇÃO DO SISTEMA │
       # ╰────────────────────────────╯
-      nix-update-flake = "sudo nix flake update --flake /etc/nixos";
+      nix-update-flake   = "sudo nix flake update --flake /etc/nixos";
       nix-rebuild        = "sudo nixos-rebuild switch --impure --flake /etc/nixos#hostname";
-      nix-system-upgrade = "nix-update-flake && nix-rebuild";
+      nix-rebuild-test   = "sudo nixos-rebuild build --override-input nixpkgs github:NixOS/nixpkgs/nixos-unstable --impure --flake /etc/nixos";
 
       # ╭─────────────────────────────────────────╮
       # │ 🧹 Limpeza inteligente da Nix Store     │
@@ -64,7 +64,6 @@
       cfg-base      = "nano /etc/nixos/modules/graphical/base.nix";
       cfg-drivers   = "nano /etc/nixos/modules/graphical/drivers.nix";
       cfg-environment = "nano /etc/nixos/modules/graphical/environment.nix";
-      cfg-environment-exclude = "nano /etc/nixos/modules/graphical/environment-exclude.nix";
       cfg-portal    = "nano /etc/nixos/modules/graphical/portal.nix";
 
       # ╭────────────────────────────╮
