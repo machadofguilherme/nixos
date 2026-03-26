@@ -30,8 +30,6 @@
   boot.consoleLogLevel = 0;
   boot.kernelParams = [ "quiet" "udev.log_level=3" ];
 
-  # boot.kernelParams = [ "quiet" "udev.log_level=3" "clearcpuid=514" ];
-
   systemd.services.NetworkManager-wait-online.enable = false;
 
   hardware.cpu.amd.updateMicrocode = true;

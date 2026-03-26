@@ -9,6 +9,6 @@
     bubblewrap
     vulkan-tools
     nix-heuristic-gc
-    zen-browser.packages."${system}".default
+    zen-browser.packages."${stdenv.hostPlatform.system}".default
   ];
 }

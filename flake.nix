@@ -28,7 +28,9 @@
   outputs = { self, nixpkgs,  home-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+      };
     in
     {
       nixosConfigurations = {
@@ -44,7 +46,7 @@
                    (final: prev: {
                       linuxPackages_cachyos_bore =
                           prev.linuxPackagesFor
-                             inputs.nix-cachyos-kernel.packages.${prev.system}.linux-cachyos-bore;
+                             inputs.nix-cachyos-kernel.packages.${prev.stdenv.hostPlatform.system}.linux-cachyos-bore;
                    })
                ];
              }
@@ -81,10 +83,15 @@
                 "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
               ];
   
-              trusted-users = [ "root" "guilherme" ];
+              trusted-users = [
+                "root"
+                "guilherme"
+              ];
             };
 
-            imports = [ aagl.nixosModules.default ];
+            imports = [
+              aagl.nixosModules.default
+            ];
 
             home-manager = {
               useGlobalPkgs = true;
