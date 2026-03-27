@@ -3,7 +3,8 @@
   programs.gamemode.enable = true;
 
   # Gamescope
-  programs.gamescope = {
+  programs = {
+    gamescope = {
       enable = true;
       capSysNice = true;
     };
