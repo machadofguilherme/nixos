@@ -11,7 +11,6 @@
     unrar
     cachix
     keychain
-    gamescope
     bubblewrap
     vulkan-tools
     nix-heuristic-gc

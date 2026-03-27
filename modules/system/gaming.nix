@@ -2,6 +2,15 @@
   # GameMode
   programs.gamemode.enable = true;
 
+  # Gamescope
+  programs.gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+
+    steam.gamescopeSession.enable = true;
+  };
+
   # Steam
   programs.steam = {
     enable = true;
