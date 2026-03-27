@@ -35,7 +35,7 @@
       terminal = false;
       categories = [ "Game" ];
 
-      exec = "gamemoderun gamescope -W 1920 -H 1080 -w 1280 -h 800 -r 40 -F fsr -- steam -gamepadui";
+      exec = "gamemoderun gamescope -e -W 1920 -H 1080 -w 1280 -h 800 -r 40 -F fsr -- steam -gamepadui";
     };
   };
 }
