@@ -30,7 +30,7 @@
 
     steam-deck-mode = {
       name = "Steam (Deck Mode)";
-      comment = "Steam rodando via Gamescope com FSR e 40 FPS";
+      comment = "Steam rodando via Gamescope com 40 FPS";
       icon = "steam";
       terminal = false;
       categories = [ "Game" ];
