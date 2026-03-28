@@ -8,8 +8,6 @@
       enable = true;
       capSysNice = true;
     };
-
-    steam.gamescopeSession.enable = true;
   };
 
   # Steam
