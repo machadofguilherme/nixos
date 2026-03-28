@@ -95,7 +95,7 @@
       hm-shell      = "nano /etc/nixos/home/modules/shell/default.nix";
       hm-aliases    = "nano /etc/nixos/home/modules/shell/aliases.nix";
       hm-fish       = "nano /etc/nixos/home/modules/shell/fish.nix";
-      hm-oh-my-posh = "nano /etc/nixos/home/modules/shell/oh-my-posh.nix";
+      hm-starship   = "nano /etc/nixos/home/modules/shell/starship.nix";
 
       # ╭────────────────────────────╮
       # │ 🧾  HOME MANAGER: GIT      │

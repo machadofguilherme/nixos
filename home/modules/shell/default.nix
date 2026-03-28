@@ -2,6 +2,6 @@
   imports = [
     ./fish.nix
     ./aliases.nix
-    ./oh-my-posh.nix
+    ./starship.nix
   ];
 }
