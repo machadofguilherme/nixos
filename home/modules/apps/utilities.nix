@@ -12,8 +12,5 @@
     ffmpeg
     killall
     lm_sensors
-    cosmic-ext-tweaks
-    cosmic-ext-calculator
-    cosmic-ext-applet-weather
   ];
 }

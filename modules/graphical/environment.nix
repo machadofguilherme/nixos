@@ -1,13 +1,11 @@
 { config, pkgs, ... }: {
-  # Permite COSMIC
-  services.desktopManager.cosmic.enable = true;
+  # Permite GNOME
+  services.desktopManager.gnome.enable = true;
 
   services.displayManager = {
-    defaultSession = "cosmic";
-    cosmic-greeter.enable = true;
+    defaultSession = "gnome";
+    gdm.enable = true;
   };
-
-  services.system76-scheduler.enable = true;
 
  programs.firefox.preferences = {
     "widget.gtk.libadwaita-colors.enabled" = false;

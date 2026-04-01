@@ -60,11 +60,12 @@
       # ╭────────────────────────────╮
       # │ 🖥️  MÓDULOS: GRAPHICAL      │
       # ╰────────────────────────────╯
-      cfg-graphical = "nano /etc/nixos/modules/graphical/default.nix";
-      cfg-base      = "nano /etc/nixos/modules/graphical/base.nix";
-      cfg-drivers   = "nano /etc/nixos/modules/graphical/drivers.nix";
-      cfg-environment = "nano /etc/nixos/modules/graphical/environment.nix";
-      cfg-portal    = "nano /etc/nixos/modules/graphical/portal.nix";
+      cfg-graphical           = "nano /etc/nixos/modules/graphical/default.nix";
+      cfg-base                = "nano /etc/nixos/modules/graphical/base.nix";
+      cfg-drivers             = "nano /etc/nixos/modules/graphical/drivers.nix";
+      cfg-environment         = "nano /etc/nixos/modules/graphical/environment.nix";
+      cfg-environment-exclude = "nano /etc/nixos/modules/graphical/environment-exclude.nix";
+      cfg-portal              = "nano /etc/nixos/modules/graphical/portal.nix";
 
       # ╭────────────────────────────╮
       # │ 🧩  MÓDULOS: PERFORMANCE   │
