@@ -1,6 +1,5 @@
 
 { inputs, pkgs, ... }: {
-  #boot.kernelPackages = pkgs.linuxPackagesFor inputs.nix-cachyos-kernel.packages.${pkgs.system}.linux-cachyos-bore;
   boot.kernelPackages = pkgs.linuxPackages_cachyos_bore;
 
   boot.kernelParams = [
@@ -11,6 +10,7 @@
 
   boot.initrd.kernelModules = [
     "amdgpu"
+    "ntsync"
   ];
 
   boot.kernel.sysctl = {
