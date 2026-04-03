@@ -9,6 +9,12 @@
       noDisplay = true;
       exec = "";
     };
+
+    "auto-cpufreq-gtk" = {
+      name = "auto-cpufreq";
+      noDisplay = true;
+      exec = "";
+    };
     
     fish = { 
       name = "fish";

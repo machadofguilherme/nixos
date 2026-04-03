@@ -12,5 +12,6 @@
     ffmpeg
     killall
     lm_sensors
+    gnome-extension-manager
   ];
 }
