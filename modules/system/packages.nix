@@ -8,6 +8,7 @@
     bubblewrap
     vulkan-tools
     nix-heuristic-gc
+    nix-prefetch-github
     zen-browser.packages."${stdenv.hostPlatform.system}".default
   ];
 }
