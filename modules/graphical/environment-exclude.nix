@@ -1,8 +1,8 @@
 { config, pkgs, ... } : {
   environment.gnome.excludePackages = with pkgs; [
     seahorse
-    rhythmbox
     simple-scan
+    gnome-music
     gnome-contacts
     gnome-calendar
   ];
