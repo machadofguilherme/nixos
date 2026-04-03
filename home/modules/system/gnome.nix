@@ -1,35 +1,9 @@
-#
-#   Para obter o sha256 use:
-#     nix-prefetch-github <nome-do-usuário> <nome-do-repositório>
-#
-
-{ lib, pkgs, ... }: 
-
-let
-  warpToggle = pkgs.stdenv.mkDerivation {
-    pname = "warp-toggle-gnome-extension";
-    version = "unstable";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "mrvladus";
-      repo = "warp-toggle-gnome-extension";
-      rev = "main";
-      sha256 = "sha256-tFaozFW0Yf3gNzjzOTJ2S6BYPYmZ/bvNFTM2k/ZAD/g=";
-    };
-
-    installPhase = ''
-      mkdir -p $out/share/gnome-shell/extensions/warptoggle@mrvladus.github.io
-      cp -r * $out/share/gnome-shell/extensions/warptoggle@mrvladus.github.io/
-    '';
-  };
-in
-{
+{ lib, pkgs, ... }: {
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = lib.mkForce [
         "appindicatorsupport@rgcjonas.gmail.com"
-        "warptoggle@mrvladus.github.io"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     };
@@ -93,6 +67,5 @@ in
   home.packages = with pkgs; [
     gnomeExtensions.user-themes
     gnomeExtensions.appindicator
-    warpToggle
   ];
 }
