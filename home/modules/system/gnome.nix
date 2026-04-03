@@ -4,7 +4,7 @@
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
         "cloudflare-warp-toggle@pavel.finkelshteyn.gmail.com"
-        "just-perfection-desktop@just-perfection"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     };
 
@@ -15,8 +15,8 @@
   };
 
   home.packages = with pkgs; [
+    gnomeExtensions.user-themes
     gnomeExtensions.appindicator
     gnomeExtensions.cloudflare-warp-toggle
-    gnomeExtensions.just-perfection
   ];
 }
