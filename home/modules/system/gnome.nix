@@ -1,10 +1,10 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      enabled-extensions = [
+      enabled-extensions = lib.mkForce [
         "appindicatorsupport@rgcjonas.gmail.com"
-        "cloudflare-warp-toggle@pavel.finkelshteyn.gmail.com"
+        "cloudflare-warp-toggle@khaled.is-a.dev"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     };
