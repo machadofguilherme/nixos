@@ -64,20 +64,17 @@
             nix.settings = {
               substituters = [
                 "https://cache.nixos.org"
-                "https://cosmic.cachix.org"
                 "https://ezkea.cachix.org"
                 "https://attic.xuyh0120.win/lantian"
               ];
 
               trusted-substituters = [
-                "https://cosmic.cachix.org"
                 "https://ezkea.cachix.org"
                 "https://attic.xuyh0120.win/lantian"
               ];
 
               trusted-public-keys = [
                 "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-                "cosmic.cachix.org-1:DmuuE97W8R6o749YxUf1OOf96R7T1Y/hZ+F8XzEa+eE="
                 "ezkea.cachix.org-1:ioBm3RLqbWgsS9m6L8x1N8xZpB0X6R8W7ZkkxV8B68o="
                 "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
               ];
