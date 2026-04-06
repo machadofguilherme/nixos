@@ -13,8 +13,12 @@
       # │ 🔮 Upgrade do sistema      │
       # ╰────────────────────────────╯
       function nix-system-upgrade
+         sudo nix flake update --flake /etc/nixos#hostname
+
          sudo nixos-rebuild switch --impure \
             --flake /etc/nixos#hostname
+
+         flatpak update
       end
 
       # ╭────────────────────────────╮
