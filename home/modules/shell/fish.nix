@@ -13,7 +13,7 @@
       # │ 🔮 Upgrade do sistema      │
       # ╰────────────────────────────╯
       function nix-system-upgrade
-         sudo nix flake update --flake /etc/nixos#hostname
+         sudo nix flake update --flake /etc/nixos
 
          sudo nixos-rebuild switch --impure \
             --flake /etc/nixos#hostname
