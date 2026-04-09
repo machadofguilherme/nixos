@@ -1,23 +1,15 @@
-{ config, pkgs, ... }:
-
-let
-  portalBackend = "gnome";
-in
-{
+{ config, pkgs, ... }: {
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
 
-    extraPortals =
-      if portalBackend == "kde" then
-        [ pkgs.kdePackages.xdg-desktop-portal-kde ]
-      else
-        [ pkgs.xdg-desktop-portal-gnome ];
+    extraPortals = [
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
 
-    config.common.default = [ portalBackend ];
+    config.common.default = [ "kde" ];
   };
 
   fonts.fontDir.enable = true;
-
   services.flatpak.enable = true;
 }

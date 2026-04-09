@@ -20,4 +20,6 @@
 
   environment.etc."resolv.conf".source =
     "/run/systemd/resolve/stub-resolv.conf";
+
+   hardware.bluetooth.enable = false;
 }

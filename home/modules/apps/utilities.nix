@@ -12,7 +12,5 @@
     ffmpeg
     killall
     lm_sensors
-    dconf-editor
-    gnome-extension-manager
   ];
 }

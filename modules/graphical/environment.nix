@@ -1,13 +1,9 @@
 { config, pkgs, ... }: {
-  # Permite GNOME
-  services.desktopManager.gnome.enable = true;
+  # Permite Plasma
+  services.desktopManager.plasma6.enable = true;
 
   services.displayManager = {
-    defaultSession = "gnome";
-    gdm.enable = true;
-  };
-
- programs.firefox.preferences = {
-    "widget.gtk.libadwaita-colors.enabled" = false;
+    defaultSession = "kde";
+    plasma-login-manager.enable = true;
   };
 }
