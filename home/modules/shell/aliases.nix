@@ -118,7 +118,7 @@
       # ╭────────────────────────────╮
       # │ 🎨  HOME MANAGER: Aparência│
       # ╰────────────────────────────╯
-      hm-gnome = "nano /etc/nixos/home/modules/system/gnome.nix";
+      hm-plasma = "nano /etc/nixos/home/modules/system/plasma.nix";
 
       # ╭────────────────────────────╮
       # │ 🧱  HOME MANAGER: SYSTEM   │

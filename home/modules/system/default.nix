@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   imports = [
-    #./gnome.nix
     ./fonts.nix
+    ./plasma.nix
     ./variables.nix
   ];
 }

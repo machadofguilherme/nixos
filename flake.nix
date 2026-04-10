@@ -1,11 +1,9 @@
 {
-  description = "Flake NixOS + Home Manager + NUR";
+  description = "Flake NixOS + Home Manager + Plasma Manager + NUR";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     home-manager = {
@@ -18,57 +16,44 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR";
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 
-  outputs = { self, nixpkgs,  home-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }@inputs:
+  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-      };
     in
     {
-      nixosConfigurations = {
-        hostname = nixpkgs.lib.nixosSystem {
-          inherit system;
+      nixosConfigurations.hostname = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs system nur aagl nix-cachyos-kernel zen-browser; };
 
-          modules = [
-            {
-               nixpkgs.overlays = [
-                  nix-cachyos-kernel.overlays.default
-                  nix-cachyos-kernel.overlays.pinned
+        modules = [
+          {
+            nixpkgs.overlays = [
+              inputs.nix-cachyos-kernel.overlays.default
+              (final: prev: {
+                linuxPackages_cachyos_bore = prev.linuxPackagesFor 
+                  inputs.nix-cachyos-kernel.packages.${system}.linux-cachyos-bore;
+              })
+            ];
+          }
 
-                   (final: prev: {
-                      linuxPackages_cachyos_bore =
-                          prev.linuxPackagesFor
-                             inputs.nix-cachyos-kernel.packages.${prev.stdenv.hostPlatform.system}.linux-cachyos-bore;
-                   })
-               ];
-             }
-
-          # Configuração do sistema
           ./configuration.nix
-
-          # NUR
-          nur.modules.nixos.default
-
-          # Home Manager
+          inputs.nur.modules.nixos.default
+          inputs.aagl.nixosModules.default
           home-manager.nixosModules.home-manager
 
-          # Usuário
-            { 
+          {
             nix.settings = {
               substituters = [
                 "https://cache.nixos.org"
-                "https://ezkea.cachix.org"
-                "https://attic.xuyh0120.win/lantian"
-              ];
-
-              trusted-substituters = [
                 "https://ezkea.cachix.org"
                 "https://attic.xuyh0120.win/lantian"
               ];
@@ -78,35 +63,28 @@
                 "ezkea.cachix.org-1:ioBm3RLqbWgsS9m6L8x1N8xZpB0X6R8W7ZkkxV8B68o="
                 "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
               ];
-  
+
               trusted-users = [
                 "root"
                 "guilherme"
               ];
             };
 
-            imports = [
-              aagl.nixosModules.default
-            ];
-
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               backupFileExtension = "backup";
-
+              extraSpecialArgs = { inherit inputs nur aagl plasma-manager; };
+              
               users.guilherme = {
                 imports = [
                   ./home/home.nix
+                  inputs.plasma-manager.homeModules.plasma-manager
                 ];
               };
             };
-        }
-      ];
-
-      specialArgs = {
-        inherit system nur aagl zen-browser inputs;
+          }
+        ];
       };
     };
-   };
-  };
 }

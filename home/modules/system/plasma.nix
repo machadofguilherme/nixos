@@ -2,24 +2,19 @@
 
   programs.plasma = {
     enable = true;
-
     workspace = {
-      theme = "Breeze Dark";
-      colorScheme = "BreezeDark";
       lookAndFeel = "org.kde.breezedark.desktop";
+      theme = "breeze-dark";
+      colorScheme = "BreezeDark";
+      iconTheme = "breeze-dark";
     };
 
-    fonts = {
-      general = {
-        family = "Noto Sans";
-        pointSize = 10;
-      };
+    kwin.effects = {
+      shakeCursor.enable = false;
     };
 
-    configFile."kwinrc" = {
-      "Windows" = {
-        FocusPolicy = "FocusFollowsMouse";
-      };
-    };
+    configFile."kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
+    configFile."dolphinrc"."General"."ViewPropsGroupView" = "Empty";
+    configFile."dolphinrc"."Main View"."ShowHiddenFiles" = true;
   };
 }
