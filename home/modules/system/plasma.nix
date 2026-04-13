@@ -4,14 +4,30 @@
       enable = true;
 
       workspace = {
+        wallpaperPictureOfTheDay = {
+          updateOverMeteredConnection = true;
+          provider = "bing";
+        };
+
         lookAndFeel = "org.kde.breezedark.desktop";
         colorScheme = "BreezeDark";
         iconTheme = "breeze-dark";
         theme = "breeze-dark";
       };
 
-      kwin.effects = {
-        shakeCursor.enable = false;
+      kwin = {
+        effects = {
+          shakeCursor.enable = false;
+
+          nightLight = {
+            enable = true;
+            mode = "automatic";
+          };
+        };
+
+        virtualDesktops = {
+          number = 4;
+          rows = 2;
       };
 
       krunner = {
@@ -19,6 +35,26 @@
         shortcuts.launch = "Alt+Space";
         historyBehavior = "disabled";
         position = "center";
+      };
+
+      input = {
+        keyboard = {
+          layouts = [
+            {
+              layout = "br";
+            }
+          ];
+        };
+
+        touchpads = [
+          {
+            enable = true;
+            leftHanded = true;
+            tapToClick = true;
+            disableWhileTyping = false;
+            middleButtonEmulation = true;
+          }
+        ];
       };
 
       configFile = {
@@ -42,6 +78,10 @@
           backspaceDecreaseIndent = true;
         };
       };
+    };
+
+    konsole = {
+      defaultProfile = "Perfil 1";
     };
   };
 }
