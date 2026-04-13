@@ -18,16 +18,17 @@
       kwin = {
         effects = {
           shakeCursor.enable = false;
+        };
 
-          nightLight = {
-            enable = true;
-            mode = "automatic";
-          };
+        nightLight = {
+          enable = true;
+          mode = "automatic";
         };
 
         virtualDesktops = {
           number = 4;
           rows = 2;
+        };
       };
 
       krunner = {
@@ -59,7 +60,6 @@
 
       configFile = {
         "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
-
         "dolphinrc"."General"."ViewPropsGroupView" = "Empty";
         "dolphinrc"."Main View"."ShowHiddenFiles" = true;
       };
@@ -84,4 +84,4 @@
       defaultProfile = "Perfil 1";
     };
   };
-};
+}
