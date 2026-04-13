@@ -46,16 +46,6 @@
             }
           ];
         };
-
-        touchpads = [
-          {
-            enable = true;
-            leftHanded = true;
-            tapToClick = true;
-            disableWhileTyping = false;
-            middleButtonEmulation = true;
-          }
-        ];
       };
 
       configFile = {
