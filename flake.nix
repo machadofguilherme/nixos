@@ -1,10 +1,6 @@
-#
-# ASSINATURAS DOS SUBSTITUTERS:
-#
-# https://www.google.com/url?sa=E&source=gmail&q=https://nixos.org/manual/nix/stable/package-management/binary-cache-substituter
-# https://cachix.org/api/v1/cache/ezkea
-# https://attic.xuyh0120.win/lantian/stats ou a raiz do cache: https://attic.xuyh0120.win/lantian
-#
+# --- REFERÊNCIAS PARA ATUALIZAÇÃO DE CHAVES ---
+# Ezkea (Cachix): https://cachix.org/api/v1/cache/ezkea (Campo: publicSigningKeys)
+# LanTian (Attic): https://github.com/xddxdd/nur-packages#binary-cache
 {
   description = "Flake NixOS + Home Manager + Plasma Manager + NUR";
 
@@ -60,13 +56,11 @@
           {
             nix.settings = {
               substituters = [
-                "https://cache.nixos.org"
                 "https://ezkea.cachix.org"
                 "https://attic.xuyh0120.win/lantian"
               ];
 
               trusted-public-keys = [
-                "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
                 "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
                 "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
               ];
