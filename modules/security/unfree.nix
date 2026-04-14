@@ -16,5 +16,6 @@
       "spotify"
       "discord-development"
       "unrar"
+      "stremio-linux-shell"
     ];
 }
