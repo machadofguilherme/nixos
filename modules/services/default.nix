@@ -4,5 +4,6 @@
     ./print.nix
     ./docker.nix
     ./touchpad.nix
+    ./appimage.nix
   ];
 }

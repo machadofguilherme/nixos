@@ -78,10 +78,10 @@
       # ╰────────────────────────────╯
       cfg-services  = "nano /etc/nixos/modules/services/default.nix";
       cfg-audio     = "nano /etc/nixos/modules/services/audio.nix";
+      cfg-appimage  = "nano /etc/nixos/modules/services/appimage.nix";
       cfg-print     = "nano /etc/nixos/modules/services/print.nix";
       cfg-touchpad  = "nano /etc/nixos/modules/services/touchpad.nix";
       cfg-docker    = "nano /etc/nixos/modules/services/docker.nix";
-      cfg-warp  = "nano /etc/nixos/modules/services/warp.nix";
 
       # ╭────────────────────────────╮
       # │ 🟢  MÓDULOS: BOOT          │
