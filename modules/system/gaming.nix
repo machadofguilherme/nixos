@@ -20,6 +20,8 @@
 
   environment.systemPackages = with pkgs; [
     heroic
+    vkd3d-proton
     hydralauncher
+    faugus-launcher
   ];
 }
