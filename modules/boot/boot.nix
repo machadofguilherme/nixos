@@ -34,6 +34,7 @@
 
   boot.kernelParams = [
     "quiet"
+    "amdgpu.aspm=0"
     "udev.log_level=3"
     "amdgpu.dcdebugmask=0x10"
     "i2c_hid.polling_interval=0" 
