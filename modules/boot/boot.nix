@@ -28,7 +28,17 @@
   };
 
   boot.consoleLogLevel = 0;
-  boot.kernelParams = [ "quiet" "udev.log_level=3" ];
+  boot.blacklistedKernelModules = [
+    "amd_sfh"
+  ];
+
+  boot.kernelParams = [
+    "quiet"
+    "udev.log_level=3"
+    "amdgpu.dcdebugmask=0x10"
+    "i2c_hid.polling_interval=0" 
+    "psmouse.synaptics_intertouch=1"
+  ];
 
   systemd.services.NetworkManager-wait-online.enable = false;
 

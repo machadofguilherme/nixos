@@ -5,5 +5,5 @@
     type = "hard";
     item = "nofile";
     value = "1048576";
-  }];
+   }];
 }
