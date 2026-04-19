@@ -22,6 +22,7 @@
     heroic
     vkd3d-proton
     hydralauncher
+    archisteamfarm
     faugus-launcher
   ];
 }
