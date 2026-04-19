@@ -1,4 +1,7 @@
 { config, pkgs, ... }: {
+  # Farme de Cartas
+  services.archisteamfarm.enable = true;
+
   # GameMode
   programs.gamemode.enable = true;
 
