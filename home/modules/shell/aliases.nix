@@ -144,6 +144,12 @@
       # ╰────────────────────────────╯
       gpu-game    = "sudo systemctl start gpu-power-gaming";
       gpu-normal  = "sudo systemctl start gpu-power-normal";
+
+
+      # ╭────────────────────────────╮
+      # │ 🎮  ArchiSteamFarm         │
+      # ╰────────────────────────────╯
+      steam-cards = "zen-beta http://localhost:1242";
     };
   };
 }
