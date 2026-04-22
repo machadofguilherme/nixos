@@ -2,7 +2,7 @@
   # Ulimit
   security.pam.loginLimits = [{
     domain = "*";
-    type = "hard";
+    type = "-";
     item = "nofile";
     value = "1048576";
    }];
