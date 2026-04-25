@@ -23,6 +23,8 @@
 
   environment.systemPackages = with pkgs; [
     heroic
+    lsfg-vk-ui
+    protonup-qt
     vkd3d-proton
     hydralauncher
     archisteamfarm
