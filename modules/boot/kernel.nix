@@ -10,7 +10,6 @@
 
   boot.initrd.kernelModules = [
     "amdgpu"
-    "ntsync"
   ];
 
   boot.kernel.sysctl = {

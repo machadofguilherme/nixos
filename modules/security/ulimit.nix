@@ -4,6 +4,6 @@
     domain = "*";
     type = "-";
     item = "nofile";
-    value = "1048576";
+    value = "65536";
    }];
 }
