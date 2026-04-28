@@ -5,6 +5,7 @@
     jq
     tree
     btop
+    inxi
     unzip
     pfetch
     yt-dlp
@@ -13,5 +14,6 @@
     zapzap
     killall
     lm_sensors
+    kdePackages.kamoso
   ];
 }
