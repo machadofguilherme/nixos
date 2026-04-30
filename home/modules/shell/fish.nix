@@ -17,8 +17,6 @@
 
          sudo nixos-rebuild switch --impure \
             --flake /etc/nixos#hostname
-
-         flatpak update
       end
 
       # ╭────────────────────────────╮

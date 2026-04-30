@@ -2,6 +2,9 @@
 
 {
   nixpkgs.config.allowUnsupportedSystem = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
 
   nix.settings = {
     experimental-features = [
