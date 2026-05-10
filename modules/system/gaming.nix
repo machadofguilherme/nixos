@@ -25,6 +25,7 @@
     heroic
     lsfg-vk-ui
     protonplus
+    protontricks
     vkd3d-proton
     hydralauncher
     archisteamfarm

@@ -6,8 +6,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -56,15 +56,15 @@
           {
             nix.settings = {
               substituters = [
+                "https://attic.xuyh0120.win/lantian"
                 "https://cache.nixos.org"
                 "https://ezkea.cachix.org"
-                "https://attic.xuyh0120.win/lantian"
               ];
 
               trusted-public-keys = [
+                "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
                 "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
                 "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-                "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
               ];
 
               trusted-users = [
