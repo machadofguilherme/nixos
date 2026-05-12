@@ -16,10 +16,11 @@
     enable = true;
     settings = {
       Resolve = {
+        Domains = "~.";
         DNSSEC = "false";
         DNS = "1.1.1.2 1.0.0.2";
         FallbackDNS = "9.9.9.9";
-        Domains = "~.";
+        DNSStubListener = "yes";
         DNSStubListenerExtra = "127.0.0.53";
       };
     };
