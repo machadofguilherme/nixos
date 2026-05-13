@@ -29,7 +29,7 @@
     };
   };
 
-  outputs = inputs@{ self, catpuccin, nixpkgs, home-manager, plasma-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }:
+  outputs = inputs@{ self, catppuccin, nixpkgs, home-manager, plasma-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }:
     let
       system = "x86_64-linux";
     in
