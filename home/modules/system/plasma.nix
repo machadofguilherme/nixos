@@ -1,5 +1,11 @@
 { config, pkgs, ... }: {
   home.file.".local/share/plasma/plasmoids/weather.widget.plus".source = ./widgets/weather-plus;
+  
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
 
   programs = {
     plasma = {
@@ -10,11 +16,6 @@
           updateOverMeteredConnection = true;
           provider = "bing";
         };
-
-        lookAndFeel = "org.kde.breezedark.desktop";
-        colorScheme = "BreezeDark";
-        iconTheme = "breeze-dark";
-        theme = "breeze-dark";
       };
 
       kwin = {
