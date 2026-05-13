@@ -40,7 +40,6 @@ in
         "prisma.formatOnSave" = true;
         "git.enableSmartCommit" = true;
         "workbench.startupEditor" = "none";
-        "workbench.iconTheme" = "material-icon-theme";
         "settingsSync.enabled" = false;
         "update.mode" = "none";
         "extensions.autoUpdate" = false;

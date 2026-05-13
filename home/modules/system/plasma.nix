@@ -12,6 +12,9 @@
       enable = true;
 
       workspace = {
+        lookAndFeel = "catppuccin-mocha-mauve";
+        cursor.theme = "Catppuccin-Mocha-Mauve-Cursors";
+        iconTheme = "Papirus-Dark";
         wallpaperPictureOfTheDay = {
           updateOverMeteredConnection = true;
           provider = "bing";
@@ -47,10 +50,6 @@
           location = "bottom";
           height = 44;
           widgets = [
-            "org.kde.plasma.kicker"
-            "org.kde.plasma.pager"
-            "org.kde.plasma.icontasks"
-            "org.kde.plasma.panelspacer"
             {
               name = "weather.widget.plus";
               config = {
@@ -64,8 +63,33 @@
               };
             }
             "org.kde.plasma.panelspacer"
+            "org.kde.plasma.kicker"
+            "org.kde.plasma.pager"
+            {
+              name = "org.kde.plasma.icontasks";
+              config = {
+                General = {
+                  launchers = [
+                    "applications:org.kde.konsole.desktop"
+                    "applications:org.kde.dolphin.desktop"
+                    "applications:zen.desktop"
+                  ];
+                };
+              };
+            }
+            "org.kde.plasma.panelspacer"
             "org.kde.plasma.systemtray"
-            "org.kde.plasma.digitalclock"
+            {
+              name = "org.kde.plasma.digitalclock";
+              config = {
+                Appearance = {
+                  use24hFormat = "2"; 
+                  showDate = "true";
+                  dateFormat = "custom"; 
+                  customDateFormat = "d, dddd"; 
+                };
+              };
+            }
             "org.kde.plasma.showdesktop"
           ];
         }
