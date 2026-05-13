@@ -1,4 +1,6 @@
 { config, pkgs, ... }: {
+  home.file.".local/share/plasma/plasmoids/weather.widget.plus".source = ./widgets/weather-plus;
+
   programs = {
     plasma = {
       enable = true;
@@ -16,10 +18,7 @@
       };
 
       kwin = {
-        effects = {
-          shakeCursor.enable = false;
-        };
-
+        effects.shakeCursor.enable = false;
         nightLight = {
           enable = true;
           mode = "automatic";
@@ -38,20 +37,43 @@
         position = "center";
       };
 
-      input = {
-        keyboard = {
-          layouts = [
+      input.keyboard.layouts = [
+        { layout = "br"; }
+      ];
+
+      panels = [
+        {
+          location = "bottom";
+          height = 44;
+          widgets = [
+            "org.kde.plasma.kicker"
+            "org.kde.plasma.pager"
+            "org.kde.plasma.icontasks"
+            "org.kde.plasma.panelspacer"
             {
-              layout = "br";
+              name = "weather.widget.plus";
+              config = {
+                Appearance = {
+                  weatherStation = "Porto Alegre, Brazil";
+                };
+                Location = {
+                  places = "[{\"providerId\":\"owm\",\"placeIdentifier\":\"3452925\",\"placeAlias\":\"Porto Alegre, Brasil\",\"timezoneID\":-1}]";
+                  firstRun = "false";
+                };
+              };
             }
+            "org.kde.plasma.panelspacer"
+            "org.kde.plasma.systemtray"
+            "org.kde.plasma.digitalclock"
+            "org.kde.plasma.showdesktop"
           ];
-        };
-      };
+        }
+      ];
 
       configFile = {
-        "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
-        "dolphinrc"."General"."ViewPropsGroupView" = "Empty";
         "dolphinrc"."Main View"."ShowHiddenFiles" = true;
+        "dolphinrc"."General"."ViewPropsGroupView" = "Empty";
+        "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
       };
     };
 
@@ -70,8 +92,6 @@
       };
     };
 
-    konsole = {
-      defaultProfile = "Perfil 1";
-    };
+    konsole.defaultProfile = "Perfil 1";
   };
 }
