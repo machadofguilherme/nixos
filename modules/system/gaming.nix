@@ -22,6 +22,7 @@
   };  
 
   environment.systemPackages = with pkgs; [
+    mgba
     heroic
     lsfg-vk-ui
     protonplus

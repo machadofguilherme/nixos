@@ -43,7 +43,7 @@
             nixpkgs.overlays = [
               inputs.nix-cachyos-kernel.overlays.default
               (final: prev: {
-                linuxPackages_cachyos_bore = prev.linuxPackagesFor 
+                linuxPackages_cachyos-bore = prev.linuxPackagesFor 
                   inputs.nix-cachyos-kernel.packages.${system}.linux-cachyos-bore;
               })
             ];

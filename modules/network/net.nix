@@ -1,27 +1,36 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+{
   networking = {
     hostName = "NixOS";
+    enableIPv6 = true;
+
     networkmanager = {
       enable = true;
       wifi.powersave = false;
       dns = "systemd-resolved";
-      connectionConfig."ipv4.ignore-auto-dns" = true;
+      connectionConfig = {
+        "ipv6.method" = "disabled";
+      };
     };
 
     resolvconf.enable = false;
-    enableIPv6 = false;
   };
 
   services.resolved = {
     enable = true;
+
     settings = {
       Resolve = {
-        Domains = "~.";
         DNSSEC = "false";
-        DNS = "1.1.1.2 1.0.0.2";
-        FallbackDNS = "9.9.9.9";
-        DNSStubListener = "yes";
-        DNSStubListenerExtra = "127.0.0.53";
+        DNS = [
+          "1.1.1.2"
+          "1.0.0.2"
+        ];
+
+        FallbackDNS = [
+          "9.9.9.9"
+        ];
       };
     };
   };

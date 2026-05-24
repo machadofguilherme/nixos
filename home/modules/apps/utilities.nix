@@ -7,6 +7,7 @@
     btop
     inxi
     unzip
+    p7zip
     pfetch
     yt-dlp
     cowsay

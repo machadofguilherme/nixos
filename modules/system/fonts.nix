@@ -14,6 +14,7 @@
       # Código / Terminal
       roboto-mono
       nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
       dina-font
       proggyfonts
 
@@ -27,7 +28,7 @@
       defaultFonts = {
         serif = [ "Noto Serif" ];
         sansSerif = [ "Noto Sans" ];
-        monospace = [ "FiraCode Nerd Font" ];
+        monospace = [ "JetBrainsMono Nerd Font" ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

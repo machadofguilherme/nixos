@@ -1,9 +1,8 @@
 
 { inputs, pkgs, ... }: {
-  boot.kernelPackages = pkgs.linuxPackages_cachyos_bore;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-bore;
 
   boot.kernelParams = [
-    "ipv6.disable=1"
     "amd_pstate=active"
     "acpi_ec_timeout=500"
   ];
