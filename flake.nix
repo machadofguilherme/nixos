@@ -5,7 +5,6 @@
   description = "Flake NixOS + Home Manager + Plasma Manager + NUR";
 
   inputs = {
-    catppuccin.url = "github:catppuccin/nix";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
@@ -29,7 +28,7 @@
     };
   };
 
-  outputs = inputs@{ self, catppuccin, nixpkgs, home-manager, plasma-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, plasma-manager, nur, aagl, nix-cachyos-kernel, zen-browser, ... }:
     let
       system = "x86_64-linux";
     in
@@ -52,7 +51,6 @@
           ./configuration.nix
           inputs.nur.modules.nixos.default
           inputs.aagl.nixosModules.default
-          catppuccin.nixosModules.catppuccin
           home-manager.nixosModules.home-manager
 
           {
@@ -84,7 +82,6 @@
               users.guilherme = {
                 imports = [
                   ./home/home.nix
-                  catppuccin.homeModules.catppuccin
                   inputs.plasma-manager.homeModules.plasma-manager
                 ];
               };

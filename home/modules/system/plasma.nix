@@ -1,29 +1,15 @@
 { config, pkgs, ... }: {
   home.file.".local/share/plasma/plasmoids/weather.widget.plus".source = ./widgets/weather-plus;
 
-  catppuccin = {
-    enable = true;
-    flavor = "frappe";
-    accent = "blue";
-    kvantum.enable = true;
-    vscode.profiles.default.enable = true;
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "kvantum";
-    style.name = "kvantum";
-  };
-
   programs = {
     plasma = {
       enable = true;
 
       workspace = {
-        lookAndFeel = "catppuccin-frappe-blue";
-        cursor.theme = "Catppuccin-Frappe-Blue-Cursors";
-        colorScheme = "CatppuccinFrappeBlue";
-        iconTheme = "Tela-nord-dark";
+        lookAndFeel = "org.kde.breezedark.desktop";
+        cursor.theme = "breeze_cursors";
+        colorScheme = "BreezeDark";
+        iconTheme = "breeze-dark";
         wallpaperPictureOfTheDay = {
           updateOverMeteredConnection = true;
           provider = "bing";
@@ -98,8 +84,6 @@
         "dolphinrc"."Main View"."ShowHiddenFiles" = true;
         "dolphinrc"."General"."ViewPropsGroupView" = "Empty";
         "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
-        "kwinrc"."org.kde.kdecoration2"."library" = "org.kde.kwin.aurorae";
-        "kwinrc"."org.kde.kdecoration2"."theme" = "CatppuccinFrappe-Modern";
       };
     };
 
