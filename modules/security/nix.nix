@@ -31,14 +31,16 @@
 
   nix.optimise.automatic = true;
 
-  services.angrr = {
+   services.angrr = {
     enable = true;
+
     settings = {
-      global = {
-        retention.maxAge = "2d";
-        rules = {
-          ownedOnly = false;
-          removeRoot = false;
+      "owned-only" = "false";
+
+      "temporary-root-policies" = {
+        result = {
+          "path-regex" = "/result[^/]*$";
+          period = "2d";
         };
       };
     };
