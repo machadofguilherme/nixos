@@ -1,0 +1,35 @@
+{ config, pkgs, ... }: {
+  # Farme de Cartas
+  services.archisteamfarm.enable = true;
+
+  # GameMode
+  programs.gamemode.enable = true;
+
+  # Gamescope
+  programs = {
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+  };
+
+  # Steam
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };  
+
+  environment.systemPackages = with pkgs; [
+    mgba
+    heroic
+    lsfg-vk-ui
+    protonplus
+    protontricks
+    vkd3d-proton
+    hydralauncher
+    archisteamfarm
+    faugus-launcher
+  ];
+}

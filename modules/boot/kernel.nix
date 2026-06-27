@@ -1,0 +1,20 @@
+
+{ inputs, pkgs, ... }: {
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-bore;
+
+  boot.kernelParams = [
+    "amd_pstate=active"
+    "acpi_ec_timeout=500"
+  ];
+
+  boot.initrd.kernelModules = [
+    "amdgpu"
+  ];
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180;
+    "vm.max_map_count" = 262144;
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
+}
