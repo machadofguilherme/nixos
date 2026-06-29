@@ -3,6 +3,7 @@
 {
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.permittedInsecurePackages = [
+    "ventoy-qt5-1.1.12"
     "openssl-1.1.1w"
   ];
 

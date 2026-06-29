@@ -17,5 +17,6 @@
       "discord-development"
       "unrar"
       "stremio-linux-shell"
+      "ventoy-qt5"
     ];
 }

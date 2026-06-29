@@ -12,9 +12,9 @@
     yt-dlp
     cowsay
     ffmpeg
-    zapzap
     killall
     lm_sensors
+    ventoy-full-qt
     kdePackages.kamoso
   ];
 }
